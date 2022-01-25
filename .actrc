@@ -1,0 +1,2 @@
+--eventpath .github/act_event.json
+--platform ubuntu-latest=ghcr.io/busybeaver/homelab-packages/act-runner-environment:latest

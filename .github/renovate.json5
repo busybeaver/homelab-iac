@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "config:js-lib",
+    ":docker",
+    "docker:pinDigests",
+    "docker:enableMajor",
+    ":semanticCommits",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":rebaseStalePrs",
+    ":prHourlyLimit4",
+    ":prConcurrentLimit10",
+    ":maintainLockFilesWeekly",
+    ":enableVulnerabilityAlerts",
+    ":disableDependencyDashboard",
+    "helpers:pinGitHubActionDigests",
+    // "default:automergeDigest",
+    "npm:unpublishSafe"
+  ],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "Automatically merge minor and patch-level updates",
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "lockFileMaintenance"],
+      "automerge": true,
+      "stabilityDays": 5,
+      "assignees": ["busybeaver"],
+      "reviewers": ["busybeaver"]
+      // consider using branch auto-merging:
+      // https://docs.renovatebot.com/noise-reduction/#branch-automerging
+    },
+    {
+      "description": "Manually merge major updates",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "stabilityDays": 7,
+      "assignees": ["busybeaver"],
+      "reviewers": ["busybeaver"],
+      "addLabels": ["major-update"]
+    }
+  ]
+}
