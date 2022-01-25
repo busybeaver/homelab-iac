@@ -1,0 +1,24 @@
+{
+  "name": "homelab-iac",
+  "version": "1.0.0",
+  "description": "Infrastructure as Code for the personal HomeLab",
+  "author": "busybeaver",
+  "homepage": "https://github.com/busybeaver/homelab-iac#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/busybeaver/homelab-iac.git"
+  },
+  "license": "ISC",
+  "main": "src/index.ts",
+  "devDependencies": {
+    "@tsconfig/node16": "1.0.2",
+    "@types/node": "16.11.7",
+    "typescript": "4.5.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=16.13.0"
+  }
+}
