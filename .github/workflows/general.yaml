@@ -45,7 +45,7 @@ jobs:
         uses: github/super-linter/slim@b8641364ca9a79b3cf07f3c4c59a82709cd39094 # renovate: tag=v4
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          FILTER_REGEX_EXCLUDE: '.*Pulumi\.production\.yaml|.*state/.*'
+          FILTER_REGEX_EXCLUDE: '.*Pulumi\.production\.yaml|.*state/.*|.*\.git-crypt/.*'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TYPESCRIPT_DEFAULT_STYLE: prettier
           VALIDATE_ALL_CODEBASE: ${{ github.event_name != 'pull_request' }}
