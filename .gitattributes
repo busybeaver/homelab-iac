@@ -1,0 +1,17 @@
+# Default settings if not otherwise specified below
+*              text=auto
+
+# Terraform configuration
+*.tf           text eol=lf
+
+#
+# Exclude files from exporting
+#
+.gitattributes export-ignore
+.gitignore     export-ignore
+.gitkeep       export-ignore
+
+# Encrypt sensitive state/input/environment data
+state/**/production/** filter=git-crypt diff=git-crypt
+state/**/*production* filter=git-crypt diff=git-crypt
+Pulumi.production.yaml filter=git-crypt diff=git-crypt

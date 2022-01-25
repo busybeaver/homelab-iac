@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/osx,linux,windows,intellij,visualstudiocode,node,pulumi+stacks
-# Edit at https://www.toptal.com/developers/gitignore?templates=osx,linux,windows,intellij,visualstudiocode,node,pulumi+stacks
+# Created by https://www.toptal.com/developers/gitignore/api/osx,node,linux,windows,intellij,visualstudiocode,pulumi
+# Edit at https://www.toptal.com/developers/gitignore?templates=osx,node,linux,windows,intellij,visualstudiocode,pulumi
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -295,17 +295,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-### Pulumi+stacks ###
+### Pulumi ###
 # Ignore temp build directory for Pulumi
 # Info: https://www.pulumi.com/docs/
 
 .pulumi/
-
-### Pulumi+stacks Patch ###
-# Pulumi stacks configuration files
-# See https://www.pulumi.com/docs/intro/concepts/project/#stack-settings-file
-
-Pulumi.*.yaml
 
 ### VisualStudioCode ###
 .vscode/*
@@ -354,12 +348,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/osx,linux,windows,intellij,visualstudiocode,node,pulumi+stacks
-
-
-# -------
-# Custom:
-# -------
-
-# created by the GitHub Actions CI build system
-**/.ci.env
+# End of https://www.toptal.com/developers/gitignore/api/osx,node,linux,windows,intellij,visualstudiocode,pulumi
