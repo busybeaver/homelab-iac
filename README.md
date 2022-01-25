@@ -6,13 +6,16 @@ Infrastructure as Code for the personal HomeLab.
 
 Make sure [Node.js](https://nodejs.org/en/) is installed. The [latest LTS version](https://nodejs.org/en/download/) is recommended. Tools like [fnm](https://github.com/Schniz/fnm) or [volta](https://github.com/volta-cli/volta) can help managing multipe Node.js version.
 
-On MacOS run the following command to install [Pulumi](https://www.pulumi.com/) and [git-crypt](https://github.com/AGWA/git-crypt):
+On macOS run the following command to install [Pulumi](https://www.pulumi.com/) and [git-crypt](https://github.com/AGWA/git-crypt):
+
 ```shell
 brew install pulumi git-crypt
 ```
+
 For other operating systems, have a look at the [installation section](https://www.pulumi.com/docs/get-started/install/) in the Pulumi doc as well as the git-crypt [install documentation](https://github.com/AGWA/git-crypt/blob/master/INSTALL.md).
 
 Subsequently, setup Pulumi by running:
+
 ```shell
 pulumi login file://./state
 # to work on the production stack (containing the actual data)
