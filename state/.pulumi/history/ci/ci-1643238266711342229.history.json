@@ -1,0 +1,40 @@
+{
+    "kind": "update",
+    "startTime": 1643238262,
+    "message": "Associated Git Commit: \"build: lint fixes\" by Object (sha: 284967981b67ca3eb9c7d1ea4f0de07289a48d3e)",
+    "environment": {
+        "ci.build.id": "1753459586",
+        "ci.build.number": "14",
+        "ci.build.type": "push",
+        "ci.build.url": "https://github.com/busybeaver/homelab-iac/actions/runs/1753459586",
+        "ci.pr.headSHA": "77fb5fc6876af6c1fc5a17cd33f8e030e6f711e8",
+        "ci.system": "GitHub Actions",
+        "exec.agent": "pulumi/actions@v3",
+        "exec.kind": "auto.local",
+        "git.author": "busybeaver",
+        "git.author.email": "858259+busybeaver@users.noreply.github.com",
+        "git.committer": "busybeaver",
+        "git.committer.email": "858259+busybeaver@users.noreply.github.com",
+        "git.dirty": "true",
+        "git.head": "77fb5fc6876af6c1fc5a17cd33f8e030e6f711e8",
+        "git.headName": "refs/heads/main",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac"
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "succeeded",
+    "endTime": 1643238266,
+    "resourceChanges": {
+        "same": 18
+    }
+}
