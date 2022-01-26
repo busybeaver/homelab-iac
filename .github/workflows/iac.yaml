@@ -70,7 +70,7 @@ jobs:
           secrets-provider: passphrase
           comment-on-pr: true
           edit-pr-comment: yes
-          message: 'Associated Git Commit: "${{ github.event.commits[0].message }}" by ${{ ${{ github.event.commits[0].author }} }} (sha: ${{ github.event.commits[0].id }})'
+          message: 'Associated Git Commit: "${{ github.event.commits[0].message }}" by ${{ github.event.commits[0].author }} (sha: ${{ github.event.commits[0].id }})'
           github-token: ${{ steps.github_generate_app_token.outputs.token }}
         env:
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
