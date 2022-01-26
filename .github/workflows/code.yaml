@@ -41,10 +41,12 @@ jobs:
 
     steps:
       - name: Git - Checkout
+        id: git_checkout
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
 
       # Initializes the CodeQL tools for scanning.
       - name: CodeQL - Initialization
+        id: codeql_initialization
         uses: github/codeql-action/init@v1
         with:
           languages: ${{ matrix.language }}
@@ -54,7 +56,41 @@ jobs:
           # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
       - name: CodeQL - Autobuild
+        id: codeql_autobuild
         uses: github/codeql-action/autobuild@v1
 
       - name: CodeQL - Analysis
+        id: codeql_analysis
         uses: github/codeql-action/analyze@v1
+
+  typescript_typecheck:
+    name: 'TypeScript - Type Check'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: '.'
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Git - Checkout
+        id: git_checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
+
+      - name: Node - Setup
+        id: node_setup
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: NPM - Install Dependencies
+        id: npm_install
+        run: npm ci
+
+      - name: TypeScript - TypeCheck
+        id: typescript_typecheck
+        run: npm run typecheck
