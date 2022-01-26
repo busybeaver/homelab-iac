@@ -14,13 +14,16 @@
   "devDependencies": {
     "@pulumi/github": "4.9.1",
     "@pulumi/pulumi": "3.22.1",
+    "@pulumi/random": "4.3.1",
     "@tsconfig/node16": "1.0.2",
     "@types/node": "16.11.21",
     "typescript": "4.5.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "typecheck": "tsc --project ./tsconfig.json --noEmit"
+    "typecheck": "tsc --project ./tsconfig.json --noEmit",
+    "pulumi:stack_ci": "pulumi stack select ci",
+    "pulumi:stack_prod": "pulumi stack select production"
   },
   "engines": {
     "node": ">=16.13.0"

@@ -1,1 +1,7 @@
-console.log("hello world");
+import { github } from "./cloud/github";
+
+export = async () => {
+  return {
+    github
+  };
+}

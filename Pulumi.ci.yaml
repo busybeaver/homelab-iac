@@ -1,1 +1,5 @@
-encryptionsalt: v1:d44HpQvhO2w=:v1:BLsCU5/Yodl109Ed:q6mhRa/Q/om7nHOdrUo906UOM09MVA==
+encryptionsalt: v1:oRHk/lXOQ/o=:v1:5ojL7J89uPowkhiX:5Cu3JIQh930KNaTe6tmIZdoaXuazaA==
+config:
+  github:owner: busybeaver-ci
+  github:token:
+    secure: v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58=
