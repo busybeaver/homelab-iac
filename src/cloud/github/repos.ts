@@ -1,11 +1,13 @@
 import * as github from "@pulumi/github";
 import { requireSecretString } from "../../util/secrets"
+import { isCi } from "../../util/stack";
 
 const iacRepo = new github.Repository("homelab-iac", {
   allowAutoMerge: false,
   allowMergeCommit: true,
   allowRebaseMerge: false,
   allowSquashMerge: true,
+  autoInit: isCi(),
   archived: false,
   deleteBranchOnMerge: true,
   description: "Infrastructure as Code for the personal HomeLab",
