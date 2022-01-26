@@ -7,7 +7,6 @@ const iac_repo = new github.Repository("homelab-iac", {
   allowRebaseMerge: false,
   allowSquashMerge: true,
   archived: false,
-  autoInit: false,
   deleteBranchOnMerge: true,
   description: "Infrastructure as Code for the personal HomeLab",
   hasDownloads: true,
