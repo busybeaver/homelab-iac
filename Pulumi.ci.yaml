@@ -3,3 +3,5 @@ config:
   github:owner: busybeaver-ci
   github:token:
     secure: v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58=
+  homelab-iac:github_automation_user:
+    secure: v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw==

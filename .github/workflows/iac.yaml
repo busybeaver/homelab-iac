@@ -19,9 +19,11 @@ concurrency:
   group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}-{1}', github.workflow, github.sha) || format('ci-{0}-{1}', github.workflow, github.ref) }}
 
 jobs:
-  pulumi:
-    name: 'Pulumi'
+  pulumi_preview_changes:
+    name: 'Pulumi - Preview Changes'
     runs-on: ubuntu-latest
+
+    if: github.event_name != 'push' || github.ref != format('refs/heads/{0}', github.event.repository.default_branch)
 
     env:
       PULUMI_STACK: ci
@@ -33,7 +35,6 @@ jobs:
 
     permissions:
       contents: read
-      pull-requests: write
 
     steps:
       - name: Git - Checkout
@@ -51,27 +52,97 @@ jobs:
         id: npm_install
         run: npm ci
 
+      - name: GitHub - Generate App Token
+        id: github_generate_app_token
+        uses: tibdex/github-app-token@7ce9ffdcdeb2ba82b01b51d6584a6a85872336d4 # renovate: tag=v1.5.1
+        with:
+          app_id: ${{ secrets.PULUMI_APP_ID }}
+          private_key: ${{ secrets.PULUMI_APP_PRIVATE_KEY }}
+
       - name: Pulumi - Preview Changes
+        id: pulumi_preview_changes
         uses: pulumi/actions@v3
-        if: github.event_name != 'push' || github.ref != format('refs/heads/{0}', github.event.repository.default_branch)
         with:
           command: preview
+          refresh: true
           cloud-url: file://./state
           stack-name: ${{ env.PULUMI_STACK }}
           secrets-provider: passphrase
           comment-on-pr: true
           edit-pr-comment: yes
+          message: 'Associated Git Commit: "${{ github.event.commits[0].message }}" by ${{ ${{ github.event.commits[0].author }} }} (sha: ${{ github.event.commits[0].id }})'
+          github-token: ${{ steps.github_generate_app_token.outputs.token }}
         env:
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
 
+  pulumi_apply_changes:
+    name: 'Pulumi - Apply Changes'
+    runs-on: ubuntu-latest
+
+    if: github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+
+    env:
+      PULUMI_STACK: ci
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: '.'
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Git - Checkout
+        id: git_checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
+        with:
+          # https://github.com/marketplace/actions/git-auto-commit#checkout-the-correct-branch
+          ref: ${{ github.head_ref }}
+          # this is the token that the "git-auto-commit" action is using, so we use the one from the app
+          # https://github.com/marketplace/actions/git-auto-commit#commits-made-by-this-action-do-not-trigger-new-workflow-runs
+          token: ${{ secrets.GH_AUTOMATION_TOKEN }}
+
+      - name: Node - Setup
+        id: node_setup
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # renovate: tag=v2
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: NPM - Install Dependencies
+        id: npm_install
+        run: npm ci
+
       - name: Pulumi - Apply Changes
+        id: pulumi_apply_changes
         uses: pulumi/actions@v3
-        if: github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         with:
           command: up
+          refresh: true
           cloud-url: file://./state
           stack-name: ${{ env.PULUMI_STACK }}
           secrets-provider: passphrase
-          message: 'Associated Git Commit: ${{ github.event.commits[0].message }}'
+          message: 'Associated Git Commit: "${{ github.event.commits[0].message }}" by ${{ ${{ github.event.commits[0].author }} }} (sha: ${{ github.event.commits[0].id }})'
         env:
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+
+      - name: GitHub - Setup GPG Keys
+        id: github_setup_gpg
+        uses: crazy-max/ghaction-import-gpg@cb4264d3319acaa2bea23d51ef67f80b4f775013 # renovate: tag=v4
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Git - Commit and Push State Changes
+        id: git_commit_push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: update state for the ${{ env.PULUMI_STACK }} stack [skip ci]"
+          commit_options: --no-verify
+          commit_user_name: ${{ steps.github_setup_gpg.outputs.name }}
+          commit_user_email: ${{ steps.github_setup_gpg.outputs.email }}
+          commit_author: pulumi-runner[bot] <167523+pulumi-runner[bot]@users.noreply.github.com>
+          file_pattern: ./state/**
