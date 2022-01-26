@@ -1,0 +1,69 @@
+name: "IaC CI"
+
+on:
+  # run on pushes to main
+  push:
+    branches:
+      - main
+  # run on pull requests that target the main branch
+  pull_request:
+    branches:
+      - main
+  # run weekly on Monday at 12:00
+  schedule:
+    - cron: '0 12 * * 1'
+
+concurrency:
+  # on main, we want all builds to complete even if commits/merging happens faster to make it easier to discover at which point
+  # something broke; else, we cancel "old" builds and run/(re)start the build with the latest changes
+  group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}-{1}', github.workflow, github.sha) || format('ci-{0}-{1}', github.workflow, github.ref) }}
+
+jobs:
+  pulumi:
+    name: 'Pulumi'
+    runs-on: ubuntu-latest
+
+    env:
+      PULUMI_STACK: ci
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: '.'
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Git - Checkout
+        id: git_checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
+
+      - name: Node - Setup
+        id: node_setup
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # renovate: tag=v2
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: NPM - Install Dependencies
+        id: npm_install
+        run: npm ci
+
+      - name: Pulumi - Preview Changes
+        uses: pulumi/actions@v3
+        if: github.event_name != 'push' || github.ref != format('refs/heads/{0}', github.event.repository.default_branch)
+        with:
+          command: preview --color never
+          stack-name: ${{ env.PULUMI_STACK }}
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+
+      - name: Pulumi - Apply Changes
+        uses: pulumi/actions@v3
+        if: github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        with:
+          command: up --yes --color never --message
+          stack-name: ${{ env.PULUMI_STACK }}
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
