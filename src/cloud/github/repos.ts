@@ -1,13 +1,12 @@
 import * as github from "@pulumi/github";
-import { requireSecretString } from "../../util/secrets"
-import { isCi } from "../../util/stack";
+import { requireSecretString } from "../../util/secrets";
 
 const iacRepo = new github.Repository("homelab-iac", {
   allowAutoMerge: false,
   allowMergeCommit: true,
   allowRebaseMerge: false,
   allowSquashMerge: true,
-  autoInit: isCi(),
+  autoInit: true,
   archived: false,
   deleteBranchOnMerge: true,
   description: "Infrastructure as Code for the personal HomeLab",
@@ -19,17 +18,12 @@ const iacRepo = new github.Repository("homelab-iac", {
   name: "homelab-iac",
   visibility: "public",
   vulnerabilityAlerts: true,
-});
-const iacMainBranch = new github.Branch("homelab-iac-main", {
-  repository: iacRepo.name,
-  branch: "main",
-  sourceBranch: "main",
 }, {
   protect: true,
 });
 const iacDefaultBranch = new github.BranchDefault("homelab-iac", {
   repository: iacRepo.name,
-  branch: iacMainBranch.branch,
+  branch: iacRepo.branches[0]?.name ?? "main",
 }, {
   protect: true,
 });
@@ -74,4 +68,4 @@ const iacGitHubAutomationTokenSecret = new github.ActionsSecret("homelab-iac-git
   plaintextValue: requireSecretString("github_automation_token"),
 });
 
-export const repos = [ iacRepo, iacMainBranch, iacDefaultBranch, iacAutomationUser, iacPulumiSecret, iacGitguardianSecret, iacGpgPrivateKeySecret, iacGpgPassphraseSecret, iacPulumiAppIdSecret, iacPulumiAppPrivateKeySecret, iacGitHubAutomationTokenSecret ];
+export const repos = [ iacRepo, iacDefaultBranch, iacAutomationUser, iacPulumiSecret, iacGitguardianSecret, iacGpgPrivateKeySecret, iacGpgPassphraseSecret, iacPulumiAppIdSecret, iacPulumiAppPrivateKeySecret, iacGitHubAutomationTokenSecret ];
