@@ -1,3 +1,3 @@
-import { repos } from './repos'
+import { repos } from './repos';
 
-export const github = [ ...repos ];
+export const github = [...repos];
