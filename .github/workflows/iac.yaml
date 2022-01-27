@@ -13,17 +13,18 @@ on:
   schedule:
     - cron: '0 12 * * 1'
 
-concurrency:
-  # on main, we want all builds to complete even if commits/merging happens faster to make it easier to discover at which point
-  # something broke; else, we cancel "old" builds and run/(re)start the build with the latest changes
-  group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}-{1}', github.workflow, github.sha) || format('ci-{0}-{1}', github.workflow, github.ref) }}
-
 jobs:
   pulumi_preview_changes:
     name: 'Pulumi - Preview Changes'
     runs-on: ubuntu-latest
 
     if: github.event_name != 'push' || github.ref != format('refs/heads/{0}', github.event.repository.default_branch)
+
+    concurrency:
+      # on branches (when a push even happens), we want all builds to complete even if commits/merging happens faster to make it easier to discover at which point
+      # something broke; else (on PRs and scheduled executions), we cancel "old" builds and run/(re)start the build with the latest changes
+      group: ${{ github.event_name == 'push' && format('ci-main-{0}-{1}', github.workflow, github.sha) || format('ci-{0}-{1}', github.workflow, github.ref) }}
+      cancel-in-progress: false
 
     env:
       PULUMI_STACK: ci
@@ -80,6 +81,11 @@ jobs:
     runs-on: ubuntu-latest
 
     if: github.event_name == 'push' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+
+    concurrency:
+      # only allow one concurrent job/workflow, since the workflow commits changes back to the git repo which could cause concurrency issues
+      group: ${{ github.workflow }}
+      cancel-in-progress: false
 
     env:
       PULUMI_STACK: ci
@@ -144,5 +150,5 @@ jobs:
           commit_options: --no-verify
           commit_user_name: ${{ steps.github_setup_gpg.outputs.name }}
           commit_user_email: ${{ steps.github_setup_gpg.outputs.email }}
-          commit_author: pulumi-runner[bot] <167523+pulumi-runner[bot]@users.noreply.github.com>
+          commit_author: pulumi-runner[bot] <${{ secrets.PULUMI_APP_ID }}+pulumi-runner[bot]@users.noreply.github.com>
           file_pattern: ./state/**
