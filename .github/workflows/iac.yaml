@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - gh-readonly-queue/main/**
   # run on pull requests that target the main branch
   pull_request:
     branches:
