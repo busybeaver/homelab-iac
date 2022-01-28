@@ -100,6 +100,9 @@ jobs:
     name: 'Jest - Unit Tests'
     runs-on: ubuntu-latest
 
+    env:
+      JUNIT_TEST_RESULTS_FILE: ./.test_results_junit.xml
+
     defaults:
       run:
         shell: bash
@@ -126,9 +129,30 @@ jobs:
 
       - name: Jest - Unit Tests
         id: jest_unit_tests
-        run: npm run test -- --coverage
+        run: npm run test -- --ci --coverage --reporters=default --reporters=jest-junit
+        env:
+          JEST_JUNIT_OUTPUT_FILE: ${{ env.JUNIT_TEST_RESULTS_FILE }}
 
-      - name: Upload coverage to Codecov
+      - name: GitHub - Generate App Token
+        id: github_generate_app_token
+        uses: tibdex/github-app-token@7ce9ffdcdeb2ba82b01b51d6584a6a85872336d4 # renovate: tag=v1.5.1
+        if: always()
+        with:
+          # # https://github.com/EnricoMi/publish-unit-test-result-action/issues/161
+          app_id: ${{ secrets.UNIT_TEST_RESULTS_REPORTER_APP_ID }}
+          private_key: ${{ secrets.UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY }}
+
+      - name: GitHub - Publish Unit Test Results
+        id: github_publish_results
+        uses: EnricoMi/publish-unit-test-result-action@bffeee8009970dbb7444de4027c06333c97a8a54 # renovate: tag=v1.27
+        if: always()
+        with:
+          github_token: ${{ steps.github_generate_app_token.outputs.token }}
+          check_name: Unit Test Results
+          files: ${{ env.JUNIT_TEST_RESULTS_FILE }}
+
+      - name: Codecov - Upload Coverage Data
+        id: codecov_upload_data
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
