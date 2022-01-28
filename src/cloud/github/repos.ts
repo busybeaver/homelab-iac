@@ -62,6 +62,11 @@ const iacPulumiAppPrivateKeySecret = new github.ActionsSecret('homelab-iac-pulum
   secretName: 'PULUMI_APP_PRIVATE_KEY',
   plaintextValue: requireSecretString('pulumi_app_private_key'),
 });
+const iacCodecovTokenSecret = new github.ActionsSecret('homelab-iac-codecov-token', {
+  repository: iacRepo.name,
+  secretName: 'CODECOV_TOKEN',
+  plaintextValue: requireSecretString('codecov_token'),
+});
 const iacGitHubAutomationTokenSecret = new github.ActionsSecret('homelab-iac-github-automation-token', {
   repository: iacRepo.name,
   secretName: 'GH_AUTOMATION_TOKEN',
@@ -78,5 +83,6 @@ export const repos = [
   iacGpgPassphraseSecret,
   iacPulumiAppIdSecret,
   iacPulumiAppPrivateKeySecret,
+  iacCodecovTokenSecret,
   iacGitHubAutomationTokenSecret,
 ];
