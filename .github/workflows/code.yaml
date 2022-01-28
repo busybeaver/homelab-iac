@@ -64,7 +64,7 @@ jobs:
         id: codeql_analysis
         uses: github/codeql-action/analyze@v1
 
-  typescript_typecheck:
+  typecheck:
     name: 'TypeScript - Type Check'
     runs-on: ubuntu-latest
 
@@ -92,6 +92,49 @@ jobs:
         id: npm_install
         run: npm ci
 
-      - name: TypeScript - TypeCheck
+      - name: TypeScript - Type Check
         id: typescript_typecheck
         run: npm run typecheck
+
+  unit_tests:
+    name: 'Jest - Unit Tests'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: '.'
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Git - Checkout
+        id: git_checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
+
+      - name: Node - Setup
+        id: node_setup
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # renovate: tag=v2
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: NPM - Install Dependencies
+        id: npm_install
+        run: npm ci
+
+      - name: Jest - Unit Tests
+        id: jest_unit_tests
+        run: npm run test -- --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/
+          flags: unittests
+          env_vars: RUNNER_OS,RUNNER_ARCH,GITHUB_EVENT_NAME
+          fail_ci_if_error: true
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
