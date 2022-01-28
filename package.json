@@ -12,20 +12,40 @@
   "main": "src/index.ts",
   "private": true,
   "devDependencies": {
+    "@arkweid/lefthook": "0.7.7",
+    "@commitlint/cli": "16.1.0",
+    "@commitlint/config-conventional": "16.0.0",
+    "@node-rs/deno-lint": "1.12.0",
     "@pulumi/github": "4.9.1",
     "@pulumi/pulumi": "3.22.1",
     "@pulumi/random": "4.3.1",
+    "@swc/core": "1.2.135",
+    "@swc/jest": "0.2.17",
     "@tsconfig/node16": "1.0.2",
+    "@types/jest": "27.4.0",
     "@types/node": "16.11.21",
+    "commitizen": "4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "dprint": "0.21.2",
+    "git-format-staged": "2.1.3",
+    "jest": "27.4.7",
+    "regenerator-runtime": "0.13.9",
     "typescript": "4.5.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "cm": "cz",
+    "test": "jest",
+    "format": "dprint fmt",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
     "pulumi:stack_ci": "pulumi stack select ci",
     "pulumi:stack_prod": "pulumi stack select production"
   },
   "engines": {
     "node": ">=16.13.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
