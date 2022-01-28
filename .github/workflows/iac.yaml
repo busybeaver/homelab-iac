@@ -64,7 +64,7 @@ jobs:
 
       - name: Pulumi - Preview Changes
         id: pulumi_preview_changes
-        uses: pulumi/actions@v3
+        uses: pulumi/actions@8a477588e1e16b6d6ea69fce287eea4af97cbbab # renovate: tag=v3
         with:
           command: preview
           refresh: true
@@ -125,7 +125,7 @@ jobs:
 
       - name: Pulumi - Apply Changes
         id: pulumi_apply_changes
-        uses: pulumi/actions@v3
+        uses: pulumi/actions@8a477588e1e16b6d6ea69fce287eea4af97cbbab # renovate: tag=v3
         with:
           command: up
           refresh: true
@@ -147,7 +147,7 @@ jobs:
 
       - name: Git - Commit and Push State Changes
         id: git_commit_push
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@5804e42f86b1891093b151b6c4e78e759c746c4d # renovate: tag=v4
         with:
           commit_message: "chore: update state for the ${{ env.PULUMI_STACK }} stack [skip ci]"
           commit_options: --no-verify
