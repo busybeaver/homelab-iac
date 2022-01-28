@@ -72,6 +72,22 @@ const iacGitHubAutomationTokenSecret = new github.ActionsSecret('homelab-iac-git
   secretName: 'GH_AUTOMATION_TOKEN',
   plaintextValue: requireSecretString('github_automation_token'),
 });
+const iacUnitTestResultsReporterAppIdSecret = new github.ActionsSecret(
+  'homelab-iac-unit-test-results-reporter-app-id',
+  {
+    repository: iacRepo.name,
+    secretName: 'UNIT_TEST_RESULTS_REPORTER_APP_ID',
+    plaintextValue: requireSecretString('unit_test_results_reporter_app_id'),
+  },
+);
+const iacUnitTestResultsReporterPrivateKeySecret = new github.ActionsSecret(
+  'homelab-iac-unit-test-results-reporter-private-key',
+  {
+    repository: iacRepo.name,
+    secretName: 'UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY',
+    plaintextValue: requireSecretString('unit_test_results_reporter_private_key'),
+  },
+);
 
 export const repos = [
   iacRepo,
@@ -85,4 +101,6 @@ export const repos = [
   iacPulumiAppPrivateKeySecret,
   iacCodecovTokenSecret,
   iacGitHubAutomationTokenSecret,
+  iacUnitTestResultsReporterAppIdSecret,
+  iacUnitTestResultsReporterPrivateKeySecret,
 ];
