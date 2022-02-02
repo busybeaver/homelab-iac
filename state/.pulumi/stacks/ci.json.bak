@@ -4,9 +4,9 @@
         "stack": "ci",
         "latest": {
             "manifest": {
-                "time": "2022-01-29T00:14:31.900742041Z",
-                "magic": "c51f7579a74e3b22b75681e48e5eb7c86e9b44fb0ab7aa4d27aca5090bd933ea",
-                "version": "v3.22.1"
+                "time": "2022-02-02T21:05:27.693869555Z",
+                "magic": "62c578617ffcbdd5ccf70d912f3223d34f646c748de212c13abe0965bd1a50e3",
+                "version": "v3.23.2"
             },
             "secrets_providers": {
                 "type": "passphrase",
@@ -77,19 +77,19 @@
                                 "urn": "urn:pulumi:ci::homelab-iac::github:index/repositoryCollaborator:RepositoryCollaborator::homelab-iac-automation-user",
                                 "username": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:0JFbtLov9LAmorj0:6EImp1D29UwF9v8dgBg8Mc+WsxvRAFr2xC2ATT4cWRNMIuiERb0T"
+                                    "ciphertext": "v1:mSsNY9LbPFFptCLX:EvMnRsHc6IGf6GBAOchztRr/W+yCjSdbzIEXuyNY7t8hJCfpaeCu"
                                 }
                             },
                             {
                                 "createdAt": "2022-01-26 22:51:17 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:rclOwhH/AgnBu1bd:zJ3maXgHsZ/naL+GbT7xSnM7"
+                                    "ciphertext": "v1:QiPh/O9e64puhZQD:DEV94V4D47zBgE0ivU/TBeu+"
                                 },
                                 "id": "homelab-iac:PULUMI_CONFIG_PASSPHRASE",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:Yw94qsp0SkTrWhJD:8yuzO8B1o5keu66a8+PiiRy47hLl/w=="
+                                    "ciphertext": "v1:Rxhh5E8s+ic9Ffhh:NOZEHx2eDe7xIVVKQ7kEgRlh1TqLSQ=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "PULUMI_CONFIG_PASSPHRASE",
@@ -100,12 +100,12 @@
                                 "createdAt": "2022-01-26 22:51:20 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:FS4sCyykrNgSm6vD:Ov4LdJjEN3+F4fwEw3lBxbaz"
+                                    "ciphertext": "v1:gZjdst+I3mTbMn4D:RE4YOcGvramD9fe2nOSFFkSU"
                                 },
                                 "id": "homelab-iac:GITGUARDIAN_API_KEY",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:MXthClnKLdMpEVHQ:uI8W5xIuwY+DDxi2NV6o/VrKYA5Pyw=="
+                                    "ciphertext": "v1:r99VQjN+I8QdCUP2:390vyrv7WgMzzthiheuxXiiwW0nNgw=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "GITGUARDIAN_API_KEY",
@@ -116,12 +116,12 @@
                                 "createdAt": "2022-01-26 22:51:19 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:OmX/zSj3uQd37yjf:vddpGd4MR4jJFvm+sikzbE9R"
+                                    "ciphertext": "v1:fPW3XAPFaieVT72W:z0C03zG9Iv+YCvgMJHCLkPbe"
                                 },
                                 "id": "homelab-iac:GPG_PRIVATE_KEY",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:u7KL8BagRgvp5iNe:CYLXF7e13PF3PLDfFsys1BjbhfqJeA=="
+                                    "ciphertext": "v1:hlpnBYQygtoqGODQ:a1NaDHjSRsysslteMOCDP9q9dhHxGg=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "GPG_PRIVATE_KEY",
@@ -132,12 +132,12 @@
                                 "createdAt": "2022-01-26 22:51:13 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:fa82qEc18vbNiyck:2mCCYafV9BAUnN2GkPMdhtRz"
+                                    "ciphertext": "v1:vhcZE8UFfKJhBzMN:sLWZhDTIhAarq8DfT5JKptck"
                                 },
                                 "id": "homelab-iac:GPG_PASSPHRASE",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:OE2iK96mv2Ayx1xa:phJ8RvFtCd7pPWbSZIC4GFpVFfPJ7Q=="
+                                    "ciphertext": "v1:36gNwo2calEMsLl7:2QCAiRP6QzKoKYHUlFHKnjpDVdquhQ=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "GPG_PASSPHRASE",
@@ -148,12 +148,12 @@
                                 "createdAt": "2022-01-26 22:51:14 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:+shUDVfyafyKfLw/:ny1Gixz0qfvBnNBUw52huaje"
+                                    "ciphertext": "v1:C5aWnAIJ4zsilgjE:weITH7DlHry7YnSFSp/a0jiq"
                                 },
                                 "id": "homelab-iac:PULUMI_APP_ID",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:EsGOmjp4E8H9V7rp:EMZH06xIb6AYMbuNm6PtjdjQ/umU8A=="
+                                    "ciphertext": "v1:kUlXrwDCqXDwMlSb:XfwrojqkLN0u3wKMw3+TdlR4AJOYLg=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "PULUMI_APP_ID",
@@ -164,12 +164,12 @@
                                 "createdAt": "2022-01-26 22:51:16 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:o8Mpw9yo0XIJ5jzf:+Q3L7V5UpTxtyyenwDDdstLH"
+                                    "ciphertext": "v1:Z8XNb9smpwr3jevn:uvAu3W5nhtWwblM8bwxnQhE2"
                                 },
                                 "id": "homelab-iac:PULUMI_APP_PRIVATE_KEY",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:i4WfM+268v5wPT3V:8PGjGhvJHbJP9QvtiZjRt7kmN5Myuw=="
+                                    "ciphertext": "v1:nBfWtZpqHyGSruvY:8MUgNws77gCZ17rG3H9qVEDinPe+LA=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "PULUMI_APP_PRIVATE_KEY",
@@ -180,12 +180,12 @@
                                 "createdAt": "2022-01-28 22:28:56 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:u8qXlXpwb9av9TGQ:tAd+4D+7+K5m07q+8qWZmfJ9"
+                                    "ciphertext": "v1:MO4YFTm1LXM0bFGv:j8TLdkkWqHYe8rkVvPCrSi+t"
                                 },
                                 "id": "homelab-iac:CODECOV_TOKEN",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:XLJVOzSM25cVJ4i9:ev8rPTMrV/KEeKqH17wGhFf6WTj5dg=="
+                                    "ciphertext": "v1:XMr9P8VTziquZROG:io3feJPzTGH9SaDiBFoDgEB+SDfTDw=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "CODECOV_TOKEN",
@@ -196,12 +196,12 @@
                                 "createdAt": "2022-01-26 22:51:18 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:xL6O3y7tn+7TrzYI:+sbac0hP5L/gsPXEhwu8tr86"
+                                    "ciphertext": "v1:oxqy7cbDypCnYKDU:AD13BGtc+3L8mxyEZZgTA5zl"
                                 },
                                 "id": "homelab-iac:GH_AUTOMATION_TOKEN",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:oOmESwFkImEgG2Vh:xpRYnTvMIvb55BqBRSNNe+ndBG8DUA=="
+                                    "ciphertext": "v1:CGbjPYJRWbBvJ813:/h1P02JGurQxCKK3G5039F8sOvmOkQ=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "GH_AUTOMATION_TOKEN",
@@ -212,12 +212,12 @@
                                 "createdAt": "2022-01-28 23:58:57 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:nK3FadcPWFRnome2:c1Rkb2rPYbYIEY4+8rcI5Nfl"
+                                    "ciphertext": "v1:1HL3LUnfzGQJROMg:rXsw1zZCYhn9whLjO2AgYRyf"
                                 },
                                 "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_APP_ID",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:UzDS52HNwA2280Ph:f2L+7yDvjvq0aBqJKgqAbiZJMctJDA=="
+                                    "ciphertext": "v1:xnF7H3ZQL5DFCQEt:bGzZ4RHyIVD0alBWMK2ZCc2NprTgAA=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "UNIT_TEST_RESULTS_REPORTER_APP_ID",
@@ -228,12 +228,12 @@
                                 "createdAt": "2022-01-28 23:58:56 +0000 UTC",
                                 "encryptedValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:t5Jf2lTkK52xjRLO:ngvWRQyaxrCBw8vqQtnWGdE1"
+                                    "ciphertext": "v1:TpJMRCMIqnKcDc9R:eEd4pXKoT+n6lK2Cu8H5tak5"
                                 },
                                 "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY",
                                 "plaintextValue": {
                                     "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                                    "ciphertext": "v1:YNn0TrW/YhaBr98B:RTCHirc2oBnSCWre9pmQpvohYRWeTA=="
+                                    "ciphertext": "v1:J1YwLzFqoemt1bXe:PjZCJulrrxqcbHHaaAQa34iWPdEBaA=="
                                 },
                                 "repository": "homelab-iac",
                                 "secretName": "UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY",
@@ -256,7 +256,7 @@
                     }
                 },
                 {
-                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_private_key",
+                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::ci_stack_github_token",
                     "custom": true,
                     "id": "none",
                     "type": "random:index/randomPassword:RandomPassword",
@@ -291,7 +291,7 @@
                         "number": true,
                         "result": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:fEmV5K07vvhuYxrF:qUqxbJcDvxlqWhetqeJNQ3Ix0/Q1QACBuWuo83TuRYeHWd4xoyj4GrUZNSRYWR+HTSw="
+                            "ciphertext": "v1:IVQnqzSJs1ayduL+:4bcTs4ndck76dmpg9InkjYS3R3ZoPOt3/W4b+Q0jHnH3+Duf85mlqrtw6FfbcI+L0uk="
                         },
                         "special": false,
                         "upper": true
@@ -304,7 +304,7 @@
                     }
                 },
                 {
-                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::pulumi_app_id",
+                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::codecov_token",
                     "custom": true,
                     "id": "none",
                     "type": "random:index/randomPassword:RandomPassword",
@@ -339,7 +339,55 @@
                         "number": true,
                         "result": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:kR0lVRV/7pVHTAHu:i0kUO3ksDh9dgrUu0cP/D2O336Sc5pAQaqUjak8FF0CX0H0UwHO+BwwxQrx2+gzJuBs="
+                            "ciphertext": "v1:+QIqYTX0qusO0g9j:wJccI6iy0kFmo5pUJc9N6pbwAi6dqggK3IkudmyOMnXMVLCE7TnAREwqxnyZ7QIqbCM="
+                        },
+                        "special": false,
+                        "upper": true
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:random::default_4_3_1::c4aaa33f-4853-419a-84e8-b1f61f96e8bf",
+                    "propertyDependencies": {
+                        "length": null,
+                        "special": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gitguardian_api_key",
+                    "custom": true,
+                    "id": "none",
+                    "type": "random:index/randomPassword:RandomPassword",
+                    "inputs": {
+                        "__defaults": [
+                            "lower",
+                            "minLower",
+                            "minNumeric",
+                            "minSpecial",
+                            "minUpper",
+                            "number",
+                            "upper"
+                        ],
+                        "length": 32,
+                        "lower": true,
+                        "minLower": 0,
+                        "minNumeric": 0,
+                        "minSpecial": 0,
+                        "minUpper": 0,
+                        "number": true,
+                        "special": false,
+                        "upper": true
+                    },
+                    "outputs": {
+                        "id": "none",
+                        "length": 32,
+                        "lower": true,
+                        "minLower": 0,
+                        "minNumeric": 0,
+                        "minSpecial": 0,
+                        "minUpper": 0,
+                        "number": true,
+                        "result": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:shFM3hwk4R5Hw5Zv:Bwom/bk/yqQ3HWGSQPx1PIy782rm8Kpb8p19s6df32Cb9OUSPobxSv65AIrvAawnY7w="
                         },
                         "special": false,
                         "upper": true
@@ -387,55 +435,7 @@
                         "number": true,
                         "result": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:609Kjv02L27x57DG:B8QtL1o2uUUbPx2PZP7WuXRog2FzFILUOsrloLUA9okYJPmf3pIlH9wnGRFnGVQBbr8="
-                        },
-                        "special": false,
-                        "upper": true
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:random::default_4_3_1::c4aaa33f-4853-419a-84e8-b1f61f96e8bf",
-                    "propertyDependencies": {
-                        "length": null,
-                        "special": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::github_automation_token",
-                    "custom": true,
-                    "id": "none",
-                    "type": "random:index/randomPassword:RandomPassword",
-                    "inputs": {
-                        "__defaults": [
-                            "lower",
-                            "minLower",
-                            "minNumeric",
-                            "minSpecial",
-                            "minUpper",
-                            "number",
-                            "upper"
-                        ],
-                        "length": 32,
-                        "lower": true,
-                        "minLower": 0,
-                        "minNumeric": 0,
-                        "minSpecial": 0,
-                        "minUpper": 0,
-                        "number": true,
-                        "special": false,
-                        "upper": true
-                    },
-                    "outputs": {
-                        "id": "none",
-                        "length": 32,
-                        "lower": true,
-                        "minLower": 0,
-                        "minNumeric": 0,
-                        "minSpecial": 0,
-                        "minUpper": 0,
-                        "number": true,
-                        "result": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:rXQp6Muk9JTSuHen:TCGpVDBX4oWiMbdSySTy7LFD3mcOuP91hhCTf82JmUdjHGAHdybovmx+vQyP8L/jf9Q="
+                            "ciphertext": "v1:HHElbZVWA/1k65A/:j+/ALizg2gPDVzoHgk/rfJLDM1HZTfngwsz+bExMCJBK+0qR/UNgfSOEr34xEAh/JiM="
                         },
                         "special": false,
                         "upper": true
@@ -456,7 +456,7 @@
                         "owner": "busybeaver-ci",
                         "token": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:Dt3c5TWc8JaCJ/4I:uMkn1G5CvHuai8yXCuwtY38Gvtwtf6MTpUPlb3xvs5+A8fpom4yTEJHlrtgwcJgJ23qwEOnMDrM7JQ=="
+                            "ciphertext": "v1:wjdl84QYYDzIlvmF:mGlhM7shTHOQJmtes6Cd07CRmgFTKSMkW0xIHx7dPromw0ZIC71fnF0vZFeuhSkHCYcF4Ei45MY0zw=="
                         },
                         "version": "4.9.1"
                     },
@@ -464,7 +464,7 @@
                         "owner": "busybeaver-ci",
                         "token": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:5bPQ3ahHyZm8kqVQ:4VZar1QlFMMdOqRLRuw4964I2XLoztBdEalcKi4+M7KnXPKI2GBdxesNJhtDKDmfmcEeHk5iC91S+w=="
+                            "ciphertext": "v1:/lOnKfj1QIhgseF3:yAWxcaxYYQddnNnrqarTpyr0xbrzV5IRHFFYGB/Db8bmW8e1CK4BoTQxbcmIjaS8m5Wq010RhPjA4w=="
                         },
                         "version": "4.9.1"
                     }
@@ -505,7 +505,7 @@
                         "number": true,
                         "result": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:ffqBW07Xls/Gjqgp:6qbUxpFDsGGtkvbWQgbaulqOe8Oad9ngckt8VQooPjP1HXLdRb8lca8rQw5y5Vzurpw="
+                            "ciphertext": "v1:c1bobWqvHHjzHy0N:eG8LbAvpCnCWcDDc8H8EU2G/5jTII8bN4jlw9WubnwhbwqkBuxSUhalJREltVuU4zmo="
                         },
                         "special": false,
                         "upper": true
@@ -604,150 +604,6 @@
                     }
                 },
                 {
-                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::ci_stack_github_token",
-                    "custom": true,
-                    "id": "none",
-                    "type": "random:index/randomPassword:RandomPassword",
-                    "inputs": {
-                        "__defaults": [
-                            "lower",
-                            "minLower",
-                            "minNumeric",
-                            "minSpecial",
-                            "minUpper",
-                            "number",
-                            "upper"
-                        ],
-                        "length": 32,
-                        "lower": true,
-                        "minLower": 0,
-                        "minNumeric": 0,
-                        "minSpecial": 0,
-                        "minUpper": 0,
-                        "number": true,
-                        "special": false,
-                        "upper": true
-                    },
-                    "outputs": {
-                        "id": "none",
-                        "length": 32,
-                        "lower": true,
-                        "minLower": 0,
-                        "minNumeric": 0,
-                        "minSpecial": 0,
-                        "minUpper": 0,
-                        "number": true,
-                        "result": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:MBiDR4fcZyz3O7Q/:hA8CXF1qpk3JcOzMy3/qDyQZe1gQa9T+SnPaVl2Ti0k8QM+Vr1PEJVIPt0LGY0B9BC0="
-                        },
-                        "special": false,
-                        "upper": true
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:random::default_4_3_1::c4aaa33f-4853-419a-84e8-b1f61f96e8bf",
-                    "propertyDependencies": {
-                        "length": null,
-                        "special": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gitguardian_api_key",
-                    "custom": true,
-                    "id": "none",
-                    "type": "random:index/randomPassword:RandomPassword",
-                    "inputs": {
-                        "__defaults": [
-                            "lower",
-                            "minLower",
-                            "minNumeric",
-                            "minSpecial",
-                            "minUpper",
-                            "number",
-                            "upper"
-                        ],
-                        "length": 32,
-                        "lower": true,
-                        "minLower": 0,
-                        "minNumeric": 0,
-                        "minSpecial": 0,
-                        "minUpper": 0,
-                        "number": true,
-                        "special": false,
-                        "upper": true
-                    },
-                    "outputs": {
-                        "id": "none",
-                        "length": 32,
-                        "lower": true,
-                        "minLower": 0,
-                        "minNumeric": 0,
-                        "minSpecial": 0,
-                        "minUpper": 0,
-                        "number": true,
-                        "result": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:LK+up2cVsftRTUVg:7DnawMFrXQy6hI7QlEgmgtoX/3Zw3uaQgC+crgHAY9M1e7vfEMeyRi2mCOS8oobt5Bc="
-                        },
-                        "special": false,
-                        "upper": true
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:random::default_4_3_1::c4aaa33f-4853-419a-84e8-b1f61f96e8bf",
-                    "propertyDependencies": {
-                        "length": null,
-                        "special": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::codecov_token",
-                    "custom": true,
-                    "id": "none",
-                    "type": "random:index/randomPassword:RandomPassword",
-                    "inputs": {
-                        "__defaults": [
-                            "lower",
-                            "minLower",
-                            "minNumeric",
-                            "minSpecial",
-                            "minUpper",
-                            "number",
-                            "upper"
-                        ],
-                        "length": 32,
-                        "lower": true,
-                        "minLower": 0,
-                        "minNumeric": 0,
-                        "minSpecial": 0,
-                        "minUpper": 0,
-                        "number": true,
-                        "special": false,
-                        "upper": true
-                    },
-                    "outputs": {
-                        "id": "none",
-                        "length": 32,
-                        "lower": true,
-                        "minLower": 0,
-                        "minNumeric": 0,
-                        "minSpecial": 0,
-                        "minUpper": 0,
-                        "number": true,
-                        "result": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:HUKRADYsvd4BEbSe:I7Q6jetwv3YJkYMVvpCV9dq5xp1wbyNEXP/xZCMPTPB84+tALIbz9Xd4zPx0ajNlVtk="
-                        },
-                        "special": false,
-                        "upper": true
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:random::default_4_3_1::c4aaa33f-4853-419a-84e8-b1f61f96e8bf",
-                    "propertyDependencies": {
-                        "length": null,
-                        "special": null
-                    }
-                },
-                {
                     "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_passphrase",
                     "custom": true,
                     "id": "none",
@@ -783,7 +639,151 @@
                         "number": true,
                         "result": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:dkf5aR2EXDD3GOeO:7BFAulCRykr5z092bQUj9ILY5R8NEUDKXs2qDq2gWGgJ3Ts84S+IsSvnOeeZ4bYYWlU="
+                            "ciphertext": "v1:dte6zcAqeMRdIR6z:L7oxyQL88LWAG9Q41LN3+9z1xXAX5230IJD85lIUSIbyWArm6Dn/wKCF0fr30HCO158="
+                        },
+                        "special": false,
+                        "upper": true
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:random::default_4_3_1::c4aaa33f-4853-419a-84e8-b1f61f96e8bf",
+                    "propertyDependencies": {
+                        "length": null,
+                        "special": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::github_automation_token",
+                    "custom": true,
+                    "id": "none",
+                    "type": "random:index/randomPassword:RandomPassword",
+                    "inputs": {
+                        "__defaults": [
+                            "lower",
+                            "minLower",
+                            "minNumeric",
+                            "minSpecial",
+                            "minUpper",
+                            "number",
+                            "upper"
+                        ],
+                        "length": 32,
+                        "lower": true,
+                        "minLower": 0,
+                        "minNumeric": 0,
+                        "minSpecial": 0,
+                        "minUpper": 0,
+                        "number": true,
+                        "special": false,
+                        "upper": true
+                    },
+                    "outputs": {
+                        "id": "none",
+                        "length": 32,
+                        "lower": true,
+                        "minLower": 0,
+                        "minNumeric": 0,
+                        "minSpecial": 0,
+                        "minUpper": 0,
+                        "number": true,
+                        "result": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:qAwRZPz9/hMe2sve:QCMPrusxe6yQMBfF3s3gPzZP7F4m5skFseUFZ0sYHgMkYrraJ0H69m+FpjAoXhHzG4k="
+                        },
+                        "special": false,
+                        "upper": true
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:random::default_4_3_1::c4aaa33f-4853-419a-84e8-b1f61f96e8bf",
+                    "propertyDependencies": {
+                        "length": null,
+                        "special": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_private_key",
+                    "custom": true,
+                    "id": "none",
+                    "type": "random:index/randomPassword:RandomPassword",
+                    "inputs": {
+                        "__defaults": [
+                            "lower",
+                            "minLower",
+                            "minNumeric",
+                            "minSpecial",
+                            "minUpper",
+                            "number",
+                            "upper"
+                        ],
+                        "length": 32,
+                        "lower": true,
+                        "minLower": 0,
+                        "minNumeric": 0,
+                        "minSpecial": 0,
+                        "minUpper": 0,
+                        "number": true,
+                        "special": false,
+                        "upper": true
+                    },
+                    "outputs": {
+                        "id": "none",
+                        "length": 32,
+                        "lower": true,
+                        "minLower": 0,
+                        "minNumeric": 0,
+                        "minSpecial": 0,
+                        "minUpper": 0,
+                        "number": true,
+                        "result": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:Bve3pJQtMkOzdq3f:UzJTRewami/MMu9Q6rmjFALFE3IZ7JjtY1CL4CJrH67Pdp+xetlOr0A9OcS10KL9tn0="
+                        },
+                        "special": false,
+                        "upper": true
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:random::default_4_3_1::c4aaa33f-4853-419a-84e8-b1f61f96e8bf",
+                    "propertyDependencies": {
+                        "length": null,
+                        "special": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::pulumi_app_id",
+                    "custom": true,
+                    "id": "none",
+                    "type": "random:index/randomPassword:RandomPassword",
+                    "inputs": {
+                        "__defaults": [
+                            "lower",
+                            "minLower",
+                            "minNumeric",
+                            "minSpecial",
+                            "minUpper",
+                            "number",
+                            "upper"
+                        ],
+                        "length": 32,
+                        "lower": true,
+                        "minLower": 0,
+                        "minNumeric": 0,
+                        "minSpecial": 0,
+                        "minUpper": 0,
+                        "number": true,
+                        "special": false,
+                        "upper": true
+                    },
+                    "outputs": {
+                        "id": "none",
+                        "length": 32,
+                        "lower": true,
+                        "minLower": 0,
+                        "minNumeric": 0,
+                        "minSpecial": 0,
+                        "minUpper": 0,
+                        "number": true,
+                        "result": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:12NZl0+rzzzX/fqA:7bVJvGuYWjpzS+Hmuuxz3TmR4o0LlCDlNfdtwvMMQZbKgvh9tkx0GJ8SSt32O2OiXKc="
                         },
                         "special": false,
                         "upper": true
@@ -831,7 +831,7 @@
                         "number": true,
                         "result": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:WvgONXuy1meH+Pl/:ol3Nnb0MLToja39LYpVkZEHSPyVz4je5RzlPoq7m0uqpBllG0gPK8wlcLw8973iP4BI="
+                            "ciphertext": "v1:ht0Vp2qIwhXlw8kc:9KYPRGJa1Oy4FTq6hRWqiOhXgk2WhPQEzK018GiimaP2Hcx8qr4KvkSCaBZu5dQUSNQ="
                         },
                         "special": false,
                         "upper": true
@@ -841,174 +841,6 @@
                     "propertyDependencies": {
                         "length": null,
                         "special": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gitguardian-api-key",
-                    "custom": true,
-                    "id": "homelab-iac:GITGUARDIAN_API_KEY",
-                    "type": "github:index/actionsSecret:ActionsSecret",
-                    "inputs": {
-                        "__defaults": [],
-                        "plaintextValue": "none",
-                        "repository": "homelab-iac",
-                        "secretName": "GITGUARDIAN_API_KEY"
-                    },
-                    "outputs": {
-                        "createdAt": "2022-01-26 22:51:20 +0000 UTC",
-                        "encryptedValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:DnZ7+g+buF5z71vI:Xhojl5ZcJ1l7nStYNjg+N75u"
-                        },
-                        "id": "homelab-iac:GITGUARDIAN_API_KEY",
-                        "plaintextValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:3aIkRTnNncY3X166:C+zZYUKnGeKpi0/X6jHr7eCcsyut+g=="
-                        },
-                        "repository": "homelab-iac",
-                        "secretName": "GITGUARDIAN_API_KEY",
-                        "updatedAt": "2022-01-26 22:51:20 +0000 UTC"
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "dependencies": [
-                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gitguardian_api_key",
-                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                    ],
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
-                    "propertyDependencies": {
-                        "plaintextValue": [
-                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gitguardian_api_key"
-                        ],
-                        "repository": [
-                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                        ],
-                        "secretName": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-codecov-token",
-                    "custom": true,
-                    "id": "homelab-iac:CODECOV_TOKEN",
-                    "type": "github:index/actionsSecret:ActionsSecret",
-                    "inputs": {
-                        "__defaults": [],
-                        "plaintextValue": "none",
-                        "repository": "homelab-iac",
-                        "secretName": "CODECOV_TOKEN"
-                    },
-                    "outputs": {
-                        "createdAt": "2022-01-28 22:28:56 +0000 UTC",
-                        "encryptedValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:9JRWrysef16X5QCi:/nKCfLE/8WMao7idCMQa5j0Y"
-                        },
-                        "id": "homelab-iac:CODECOV_TOKEN",
-                        "plaintextValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:E6X8tAv2W0agI/Fi:/HTEAMrkAesuhErK8iinCYGZPuYOmA=="
-                        },
-                        "repository": "homelab-iac",
-                        "secretName": "CODECOV_TOKEN",
-                        "updatedAt": "2022-01-28 22:28:56 +0000 UTC"
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "dependencies": [
-                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::codecov_token",
-                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                    ],
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
-                    "propertyDependencies": {
-                        "plaintextValue": [
-                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::codecov_token"
-                        ],
-                        "repository": [
-                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                        ],
-                        "secretName": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gpg-passphrase",
-                    "custom": true,
-                    "id": "homelab-iac:GPG_PASSPHRASE",
-                    "type": "github:index/actionsSecret:ActionsSecret",
-                    "inputs": {
-                        "__defaults": [],
-                        "plaintextValue": "none",
-                        "repository": "homelab-iac",
-                        "secretName": "GPG_PASSPHRASE"
-                    },
-                    "outputs": {
-                        "createdAt": "2022-01-26 22:51:13 +0000 UTC",
-                        "encryptedValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:oih8+Rl3PDtt/lwQ:2gyLS0aCEaksq+YCKEPcn9nQ"
-                        },
-                        "id": "homelab-iac:GPG_PASSPHRASE",
-                        "plaintextValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:zTRUONDHEEuY7HvO:Gf0lfT57xZVp2q1Se50ib7WYVaj1HQ=="
-                        },
-                        "repository": "homelab-iac",
-                        "secretName": "GPG_PASSPHRASE",
-                        "updatedAt": "2022-01-26 22:51:13 +0000 UTC"
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "dependencies": [
-                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_passphrase",
-                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                    ],
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
-                    "propertyDependencies": {
-                        "plaintextValue": [
-                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_passphrase"
-                        ],
-                        "repository": [
-                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                        ],
-                        "secretName": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gpg-private-key",
-                    "custom": true,
-                    "id": "homelab-iac:GPG_PRIVATE_KEY",
-                    "type": "github:index/actionsSecret:ActionsSecret",
-                    "inputs": {
-                        "__defaults": [],
-                        "plaintextValue": "none",
-                        "repository": "homelab-iac",
-                        "secretName": "GPG_PRIVATE_KEY"
-                    },
-                    "outputs": {
-                        "createdAt": "2022-01-26 22:51:19 +0000 UTC",
-                        "encryptedValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:M99yLaGvz/wiQKee:EIJ0xN1nfI9lgLNGxkAyXpxM"
-                        },
-                        "id": "homelab-iac:GPG_PRIVATE_KEY",
-                        "plaintextValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:RAjOKb9FOEWsoo8B:Lyd35F8g8sx1/lJMXxIT+diI8yWM9g=="
-                        },
-                        "repository": "homelab-iac",
-                        "secretName": "GPG_PRIVATE_KEY",
-                        "updatedAt": "2022-01-26 22:51:19 +0000 UTC"
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "dependencies": [
-                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_private_key",
-                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                    ],
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
-                    "propertyDependencies": {
-                        "plaintextValue": [
-                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_private_key"
-                        ],
-                        "repository": [
-                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                        ],
-                        "secretName": null
                     }
                 },
                 {
@@ -1026,12 +858,12 @@
                         "createdAt": "2022-01-26 22:51:14 +0000 UTC",
                         "encryptedValue": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:q4L9ecV6Ebmp/0NR:mHXq1zvWrLO2IyAB8WQnIwOm"
+                            "ciphertext": "v1:MsCoFpmefpxFr0/A:9DWLQxcIC1y8jEQ9wmiZdjVL"
                         },
                         "id": "homelab-iac:PULUMI_APP_ID",
                         "plaintextValue": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:0G2ZgIyy/t1b/3QA:bIPpSdTAc2JH36ywp8fZ396jq/iHTg=="
+                            "ciphertext": "v1:U6ekoovYWrgt4cFJ:Rn9Na4E4RTNMlVFU4gEygVpUTAnLXQ=="
                         },
                         "repository": "homelab-iac",
                         "secretName": "PULUMI_APP_ID",
@@ -1046,174 +878,6 @@
                     "propertyDependencies": {
                         "plaintextValue": [
                             "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::pulumi_app_id"
-                        ],
-                        "repository": [
-                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                        ],
-                        "secretName": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-unit-test-results-reporter-private-key",
-                    "custom": true,
-                    "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY",
-                    "type": "github:index/actionsSecret:ActionsSecret",
-                    "inputs": {
-                        "__defaults": [],
-                        "plaintextValue": "none",
-                        "repository": "homelab-iac",
-                        "secretName": "UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY"
-                    },
-                    "outputs": {
-                        "createdAt": "2022-01-28 23:58:56 +0000 UTC",
-                        "encryptedValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:YSV6/Lu2fR2ePW6I:FAdFu8oX4z283FC96Zd64vkN"
-                        },
-                        "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY",
-                        "plaintextValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:2sLrpBpqzK1/8GRj:3RxrrOoS1P5elajryN1p41muAGPQJg=="
-                        },
-                        "repository": "homelab-iac",
-                        "secretName": "UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY",
-                        "updatedAt": "2022-01-28 23:58:56 +0000 UTC"
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "dependencies": [
-                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::unit_test_results_reporter_private_key",
-                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                    ],
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
-                    "propertyDependencies": {
-                        "plaintextValue": [
-                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::unit_test_results_reporter_private_key"
-                        ],
-                        "repository": [
-                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                        ],
-                        "secretName": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-github-automation-token",
-                    "custom": true,
-                    "id": "homelab-iac:GH_AUTOMATION_TOKEN",
-                    "type": "github:index/actionsSecret:ActionsSecret",
-                    "inputs": {
-                        "__defaults": [],
-                        "plaintextValue": "none",
-                        "repository": "homelab-iac",
-                        "secretName": "GH_AUTOMATION_TOKEN"
-                    },
-                    "outputs": {
-                        "createdAt": "2022-01-26 22:51:18 +0000 UTC",
-                        "encryptedValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:nWH/f8f4EfsRo0/j:KAvBgKgQULBliVaiYLMQMdIo"
-                        },
-                        "id": "homelab-iac:GH_AUTOMATION_TOKEN",
-                        "plaintextValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:ywAyZV9A+pB1ixh/:4sxfr4rcuvdTjLu1DYr6lKk6pMLA3A=="
-                        },
-                        "repository": "homelab-iac",
-                        "secretName": "GH_AUTOMATION_TOKEN",
-                        "updatedAt": "2022-01-26 22:51:18 +0000 UTC"
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "dependencies": [
-                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::github_automation_token",
-                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                    ],
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
-                    "propertyDependencies": {
-                        "plaintextValue": [
-                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::github_automation_token"
-                        ],
-                        "repository": [
-                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                        ],
-                        "secretName": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-unit-test-results-reporter-app-id",
-                    "custom": true,
-                    "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_APP_ID",
-                    "type": "github:index/actionsSecret:ActionsSecret",
-                    "inputs": {
-                        "__defaults": [],
-                        "plaintextValue": "none",
-                        "repository": "homelab-iac",
-                        "secretName": "UNIT_TEST_RESULTS_REPORTER_APP_ID"
-                    },
-                    "outputs": {
-                        "createdAt": "2022-01-28 23:58:57 +0000 UTC",
-                        "encryptedValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:ceeZnz1VyaG4l96D:WM4zqBiwk1HHOkIHxRhDxRdl"
-                        },
-                        "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_APP_ID",
-                        "plaintextValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:/mM3MDRpfdECU7xV:jXYi1upys2l6LvrAINW5MaERwXvlHQ=="
-                        },
-                        "repository": "homelab-iac",
-                        "secretName": "UNIT_TEST_RESULTS_REPORTER_APP_ID",
-                        "updatedAt": "2022-01-28 23:58:57 +0000 UTC"
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "dependencies": [
-                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::unit_test_results_reporter_app_id",
-                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                    ],
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
-                    "propertyDependencies": {
-                        "plaintextValue": [
-                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::unit_test_results_reporter_app_id"
-                        ],
-                        "repository": [
-                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                        ],
-                        "secretName": null
-                    }
-                },
-                {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-pulumi-passphrase",
-                    "custom": true,
-                    "id": "homelab-iac:PULUMI_CONFIG_PASSPHRASE",
-                    "type": "github:index/actionsSecret:ActionsSecret",
-                    "inputs": {
-                        "__defaults": [],
-                        "plaintextValue": "none",
-                        "repository": "homelab-iac",
-                        "secretName": "PULUMI_CONFIG_PASSPHRASE"
-                    },
-                    "outputs": {
-                        "createdAt": "2022-01-26 22:51:17 +0000 UTC",
-                        "encryptedValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:hROyv/mpA2y1Eloi:S69oB7qZEc2bvq2A2eWHl4Ww"
-                        },
-                        "id": "homelab-iac:PULUMI_CONFIG_PASSPHRASE",
-                        "plaintextValue": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:zg8Xd/6Mk3X5LiYN:prPx+knzR5I228PrKxrZyoqvYYGO4A=="
-                        },
-                        "repository": "homelab-iac",
-                        "secretName": "PULUMI_CONFIG_PASSPHRASE",
-                        "updatedAt": "2022-01-26 22:51:17 +0000 UTC"
-                    },
-                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
-                    "dependencies": [
-                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::ci_stack_github_token",
-                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
-                    ],
-                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
-                    "propertyDependencies": {
-                        "plaintextValue": [
-                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::ci_stack_github_token"
                         ],
                         "repository": [
                             "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
@@ -1252,44 +916,255 @@
                     }
                 },
                 {
-                    "urn": "urn:pulumi:ci::homelab-iac::github:index/repositoryCollaborator:RepositoryCollaborator::homelab-iac-automation-user",
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-pulumi-passphrase",
                     "custom": true,
-                    "id": "homelab-iac:busybeaver-automation",
-                    "type": "github:index/repositoryCollaborator:RepositoryCollaborator",
+                    "id": "homelab-iac:PULUMI_CONFIG_PASSPHRASE",
+                    "type": "github:index/actionsSecret:ActionsSecret",
                     "inputs": {
-                        "__defaults": [
-                            "permissionDiffSuppression"
-                        ],
-                        "permission": "admin",
-                        "permissionDiffSuppression": false,
+                        "__defaults": [],
+                        "plaintextValue": "none",
                         "repository": "homelab-iac",
-                        "username": {
-                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:sxGuPga/DEXkOOnC:iHPuIxnvP7NRurWskm6o297mFnb9z2rMViD9RRZQDE2Mi8l78zuy"
-                        }
+                        "secretName": "PULUMI_CONFIG_PASSPHRASE"
                     },
                     "outputs": {
-                        "id": "homelab-iac:busybeaver-automation",
-                        "invitationId": "88521487",
-                        "permission": "admin",
-                        "permissionDiffSuppression": false,
-                        "repository": "homelab-iac",
-                        "username": {
+                        "createdAt": "2022-01-26 22:51:17 +0000 UTC",
+                        "encryptedValue": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:yRTmpV9TR3nzFn8A:6ZLpKcSX32Ure5fj2UOPFxiqil8KQ2XVLIWuKx8ZeeN/5vvIj+Q+"
-                        }
+                            "ciphertext": "v1:pTvH2tsfflLCVn+x:tIg2V0r/0YSSxIH2nlYiZlIn"
+                        },
+                        "id": "homelab-iac:PULUMI_CONFIG_PASSPHRASE",
+                        "plaintextValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:d8jbEAru0LN7ymmF:PzaC4Nz5Nk7OBioAIM6LrhGJ/c6fVA=="
+                        },
+                        "repository": "homelab-iac",
+                        "secretName": "PULUMI_CONFIG_PASSPHRASE",
+                        "updatedAt": "2022-01-26 22:51:17 +0000 UTC"
                     },
                     "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
                     "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::ci_stack_github_token",
                         "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
                     ],
                     "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
                     "propertyDependencies": {
-                        "permission": null,
+                        "plaintextValue": [
+                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::ci_stack_github_token"
+                        ],
                         "repository": [
                             "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
                         ],
-                        "username": null
+                        "secretName": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gitguardian-api-key",
+                    "custom": true,
+                    "id": "homelab-iac:GITGUARDIAN_API_KEY",
+                    "type": "github:index/actionsSecret:ActionsSecret",
+                    "inputs": {
+                        "__defaults": [],
+                        "plaintextValue": "none",
+                        "repository": "homelab-iac",
+                        "secretName": "GITGUARDIAN_API_KEY"
+                    },
+                    "outputs": {
+                        "createdAt": "2022-01-26 22:51:20 +0000 UTC",
+                        "encryptedValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:6kA1J4OTFXVZ/En1:peaDdS1PCNJ5e2L0Xb/5Cr2B"
+                        },
+                        "id": "homelab-iac:GITGUARDIAN_API_KEY",
+                        "plaintextValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:NVPXtkH4Ja+8KWHp:My8LbuomVQ17RTbzkYy8uos4tZ5X6w=="
+                        },
+                        "repository": "homelab-iac",
+                        "secretName": "GITGUARDIAN_API_KEY",
+                        "updatedAt": "2022-01-26 22:51:20 +0000 UTC"
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gitguardian_api_key",
+                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                    ],
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
+                    "propertyDependencies": {
+                        "plaintextValue": [
+                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gitguardian_api_key"
+                        ],
+                        "repository": [
+                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                        ],
+                        "secretName": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-codecov-token",
+                    "custom": true,
+                    "id": "homelab-iac:CODECOV_TOKEN",
+                    "type": "github:index/actionsSecret:ActionsSecret",
+                    "inputs": {
+                        "__defaults": [],
+                        "plaintextValue": "none",
+                        "repository": "homelab-iac",
+                        "secretName": "CODECOV_TOKEN"
+                    },
+                    "outputs": {
+                        "createdAt": "2022-01-28 22:28:56 +0000 UTC",
+                        "encryptedValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:MMEJKQ3IOSbZVDWg:6xQGOmaBJgPmkBtYkafTTVrh"
+                        },
+                        "id": "homelab-iac:CODECOV_TOKEN",
+                        "plaintextValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:l2KGusi7hyU/wyrs:6E2ja0AoVneK6w+86JGF6DuhbdJgNQ=="
+                        },
+                        "repository": "homelab-iac",
+                        "secretName": "CODECOV_TOKEN",
+                        "updatedAt": "2022-01-28 22:28:56 +0000 UTC"
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::codecov_token",
+                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                    ],
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
+                    "propertyDependencies": {
+                        "plaintextValue": [
+                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::codecov_token"
+                        ],
+                        "repository": [
+                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                        ],
+                        "secretName": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-unit-test-results-reporter-private-key",
+                    "custom": true,
+                    "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY",
+                    "type": "github:index/actionsSecret:ActionsSecret",
+                    "inputs": {
+                        "__defaults": [],
+                        "plaintextValue": "none",
+                        "repository": "homelab-iac",
+                        "secretName": "UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY"
+                    },
+                    "outputs": {
+                        "createdAt": "2022-01-28 23:58:56 +0000 UTC",
+                        "encryptedValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:4FKRbOGDVVfQUe++:D51mjZ3naFXmYJIhEZrW6Wnx"
+                        },
+                        "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY",
+                        "plaintextValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:335DqxGKmIA+nGpg:hmb2Hhoyqjg/lR/tGB0XNnp/VO10FQ=="
+                        },
+                        "repository": "homelab-iac",
+                        "secretName": "UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY",
+                        "updatedAt": "2022-01-28 23:58:56 +0000 UTC"
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::unit_test_results_reporter_private_key",
+                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                    ],
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
+                    "propertyDependencies": {
+                        "plaintextValue": [
+                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::unit_test_results_reporter_private_key"
+                        ],
+                        "repository": [
+                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                        ],
+                        "secretName": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-unit-test-results-reporter-app-id",
+                    "custom": true,
+                    "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_APP_ID",
+                    "type": "github:index/actionsSecret:ActionsSecret",
+                    "inputs": {
+                        "__defaults": [],
+                        "plaintextValue": "none",
+                        "repository": "homelab-iac",
+                        "secretName": "UNIT_TEST_RESULTS_REPORTER_APP_ID"
+                    },
+                    "outputs": {
+                        "createdAt": "2022-01-28 23:58:57 +0000 UTC",
+                        "encryptedValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:hNRwzfB4qVT9t3j/:88jwJrAUghhheY1r+GCDOjHK"
+                        },
+                        "id": "homelab-iac:UNIT_TEST_RESULTS_REPORTER_APP_ID",
+                        "plaintextValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:UWogAVsxnGoIzfQA:fc5WYG6g8BrKcBFyXq4gP6gJdny4ag=="
+                        },
+                        "repository": "homelab-iac",
+                        "secretName": "UNIT_TEST_RESULTS_REPORTER_APP_ID",
+                        "updatedAt": "2022-01-28 23:58:57 +0000 UTC"
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::unit_test_results_reporter_app_id",
+                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                    ],
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
+                    "propertyDependencies": {
+                        "plaintextValue": [
+                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::unit_test_results_reporter_app_id"
+                        ],
+                        "repository": [
+                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                        ],
+                        "secretName": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gpg-passphrase",
+                    "custom": true,
+                    "id": "homelab-iac:GPG_PASSPHRASE",
+                    "type": "github:index/actionsSecret:ActionsSecret",
+                    "inputs": {
+                        "__defaults": [],
+                        "plaintextValue": "none",
+                        "repository": "homelab-iac",
+                        "secretName": "GPG_PASSPHRASE"
+                    },
+                    "outputs": {
+                        "createdAt": "2022-01-26 22:51:13 +0000 UTC",
+                        "encryptedValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:G9V0Q4Aay4+H8Mnk:mobxM+4sII+RDl928jBRit8Q"
+                        },
+                        "id": "homelab-iac:GPG_PASSPHRASE",
+                        "plaintextValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:V8bOPWsx2FRcl8Uz:XbORq5xfNlZNSVfnjWyiPGui5h8CEA=="
+                        },
+                        "repository": "homelab-iac",
+                        "secretName": "GPG_PASSPHRASE",
+                        "updatedAt": "2022-01-26 22:51:13 +0000 UTC"
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_passphrase",
+                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                    ],
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
+                    "propertyDependencies": {
+                        "plaintextValue": [
+                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_passphrase"
+                        ],
+                        "repository": [
+                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                        ],
+                        "secretName": null
                     }
                 },
                 {
@@ -1307,12 +1182,12 @@
                         "createdAt": "2022-01-26 22:51:16 +0000 UTC",
                         "encryptedValue": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:NN23L+Ns+WSpfUvV:fmj2ztrPj8UZQZvPOZdTWk67"
+                            "ciphertext": "v1:OGXfVnKXaiiiDSBn:CJWdxNEwsgpX/rOqBz50o7m3"
                         },
                         "id": "homelab-iac:PULUMI_APP_PRIVATE_KEY",
                         "plaintextValue": {
                             "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
-                            "ciphertext": "v1:gAxkyW075TQqDA+2:lEAYOqYhXAKeoi+IdPk4pl+tzEKZrA=="
+                            "ciphertext": "v1:ufNflk5ZshkG6iLs:W2sjFdB8tlMZYMIPM/S61Dw8uHhaFw=="
                         },
                         "repository": "homelab-iac",
                         "secretName": "PULUMI_APP_PRIVATE_KEY",
@@ -1332,6 +1207,131 @@
                             "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
                         ],
                         "secretName": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-github-automation-token",
+                    "custom": true,
+                    "id": "homelab-iac:GH_AUTOMATION_TOKEN",
+                    "type": "github:index/actionsSecret:ActionsSecret",
+                    "inputs": {
+                        "__defaults": [],
+                        "plaintextValue": "none",
+                        "repository": "homelab-iac",
+                        "secretName": "GH_AUTOMATION_TOKEN"
+                    },
+                    "outputs": {
+                        "createdAt": "2022-01-26 22:51:18 +0000 UTC",
+                        "encryptedValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:ZVs8jLB4zzunX9Sd:+9LoxZ+M99uXHrTvCOZ+eJKi"
+                        },
+                        "id": "homelab-iac:GH_AUTOMATION_TOKEN",
+                        "plaintextValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:xeFE0Ozt3B1nTpPQ:mE4PP2AZQCjqgtq3rJ4G1uB05VFfwQ=="
+                        },
+                        "repository": "homelab-iac",
+                        "secretName": "GH_AUTOMATION_TOKEN",
+                        "updatedAt": "2022-01-26 22:51:18 +0000 UTC"
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::github_automation_token",
+                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                    ],
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
+                    "propertyDependencies": {
+                        "plaintextValue": [
+                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::github_automation_token"
+                        ],
+                        "repository": [
+                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                        ],
+                        "secretName": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gpg-private-key",
+                    "custom": true,
+                    "id": "homelab-iac:GPG_PRIVATE_KEY",
+                    "type": "github:index/actionsSecret:ActionsSecret",
+                    "inputs": {
+                        "__defaults": [],
+                        "plaintextValue": "none",
+                        "repository": "homelab-iac",
+                        "secretName": "GPG_PRIVATE_KEY"
+                    },
+                    "outputs": {
+                        "createdAt": "2022-01-26 22:51:19 +0000 UTC",
+                        "encryptedValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:L9/cF5P6uBoOtVWb:js4SJm0jbfroff8Kx7ka2Ovx"
+                        },
+                        "id": "homelab-iac:GPG_PRIVATE_KEY",
+                        "plaintextValue": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:WqZn+dAdvT2Yjulc:LnOMzInDLXsqh9aiyXWSDQpHyIwEuw=="
+                        },
+                        "repository": "homelab-iac",
+                        "secretName": "GPG_PRIVATE_KEY",
+                        "updatedAt": "2022-01-26 22:51:19 +0000 UTC"
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_private_key",
+                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                    ],
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
+                    "propertyDependencies": {
+                        "plaintextValue": [
+                            "urn:pulumi:ci::homelab-iac::random:index/randomPassword:RandomPassword::gpg_private_key"
+                        ],
+                        "repository": [
+                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                        ],
+                        "secretName": null
+                    }
+                },
+                {
+                    "urn": "urn:pulumi:ci::homelab-iac::github:index/repositoryCollaborator:RepositoryCollaborator::homelab-iac-automation-user",
+                    "custom": true,
+                    "id": "homelab-iac:busybeaver-automation",
+                    "type": "github:index/repositoryCollaborator:RepositoryCollaborator",
+                    "inputs": {
+                        "__defaults": [
+                            "permissionDiffSuppression"
+                        ],
+                        "permission": "admin",
+                        "permissionDiffSuppression": false,
+                        "repository": "homelab-iac",
+                        "username": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:wqHwJarL0AlLV0iM:uM7I03F262L+4FJNMetoKVhq/eECA2acDrB8zYVkwKmVUyxv2xLE"
+                        }
+                    },
+                    "outputs": {
+                        "id": "homelab-iac:busybeaver-automation",
+                        "invitationId": "88521487",
+                        "permission": "admin",
+                        "permissionDiffSuppression": false,
+                        "repository": "homelab-iac",
+                        "username": {
+                            "4dabf18193072939515e22adb298388d": "1b47061264138c4ac30d75fd1eb44270",
+                            "ciphertext": "v1:upMpgHCcdYNltgG1:pJKeJWjajx6LLt1fwyfOxUc1NX/dGQtn69GhDdrbS7lz576Z7aN+"
+                        }
+                    },
+                    "parent": "urn:pulumi:ci::homelab-iac::pulumi:pulumi:Stack::homelab-iac-ci",
+                    "dependencies": [
+                        "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                    ],
+                    "provider": "urn:pulumi:ci::homelab-iac::pulumi:providers:github::default_4_9_1::df09d2e8-d17d-43f3-8eb1-9a076398b749",
+                    "propertyDependencies": {
+                        "permission": null,
+                        "repository": [
+                            "urn:pulumi:ci::homelab-iac::github:index/repository:Repository::homelab-iac"
+                        ],
+                        "username": null
                     }
                 }
             ]
