@@ -1,0 +1,40 @@
+{
+    "kind": "update",
+    "startTime": 1644184965,
+    "message": "Associated Git Commit: \"chore(deps): update dependency dprint to v0.22.0\" by Object (sha: ca66ba6c719d4b12a7085923a09ed98eae6afc10)",
+    "environment": {
+        "ci.build.id": "1803566288",
+        "ci.build.number": "78",
+        "ci.build.type": "push",
+        "ci.build.url": "https://github.com/busybeaver/homelab-iac/actions/runs/1803566288",
+        "ci.pr.headSHA": "cde8ff7f6c139a37160ec2106e1ab299aafef4d0",
+        "ci.system": "GitHub Actions",
+        "exec.agent": "pulumi/actions@v3",
+        "exec.kind": "auto.local",
+        "git.author": "busybeaver",
+        "git.author.email": "858259+busybeaver@users.noreply.github.com",
+        "git.committer": "GitHub",
+        "git.committer.email": "noreply@github.com",
+        "git.dirty": "true",
+        "git.head": "cde8ff7f6c139a37160ec2106e1ab299aafef4d0",
+        "git.headName": "refs/heads/main",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac"
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "succeeded",
+    "endTime": 1644184968,
+    "resourceChanges": {
+        "same": 24
+    }
+}
