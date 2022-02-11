@@ -2,8 +2,8 @@ name: "Repository CI"
 
 on:
   pull_request_target:
-    types:
-      - review_requested
+    #types:
+    #  - review_requested
     branches:
       - main
 
@@ -17,7 +17,7 @@ jobs:
     name: 'Auto Approve PR'
     runs-on: ubuntu-latest
 
-    if: ${{ github.event.action == 'review_requested'}}
+    # if: ${{ github.event.action == 'review_requested'}}
 
     defaults:
       run:
@@ -36,7 +36,7 @@ jobs:
           private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
 
       - name: temp
-        run: echo ${{ github.actor }}
+        run: echo ${{ github.actor }} ${{ github.event.action }}
 
       - name: GitHub - Auto Approve Pull Request
         uses: hmarr/auto-approve-action@v2.1.0
