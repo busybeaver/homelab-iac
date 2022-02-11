@@ -1,0 +1,39 @@
+{
+    "kind": "refresh",
+    "startTime": 1644623216,
+    "message": "Merge branch 'main' of github.com:busybeaver/homelab-iac",
+    "environment": {
+        "ci.build.id": "1832070380",
+        "ci.build.number": "149",
+        "ci.build.type": "push",
+        "ci.build.url": "https://github.com/busybeaver/homelab-iac/actions/runs/1832070380",
+        "ci.pr.headSHA": "9fb04467ddbb2a11fee4895c44984ebf23f5e69c",
+        "ci.system": "GitHub Actions",
+        "exec.kind": "auto.local",
+        "git.author": "busybeaver",
+        "git.author.email": "858259+busybeaver@users.noreply.github.com",
+        "git.committer": "busybeaver",
+        "git.committer.email": "858259+busybeaver@users.noreply.github.com",
+        "git.dirty": "false",
+        "git.head": "9fb04467ddbb2a11fee4895c44984ebf23f5e69c",
+        "git.headName": "refs/heads/main",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac"
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "succeeded",
+    "endTime": 1644623218,
+    "resourceChanges": {
+        "same": 28
+    }
+}
