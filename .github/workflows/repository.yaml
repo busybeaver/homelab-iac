@@ -5,7 +5,7 @@ on:
     types:
       - review_requested
     branches:
-      - renovate/**
+      - main
 
 concurrency:
   # on main, we want all builds to complete even if commits/merging happens faster to make it easier to discover at which point
