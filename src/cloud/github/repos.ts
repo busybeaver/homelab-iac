@@ -2,7 +2,7 @@ import * as github from '@pulumi/github';
 import { requireSecretString } from '../../util/secrets';
 
 const iacRepo = new github.Repository('homelab-iac', {
-  allowAutoMerge: false,
+  allowAutoMerge: true,
   allowMergeCommit: true,
   allowRebaseMerge: false,
   allowSquashMerge: true,
