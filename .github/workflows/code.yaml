@@ -160,5 +160,4 @@ jobs:
           flags: unittests
           env_vars: RUNNER_OS,RUNNER_ARCH,GITHUB_EVENT_NAME
           fail_ci_if_error: true
-          path_to_write_report: ./coverage/codecov_report.txt
           verbose: true
