@@ -1,0 +1,41 @@
+name: "Repository CI"
+
+on:
+  pull_request_target:
+    types:
+      - review_requested
+    branches:
+      - renovate/**
+
+concurrency:
+  # on main, we want all builds to complete even if commits/merging happens faster to make it easier to discover at which point
+  # something broke; else, we cancel "old" builds and run/(re)start the build with the latest changes
+  group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}-{1}', github.workflow, github.sha) || format('ci-{0}-{1}', github.workflow, github.ref) }}
+
+jobs:
+  pr_auto_approve:
+    name: 'Auto Approve PR'
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event.action == 'review_requested'}}
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: '.'
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: GitHub - Generate App Token
+        id: github_generate_app_token
+        uses: tibdex/github-app-token@7ce9ffdcdeb2ba82b01b51d6584a6a85872336d4 # renovate: tag=v1.5.1
+        with:
+          app_id: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
+          private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
+
+      - name: GitHub - Auto Approve Pull Request
+        uses: hmarr/auto-approve-action@v2.1.0
+        with:
+          github-token: ${{ steps.github_generate_app_token.outputs.token }}
