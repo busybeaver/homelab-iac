@@ -33,7 +33,7 @@
       "matchUpdateTypes": ["major"],
       "stabilityDays": 7,
       "assignees": ["busybeaver"],
-      "reviewers": ["busybeaver"],
+      "reviewers": ["repository-assistant[bot]", "busybeaver"],
       "addLabels": ["major-update"]
     }
   ]
