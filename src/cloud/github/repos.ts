@@ -1,4 +1,5 @@
 import * as github from '@pulumi/github';
+import * as random from '@pulumi/random';
 import { requireSecretString } from '../../util/secrets';
 
 const iacRepo = new github.Repository('homelab-iac', {
@@ -104,6 +105,14 @@ const iacRepositoryAssistantPrivateKeySecret = new github.ActionsSecret(
     plaintextValue: requireSecretString('repository_assistant_private_key'),
   },
 );
+const iacDummyFakeSecret = new github.ActionsSecret(
+  'homelab-iac-not-real-secret',
+  {
+    repository: iacRepo.name,
+    secretName: 'DUMMY_FAKE_SECRET',
+    plaintextValue: new random.RandomPassword('dummy_fake_secret', { length: 32, special: false }).id,
+  },
+);
 
 export const repos = [
   iacRepo,
@@ -121,4 +130,5 @@ export const repos = [
   iacUnitTestResultsReporterPrivateKeySecret,
   iacRepositoryAssistantAppIdSecret,
   iacRepositoryAssistantPrivateKeySecret,
+  iacDummyFakeSecret,
 ];
