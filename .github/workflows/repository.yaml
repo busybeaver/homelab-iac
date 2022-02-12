@@ -81,7 +81,7 @@ jobs:
               }
             }
           owner: ${{ github.repository_owner }}
-          repo: ${{ github.repository.split(/)[1] }}
+          repo: ${{ github.repository.split('/')[1] }}
           pullRequestNumber: ${{ github.event.pull_request.number }}
         env:
           GITHUB_TOKEN: ${{ steps.github_generate_app_token.outputs.token }}
