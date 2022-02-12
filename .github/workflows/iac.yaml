@@ -72,9 +72,11 @@ jobs:
           stack-name: ${{ env.PULUMI_STACK }}
           secrets-provider: passphrase
           comment-on-pr: true
-          edit-pr-comment: yes
+          edit-pr-comment: true
           message: 'Associated Git Commit: "${{ github.event.commits[0].message }}" by ${{ github.event.commits[0].author }} (sha: ${{ github.event.commits[0].id }})'
           github-token: ${{ steps.github_generate_app_token.outputs.token }}
+          # on scheduled/cron-triggered runs, there shouldn't be any state change. if we have some state change, fail the build
+          expect-no-changes: ${{ github.event_name == 'schedule' }}
         env:
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
 
@@ -88,6 +90,7 @@ jobs:
     concurrency:
       # only allow one concurrent job/workflow, since the workflow commits changes back to the git repo which could cause concurrency issues
       group: ${{ github.workflow }}
+      # do not cancel builds, since we (potentially) update the state during the build
       cancel-in-progress: false
 
     env:
@@ -123,9 +126,40 @@ jobs:
         id: npm_install
         run: npm ci
 
+      # unfortunately, there isn't a more straight forward way of doing it, so we will utilize a workaround; see also:
+      # https://github.com/pulumi/actions/issues/158
+      - name: Pulumi - Check for Changes
+        id: pulumi_check_changes
+        uses: pulumi/actions@8a477588e1e16b6d6ea69fce287eea4af97cbbab # renovate: tag=v3
+        continue-on-error: true
+        with:
+          command: preview
+          refresh: true
+          cloud-url: file://./state
+          stack-name: ${{ env.PULUMI_STACK }}
+          secrets-provider: passphrase
+          # this config option fails the build step if there are changes, allowing to use the result to identify if we have changes
+          expect-no-changes: true
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+
+      - name: Pulumi - Report Status
+        id: pulumi_report_status
+        run: |
+          # 'success' means in this context that we do not have any state changes
+          # 'failure' on the other side means that we have at least one element that is changed within the state
+          if [ '${{ steps.pulumi_check_changes.outcome }}' = 'success' ]; then
+            echo "No state changes found. Nothing further to do. Stopping workflow here."
+            echo "::set-output name=state_changed::false"
+          else
+            echo "State changes were detected. Going to apply the changes and persisting the updated state..."
+            echo "::set-output name=state_changed::true"
+          fi
+
       - name: Pulumi - Apply Changes
         id: pulumi_apply_changes
         uses: pulumi/actions@8a477588e1e16b6d6ea69fce287eea4af97cbbab # renovate: tag=v3
+        if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           command: up
           refresh: true
@@ -139,6 +173,7 @@ jobs:
       - name: GitHub - Setup GPG Keys
         id: github_setup_gpg
         uses: crazy-max/ghaction-import-gpg@cb4264d3319acaa2bea23d51ef67f80b4f775013 # renovate: tag=v4
+        if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
@@ -148,6 +183,7 @@ jobs:
       - name: Git - Commit and Push State Changes
         id: git_commit_push
         uses: stefanzweifel/git-auto-commit-action@5804e42f86b1891093b151b6c4e78e759c746c4d # renovate: tag=v4
+        if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           commit_message: "chore: update state for the ${{ env.PULUMI_STACK }} stack [skip ci]"
           commit_options: --no-verify
