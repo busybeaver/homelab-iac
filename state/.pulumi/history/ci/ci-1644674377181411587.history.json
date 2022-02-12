@@ -1,0 +1,41 @@
+{
+    "kind": "update",
+    "startTime": 1644674375,
+    "message": "Associated Git Commit: \"Revert \"chore: testing\"\n\nThis reverts commit 0de4ce043852ea37610f6dd8ab502518e2108fee.\" by Object (sha: 2bc19b38c8e2d4ce60fd3104585ec97872c96dff)",
+    "environment": {
+        "ci.build.id": "1833935895",
+        "ci.build.number": "201",
+        "ci.build.type": "push",
+        "ci.build.url": "https://github.com/busybeaver/homelab-iac/actions/runs/1833935895",
+        "ci.pr.headSHA": "9127c49333869116941a845d5064cbaad3d7f705",
+        "ci.system": "GitHub Actions",
+        "exec.agent": "pulumi/actions@v3",
+        "exec.kind": "auto.local",
+        "git.author": "busybeaver",
+        "git.author.email": "858259+busybeaver@users.noreply.github.com",
+        "git.committer": "busybeaver",
+        "git.committer.email": "858259+busybeaver@users.noreply.github.com",
+        "git.dirty": "true",
+        "git.head": "9127c49333869116941a845d5064cbaad3d7f705",
+        "git.headName": "refs/heads/main",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac"
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "succeeded",
+    "endTime": 1644674377,
+    "resourceChanges": {
+        "delete": 2,
+        "same": 28
+    }
+}
