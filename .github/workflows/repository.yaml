@@ -39,7 +39,7 @@ jobs:
           private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
 
       - name: GitHub - Auto Approve Pull Request
-        uses: hmarr/auto-approve-action@v2.1.0
+        uses: hmarr/auto-approve-action@5d04a5ca6da9aeb8ca9f31a5239b96fc3e003029 # tag=v2.1.0
         # only auto-approve PRs that were opened by renovate
         if: github.actor == 'renovate[bot]'
         with:
