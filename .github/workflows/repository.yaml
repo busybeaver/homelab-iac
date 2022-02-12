@@ -40,6 +40,7 @@ jobs:
           private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
 
       - name: GitHub - Auto Approve Pull Request
+        id: github_auto_approve_pr
         uses: hmarr/auto-approve-action@5d04a5ca6da9aeb8ca9f31a5239b96fc3e003029 # tag=v2.1.0
         with:
           github-token: ${{ steps.github_generate_app_token.outputs.token }}
@@ -67,7 +68,26 @@ jobs:
           app_id: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
           private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
 
+      - name: GitHub - Get Pull Request ID
+        id: github_get_pr_id
+        uses: octokit/graphql-action@v2.2.1
+        with:
+          query: |
+            query GetPullRequestId($owner: String!, $repo: String!, $pullRequestNumber: Int!) {
+              repository(owner: $owner, name: $repo) {
+                pullRequest(number: $pullRequestNumber) {
+                  id
+                }
+              }
+            }
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.repository.split(/)[1] }}
+          pullRequestNumber: ${{ github.event.pull_request.number }}
+        env:
+          GITHUB_TOKEN: ${{ steps.github_generate_app_token.outputs.token }}
+
       - name: GitHub - Auto Merge Pull Request
+        id: github_auto_merge_pr
         uses: octokit/graphql-action@v2.2.1
         with:
           query: |
@@ -87,7 +107,7 @@ jobs:
                 }
               }
             }
-          pullRequestId: ${{ github.event.pull_request.number }}
+          pullRequestId: ${{ fromJSON(steps.github_get_pr_id.outputs.data).repository.pullRequest.id }}
           mergeMethod: SQUASH
           authorEmail: ${{ secrets.GIT_USER_MAIL }}
         env:
