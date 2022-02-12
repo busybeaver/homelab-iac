@@ -149,6 +149,8 @@ jobs:
         with:
           github_token: ${{ steps.github_generate_app_token.outputs.token }}
           check_name: Unit Test Results
+          comment_mode: update last
+          hide_comments: all but latest
           files: ${{ env.JUNIT_TEST_RESULTS_FILE }}
 
       - name: Codecov - Upload Coverage Data
