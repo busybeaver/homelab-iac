@@ -24,7 +24,7 @@
       "matchUpdateTypes": ["minor", "patch", "digest", "pin", "lockFileMaintenance"],
       "stabilityDays": 5,
       "assignees": ["busybeaver"],
-      "reviewers": ["busybeaver"]
+      "reviewers": ["repository-assistant[bot]"]
       // consider using branch auto-merging:
       // https://docs.renovatebot.com/noise-reduction/#branch-automerging
     },
