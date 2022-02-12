@@ -1,0 +1,39 @@
+{
+    "kind": "refresh",
+    "startTime": 1644674231,
+    "message": "chore: testing",
+    "environment": {
+        "ci.build.id": "1833932702",
+        "ci.build.number": "200",
+        "ci.build.type": "push",
+        "ci.build.url": "https://github.com/busybeaver/homelab-iac/actions/runs/1833932702",
+        "ci.pr.headSHA": "0de4ce043852ea37610f6dd8ab502518e2108fee",
+        "ci.system": "GitHub Actions",
+        "exec.kind": "auto.local",
+        "git.author": "busybeaver",
+        "git.author.email": "858259+busybeaver@users.noreply.github.com",
+        "git.committer": "busybeaver",
+        "git.committer.email": "858259+busybeaver@users.noreply.github.com",
+        "git.dirty": "false",
+        "git.head": "0de4ce043852ea37610f6dd8ab502518e2108fee",
+        "git.headName": "refs/heads/main",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac"
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "succeeded",
+    "endTime": 1644674233,
+    "resourceChanges": {
+        "same": 28
+    }
+}
