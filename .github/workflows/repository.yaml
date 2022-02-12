@@ -43,3 +43,52 @@ jobs:
         uses: hmarr/auto-approve-action@5d04a5ca6da9aeb8ca9f31a5239b96fc3e003029 # tag=v2.1.0
         with:
           github-token: ${{ steps.github_generate_app_token.outputs.token }}
+
+  pr_auto_merge:
+    name: 'Enable Auto Merge PR'
+    runs-on: ubuntu-latest
+
+    # only auto-merge PRs that were opened by renovate or the snap-package updater
+    if: github.actor == 'renovate[bot]' || github.actor == 'snap-package-updater[bot]'
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: '.'
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: GitHub - Generate App Token
+        id: github_generate_app_token
+        uses: tibdex/github-app-token@7ce9ffdcdeb2ba82b01b51d6584a6a85872336d4 # renovate: tag=v1.5.1
+        with:
+          app_id: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
+          private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
+
+      - name: GitHub - Auto Merge Pull Request
+        uses: octokit/graphql-action@v2.2.1
+        with:
+          query: |
+            mutation ($pullRequestId: ID!, $mergeMethod: PullRequestMergeMethod!, $authorEmail: String!) {
+              enablePullRequestAutoMerge(input: {
+                pullRequestId: $pullRequestId,
+                mergeMethod: $mergeMethod,
+                authorEmail: $authorEmail
+              }) {
+                pullRequest {
+                  autoMergeRequest {
+                    enabledAt
+                    enabledBy {
+                      login
+                    }
+                  }
+                }
+              }
+            }
+          pullRequestId: ${{ github.event.pull_request.number }}
+          mergeMethod: SQUASH
+          authorEmail: ${{ secrets.GIT_USER_MAIL }}
+        env:
+          GITHUB_TOKEN: ${{ steps.github_generate_app_token.outputs.token }}

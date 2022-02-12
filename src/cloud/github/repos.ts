@@ -104,6 +104,14 @@ const iacRepositoryAssistantPrivateKeySecret = new github.ActionsSecret(
     plaintextValue: requireSecretString('repository_assistant_private_key'),
   },
 );
+const iacGitUserMailSecret = new github.ActionsSecret(
+  'homelab-iac-git-user-mail',
+  {
+    repository: iacRepo.name,
+    secretName: 'GIT_USER_MAIL',
+    plaintextValue: requireSecretString('git_user_mail'),
+  },
+);
 
 export const repos = [
   iacRepo,
@@ -121,4 +129,5 @@ export const repos = [
   iacUnitTestResultsReporterPrivateKeySecret,
   iacRepositoryAssistantAppIdSecret,
   iacRepositoryAssistantPrivateKeySecret,
+  iacGitUserMailSecret,
 ];
