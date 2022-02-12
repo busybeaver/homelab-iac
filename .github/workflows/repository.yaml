@@ -3,7 +3,10 @@ name: "Repository CI"
 on:
   pull_request_target:
     types:
-      - review_requested
+      - opened
+      - synchronize
+      - reopened
+      # - review_requested
     branches:
       - main
 
@@ -17,7 +20,7 @@ jobs:
     name: 'Auto Approve PR'
     runs-on: ubuntu-latest
 
-    if: ${{ github.event.action == 'review_requested'}}
+    # if: ${{ github.event.action == 'review_requested'}}
 
     defaults:
       run:
@@ -35,10 +38,9 @@ jobs:
           app_id: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
           private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
 
-      - name: temp
-        run: echo ${{ github.actor }}
-
       - name: GitHub - Auto Approve Pull Request
         uses: hmarr/auto-approve-action@v2.1.0
+        # only auto-approve PRs that were opened by renovate
+        if: github.actor == 'renovate[bot]'
         with:
           github-token: ${{ steps.github_generate_app_token.outputs.token }}
