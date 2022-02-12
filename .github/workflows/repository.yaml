@@ -20,7 +20,8 @@ jobs:
     name: 'Auto Approve PR'
     runs-on: ubuntu-latest
 
-    # if: ${{ github.event.action == 'review_requested'}}
+    # only auto-approve PRs that were opened by renovate or the snap-package updater
+    if: github.actor == 'renovate[bot]' || github.actor == 'snap-package-updater[bot]'
 
     defaults:
       run:
@@ -40,7 +41,5 @@ jobs:
 
       - name: GitHub - Auto Approve Pull Request
         uses: hmarr/auto-approve-action@v2.1.0
-        # only auto-approve PRs that were opened by renovate
-        if: github.actor == 'renovate[bot]'
         with:
           github-token: ${{ steps.github_generate_app_token.outputs.token }}
