@@ -1,0 +1,39 @@
+{
+    "kind": "refresh",
+    "startTime": 1644625117,
+    "message": "Merge pull request #19 from busybeaver/renovate/pin-dependencies",
+    "environment": {
+        "ci.build.id": "1832160631",
+        "ci.build.number": "180",
+        "ci.build.type": "push",
+        "ci.build.url": "https://github.com/busybeaver/homelab-iac/actions/runs/1832160631",
+        "ci.pr.headSHA": "9dff4f46fc1cbe4ac697d5dd32c673f1da16e9ea",
+        "ci.system": "GitHub Actions",
+        "exec.kind": "auto.local",
+        "git.author": "busybeaver",
+        "git.author.email": "858259+busybeaver@users.noreply.github.com",
+        "git.committer": "GitHub",
+        "git.committer.email": "noreply@github.com",
+        "git.dirty": "false",
+        "git.head": "9dff4f46fc1cbe4ac697d5dd32c673f1da16e9ea",
+        "git.headName": "refs/heads/main",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac"
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "succeeded",
+    "endTime": 1644625119,
+    "resourceChanges": {
+        "same": 28
+    }
+}
