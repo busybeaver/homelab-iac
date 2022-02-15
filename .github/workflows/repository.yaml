@@ -70,7 +70,7 @@ jobs:
 
       - name: GitHub - Get Pull Request ID
         id: github_get_pr_id
-        uses: octokit/graphql-action@v2.2.1
+        uses: octokit/graphql-action@5b35793a23d626e7528da63fc3b47a5bc06b628c # tag=v2.2.1
         with:
           query: |
             query GetPullRequestId($owner: String!, $repo: String!, $pullRequestNumber: Int!) {
@@ -88,7 +88,7 @@ jobs:
 
       - name: GitHub - Auto Merge Pull Request
         id: github_auto_merge_pr
-        uses: octokit/graphql-action@v2.2.1
+        uses: octokit/graphql-action@5b35793a23d626e7528da63fc3b47a5bc06b628c # tag=v2.2.1
         with:
           query: |
             mutation ($pullRequestId: ID!, $mergeMethod: PullRequestMergeMethod!, $authorEmail: String!) {
