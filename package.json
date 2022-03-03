@@ -20,7 +20,7 @@
     "@pulumi/pulumi": "3.24.1",
     "@pulumi/random": "4.3.1",
     "@swc/core": "1.2.143",
-    "@swc/jest": "0.2.17",
+    "@swc/jest": "0.2.20",
     "@tsconfig/node16": "1.0.2",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.26",
