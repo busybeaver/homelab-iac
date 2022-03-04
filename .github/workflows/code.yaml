@@ -83,7 +83,7 @@ jobs:
 
       - name: Node - Setup
         id: node_setup
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # renovate: tag=v2
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a # tag=v3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
@@ -118,7 +118,7 @@ jobs:
 
       - name: Node - Setup
         id: node_setup
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # renovate: tag=v2
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a # tag=v3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
@@ -144,7 +144,7 @@ jobs:
 
       - name: GitHub - Publish Unit Test Results
         id: github_publish_results
-        uses: EnricoMi/publish-unit-test-result-action@dcac06369f794058b4a69fe6a746ae4c24731c37 # renovate: tag=v1.28
+        uses: EnricoMi/publish-unit-test-result-action@d512bc689c979e673baaa5ad7b437ef1b6271eb8 # tag=v1.30
         if: always()
         with:
           github_token: ${{ steps.github_generate_app_token.outputs.token }}
