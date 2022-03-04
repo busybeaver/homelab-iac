@@ -1,0 +1,26 @@
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: npx --no-install commitlint --edit $1
+pre-commit:
+  parallel: true
+  commands:
+#    lint:
+#      glob: "*.{js,ts,jsx,tsx}"
+#      # denolint doesn't support providing multiple files via one command, so we cannot use {staged_files}
+#      run: |
+#        echo {staged_files}
+#        for i in {staged_files}
+#        do
+#          echo "i $i"
+#          npx --no-install denolint --config denolint.json $i
+#        done
+    format:
+      glob: "*.{ts,js,json,md}"
+      exclude: ".*-lock.json|.*\/state\/.*"
+      run: npx --no-install git-format-staged --formatter 'dprint fmt --stdin "{}"' {staged_files}
+    tests:
+      glob: "*.{ts,js}"
+      exclude: ".*-lock.json|.*\/state\/.*"
+      run: jest --passWithNoTests --findRelatedTests {staged_files}
