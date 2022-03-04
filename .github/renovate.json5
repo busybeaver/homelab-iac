@@ -27,7 +27,7 @@
       "reviewers": ["repository-assistant[bot]"]
     },
     {
-      "description": "Major updates with breaking changes",
+      "description": "Major updates with potentially breaking changes",
       "matchUpdateTypes": ["major"],
       "stabilityDays": 7,
       "assignees": ["busybeaver"],
