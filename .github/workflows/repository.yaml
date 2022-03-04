@@ -68,47 +68,10 @@ jobs:
           app_id: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
           private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
 
-      - name: GitHub - Get Pull Request ID
-        id: github_get_pr_id
-        uses: octokit/graphql-action@v2.2.1
+      - name: GitHub - Enable PR Auto Merge
+        id: github_enable_pr_auto_merge
+        uses: peter-evans/enable-pull-request-automerge@v1.2.0
         with:
-          query: |
-            query GetPullRequestId($owner: String!, $repo: String!, $pullRequestNumber: Int!) {
-              repository(owner: $owner, name: $repo) {
-                pullRequest(number: $pullRequestNumber) {
-                  id
-                }
-              }
-            }
-          owner: ${{ github.repository_owner }}
-          repo: homelab-iac # TODO: make this dynamic
+          token: ${{ steps.github_generate_app_token.outputs.token }}
           pullRequestNumber: ${{ github.event.pull_request.number }}
-        env:
-          GITHUB_TOKEN: ${{ steps.github_generate_app_token.outputs.token }}
-
-      - name: GitHub - Auto Merge Pull Request
-        id: github_auto_merge_pr
-        uses: octokit/graphql-action@v2.2.1
-        with:
-          query: |
-            mutation ($pullRequestId: ID!, $mergeMethod: PullRequestMergeMethod!, $authorEmail: String!) {
-              enablePullRequestAutoMerge(input: {
-                pullRequestId: $pullRequestId,
-                mergeMethod: $mergeMethod,
-                authorEmail: $authorEmail
-              }) {
-                pullRequest {
-                  autoMergeRequest {
-                    enabledAt
-                    enabledBy {
-                      login
-                    }
-                  }
-                }
-              }
-            }
-          pullRequestId: ${{ fromJSON(steps.github_get_pr_id.outputs.data).repository.pullRequest.id }}
-          mergeMethod: SQUASH
-          authorEmail: ${{ secrets.GIT_USER_MAIL }}
-        env:
-          GITHUB_TOKEN: ${{ steps.github_generate_app_token.outputs.token }}
+          merge-method: squash
