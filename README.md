@@ -14,9 +14,12 @@ brew install pulumi git-crypt
 
 For other operating systems, have a look at the [installation section](https://www.pulumi.com/docs/get-started/install/) in the Pulumi doc as well as the git-crypt [install documentation](https://github.com/AGWA/git-crypt/blob/master/INSTALL.md).
 
-Subsequently, setup Pulumi by running:
+Subsequently, setup git-crypt and Pulumi by running:
 
 ```shell
+# after cloning the repository, unlock the encrypted files with GPG
+git-crypt unlock
+# initialize pulumi
 pulumi login file://./state
 # to work on the production stack (containing the actual data)
 pulumi stack select production
