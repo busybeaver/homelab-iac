@@ -10,16 +10,20 @@
     "quoteStyle": "alwaysSingle",
     "singleBodyPosition": "sameLine"
   },
+
   "json": {
   },
+
   "markdown": {
   },
+
   "includes": ["**/*.{ts,tsx,js,jsx,cjs,mjs,json,md,toml}"],
   "excludes": [
     "**/node_modules",
     "**/*-lock.json",
     "**/state"
   ],
+
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.64.2.wasm",
     "https://plugins.dprint.dev/json-0.14.1.wasm",
