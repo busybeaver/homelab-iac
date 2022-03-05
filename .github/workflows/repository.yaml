@@ -73,5 +73,5 @@ jobs:
         uses: peter-evans/enable-pull-request-automerge@v1.2.0
         with:
           token: ${{ steps.github_generate_app_token.outputs.token }}
-          pullRequestNumber: ${{ github.event.pull_request.number }}
+          pull-request-number: ${{ github.event.pull_request.number }}
           merge-method: squash
