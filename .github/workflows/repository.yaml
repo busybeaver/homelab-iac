@@ -20,8 +20,8 @@ jobs:
     name: 'Auto Approve PR'
     runs-on: ubuntu-latest
 
-    # only auto-approve PRs that were opened by renovate or the snap-package updater
-    if: github.actor == 'renovate[bot]' || github.actor == 'snap-package-updater[bot]'
+    # only auto-approve PRs that were opened by renovate or the snap-package updater (but do NOT auto approve major updates)
+    if: (github.actor == 'renovate[bot]' || github.actor == 'snap-package-updater[bot]') && !contains(github.event.pull_request.labels.*.name, 'major-update')
 
     defaults:
       run:
