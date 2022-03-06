@@ -18,7 +18,7 @@
     "@node-rs/deno-lint": "1.13.0",
     "@pulumi/github": "4.10.0",
     "@pulumi/pulumi": "3.24.1",
-    "@pulumi/random": "4.3.1",
+    "@pulumi/random": "4.4.0",
     "@swc/core": "1.2.148",
     "@swc/jest": "0.2.20",
     "@tsconfig/node16": "1.0.2",
