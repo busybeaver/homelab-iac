@@ -144,7 +144,7 @@ jobs:
 
       - name: GitHub - Publish Unit Test Results
         id: github_publish_results
-        uses: EnricoMi/publish-unit-test-result-action@d512bc689c979e673baaa5ad7b437ef1b6271eb8 # tag=v1.30
+        uses: EnricoMi/publish-unit-test-result-action@4a00ba50806e7658e5005bb91acdb3274714595a # tag=v1.31
         if: always()
         with:
           github_token: ${{ steps.github_generate_app_token.outputs.token }}
