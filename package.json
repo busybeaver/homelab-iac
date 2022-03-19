@@ -13,7 +13,7 @@
   "private": true,
   "devDependencies": {
     "@arkweid/lefthook": "0.7.7",
-    "@commitlint/cli": "16.2.1",
+    "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
     "@node-rs/deno-lint": "1.13.0",
     "@pulumi/github": "4.10.0",
