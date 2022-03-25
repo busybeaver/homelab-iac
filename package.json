@@ -16,7 +16,7 @@
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
     "@node-rs/deno-lint": "1.13.0",
-    "@pulumi/github": "4.10.0",
+    "@pulumi/github": "4.10.1",
     "@pulumi/pulumi": "3.26.1",
     "@pulumi/random": "4.4.2",
     "@swc/core": "1.2.160",
