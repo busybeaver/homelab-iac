@@ -70,7 +70,7 @@ jobs:
 
       - name: GitHub - Enable PR Auto Merge
         id: github_enable_pr_auto_merge
-        uses: peter-evans/enable-pull-request-automerge@21d45e1c52f5d111d2019b5d33f953ed2e735c46 # tag=v1.2.0
+        uses: peter-evans/enable-pull-request-automerge@4e255250f89d040c7b85bb434f997079243a9fa7 # tag=v2.0.0
         with:
           token: ${{ steps.github_generate_app_token.outputs.token }}
           pull-request-number: ${{ github.event.pull_request.number }}
