@@ -43,7 +43,7 @@ jobs:
 
       - name: SuperLinter - Lint Files
         id: superlinter_scan
-        uses: github/super-linter/slim@a6ab9d5ccb4b00819f732c278f91f17b726004b8 # tag=v4
+        uses: github/super-linter/slim@ae4e373c56efad95924d9cc6b89624fdb2333007 # tag=v4
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           FILTER_REGEX_EXCLUDE: '.*Pulumi\.production\.yaml|.*state/.*|.*\.git-crypt/.*'
