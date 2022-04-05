@@ -41,7 +41,7 @@ jobs:
 
       - name: GitHub - Auto Approve Pull Request
         id: github_auto_approve_pr
-        uses: hmarr/auto-approve-action@df19ac68bfbdb9903418acfc8aa9228f9770c65d # tag=v2.2.0
+        uses: hmarr/auto-approve-action@24ec4c8cc344fe1cdde70ff37e55ace9e848a1d8 # tag=v2.2.1
         with:
           github-token: ${{ steps.github_generate_app_token.outputs.token }}
 
