@@ -29,7 +29,7 @@
     "dprint": "0.24.4",
     "git-format-staged": "3.0.0",
     "jest": "27.5.1",
-    "jest-junit": "13.0.0",
+    "jest-junit": "13.1.0",
     "regenerator-runtime": "0.13.9",
     "typescript": "4.6.3"
   },
