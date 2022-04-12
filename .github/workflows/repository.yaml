@@ -10,68 +10,11 @@ on:
     branches:
       - main
 
-concurrency:
-  # on main, we want all builds to complete even if commits/merging happens faster to make it easier to discover at which point
-  # something broke; else, we cancel "old" builds and run/(re)start the build with the latest changes
-  group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}-{1}', github.workflow, github.sha) || format('ci-{0}-{1}', github.workflow, github.ref) }}
-
 jobs:
-  pr_auto_approve:
-    name: 'Auto Approve PR'
-    runs-on: ubuntu-latest
-
-    # only auto-approve PRs that were opened by renovate or the snap-package updater (but do NOT auto approve major updates)
-    if: (github.actor == 'renovate[bot]' || github.actor == 'snap-package-updater[bot]') && !contains(github.event.pull_request.labels.*.name, 'major-update')
-
-    defaults:
-      run:
-        shell: bash
-        working-directory: '.'
-
-    permissions:
-      contents: read
-
-    steps:
-      - name: GitHub - Generate App Token
-        id: github_generate_app_token
-        uses: tibdex/github-app-token@7ce9ffdcdeb2ba82b01b51d6584a6a85872336d4 # renovate: tag=v1.5.1
-        with:
-          app_id: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
-          private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
-
-      - name: GitHub - Auto Approve Pull Request
-        id: github_auto_approve_pr
-        uses: hmarr/auto-approve-action@5d04a5ca6da9aeb8ca9f31a5239b96fc3e003029 # tag=v2.1.0
-        with:
-          github-token: ${{ steps.github_generate_app_token.outputs.token }}
-
-  pr_auto_merge:
-    name: 'Enable Auto Merge PR'
-    runs-on: ubuntu-latest
-
-    # only auto-merge PRs that were opened by renovate or the snap-package updater
-    if: github.actor == 'renovate[bot]' || github.actor == 'snap-package-updater[bot]'
-
-    defaults:
-      run:
-        shell: bash
-        working-directory: '.'
-
-    permissions:
-      contents: read
-
-    steps:
-      - name: GitHub - Generate App Token
-        id: github_generate_app_token
-        uses: tibdex/github-app-token@7ce9ffdcdeb2ba82b01b51d6584a6a85872336d4 # renovate: tag=v1.5.1
-        with:
-          app_id: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
-          private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
-
-      - name: GitHub - Enable PR Auto Merge
-        id: github_enable_pr_auto_merge
-        uses: peter-evans/enable-pull-request-automerge@21d45e1c52f5d111d2019b5d33f953ed2e735c46 # tag=v1.2.0
-        with:
-          token: ${{ steps.github_generate_app_token.outputs.token }}
-          pull-request-number: ${{ github.event.pull_request.number }}
-          merge-method: squash
+  repository:
+    # TODO: pin to a sha tag and update automatically:
+    # https://github.com/renovatebot/renovate/issues/12212
+    uses: busybeaver/homelab-shared/.github/workflows/repository.yaml@main
+    secrets:
+      REPOSITORY_ASSISTANT_APP_ID: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
+      REPOSITORY_ASSISTANT_PRIVATE_KEY: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}

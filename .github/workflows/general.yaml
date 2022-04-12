@@ -14,80 +14,22 @@ on:
   schedule:
     - cron: '0 12 * * 1'
 
-concurrency:
-  # on main, we want all builds to complete even if commits/merging happens faster to make it easier to discover at which point
-  # something broke; else, we cancel "old" builds and run/(re)start the build with the latest changes
-  group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}-{1}', github.workflow, github.sha) || format('ci-{0}-{1}', github.workflow, github.ref) }}
+# concurrency:
+#   # on main, we want all builds to complete even if commits/merging happens faster to make it easier to discover at which point
+#   # something broke; else, we cancel "old" builds and run/(re)start the build with the latest changes
+#   group: ${{ github.ref == 'refs/heads/main' && format('ci-main-{0}-{1}', github.workflow, github.sha) || format('ci-{0}-{1}', github.workflow, github.ref) }}
 
 jobs:
-  code_quality:
-    name: 'Code Quality Checks'
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        shell: bash
-        working-directory: '.'
-
+  general:
     permissions:
       contents: read
       statuses: write
 
-    steps:
-      - name: Git - Checkout
-        id: git_checkout
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
-        with:
-          # Checkout full git history; required by git-leaks
-          fetch-depth: 0
-
-      - name: SuperLinter - Lint Files
-        id: superlinter_scan
-        uses: github/super-linter/slim@a6ab9d5ccb4b00819f732c278f91f17b726004b8 # tag=v4
-        env:
-          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          FILTER_REGEX_EXCLUDE: '.*Pulumi\.production\.yaml|.*state/.*|.*\.git-crypt/.*'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TYPESCRIPT_DEFAULT_STYLE: prettier
-          VALIDATE_ALL_CODEBASE: ${{ github.event_name != 'pull_request' }}
-          VALIDATE_BASH: true
-          VALIDATE_EDITORCONFIG: true
-          VALIDATE_GITHUB_ACTIONS: true
-          VALIDATE_GITLEAKS: true
-          VALIDATE_JSON: true
-          VALIDATE_MARKDOWN: true
-          VALIDATE_NATURAL_LANGUAGE: true
-          VALIDATE_SHELL_SHFMT: true
-          VALIDATE_TYPESCRIPT_ES: true
-          VALIDATE_YAML: true
-
-  git_secrets:
-    name: 'Git Secret Exposure Checks'
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        shell: bash
-        working-directory: '.'
-
-    permissions:
-      contents: read
-      statuses: write
-
-    steps:
-      - name: Git - Checkout
-        id: git_checkout
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
-        with:
-          # Checkout full git history; required by GitGuardian
-          fetch-depth: 0
-
-      - name: GitGuardian - Scan For Commited Secrets
-        id: gitguardian_scan
-        uses: GitGuardian/ggshield-action@a5226e0a63850e276df1c71a81129fb82fc6e8cc # renovate: tag=v1.1.0
-        env:
-          GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
-          GITHUB_PUSH_BASE_SHA: ${{ github.event.base }}
-          GITHUB_PULL_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
+    # TODO: pin to a sha tag and update automatically:
+    # https://github.com/renovatebot/renovate/issues/12212
+    uses: busybeaver/homelab-shared/.github/workflows/general.yaml@main
+    with:
+      lintTypescript: true
+      filterRegexExlude: '.*Pulumi\.production\.yaml|.*state/.*|.*\.git-crypt/.*'
+    secrets:
+      GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}

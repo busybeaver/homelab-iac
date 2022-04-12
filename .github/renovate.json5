@@ -12,26 +12,32 @@
     ":maintainLockFilesWeekly",
     ":enableVulnerabilityAlerts",
     ":disableDependencyDashboard",
-    "helpers:pinGitHubActionDigests",
-    // "default:automergeDigest",
-    "npm:unpublishSafe"
+    "helpers:pinGitHubActionDigests"
   ],
   "labels": ["dependencies"],
   "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
+      "description": "Dependency maintenance tasks",
+      "matchUpdateTypes": ["pin", "lockFileMaintenance"],
+      "stabilityDays": 0,
+      "assignees": ["busybeaver"],
+      "reviewers": ["repository-assistant[bot]"]
+    },
+    {
       "description": "Minor and patch-level updates with usually no breaking changes",
-      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "lockFileMaintenance"],
-      "stabilityDays": 5,
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      // npm packages less than 72 hours (3 days) old can be unpublished
+      "stabilityDays": 3,
       "assignees": ["busybeaver"],
       "reviewers": ["repository-assistant[bot]"]
     },
     {
       "description": "Major updates with potentially breaking changes",
       "matchUpdateTypes": ["major"],
-      "stabilityDays": 7,
+      "stabilityDays": 5,
       "assignees": ["busybeaver"],
-      "reviewers": ["repository-assistant[bot]", "busybeaver"],
+      "reviewers": ["busybeaver"],
       "addLabels": ["major-update"]
     }
   ]
