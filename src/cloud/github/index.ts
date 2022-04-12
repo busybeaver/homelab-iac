@@ -1,7 +1,5 @@
-import { repos } from './repos';
+import { homelabIacRepository } from './repository_homelab_iac';
 
-export const github = [...repos];
-
-// import * as repos from './repos';
-//
-// export const github = [...Object.values(repos)];
+export const github = [
+  homelabIacRepository,
+];
