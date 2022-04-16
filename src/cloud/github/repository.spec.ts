@@ -12,12 +12,17 @@ pulumi.runtime.setMocks({
   },
 });
 
-describe('Infrastructure', () => {
-  let infra: typeof import('./repos');
+describe('repository', () => {
+  let repository: typeof import('./repository');
 
   beforeAll(async () => {
     // It's important to import the program _after_ the mocks are defined.
-    infra = await import('./repos');
+    repository = await import('./repository');
+  });
+
+  test('GitHubRepository', () => {
+    const gitHubRepository = new repository.GitHubRepository("testRepo", () => undefined);
+    expect(gitHubRepository).toBeInstanceOf(pulumi.ComponentResource);
   });
 
   test('#server', () => {
