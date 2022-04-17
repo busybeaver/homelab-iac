@@ -138,7 +138,7 @@ jobs:
         uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # tag=v1.5.2
         if: always()
         with:
-          # # https://github.com/EnricoMi/publish-unit-test-result-action/issues/161
+          # https://github.com/EnricoMi/publish-unit-test-result-action/issues/161
           app_id: ${{ secrets.UNIT_TEST_RESULTS_REPORTER_APP_ID }}
           private_key: ${{ secrets.UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY }}
 
@@ -148,10 +148,12 @@ jobs:
         if: always()
         with:
           github_token: ${{ steps.github_generate_app_token.outputs.token }}
-          check_name: Unit Test Results
-          comment_mode: update last
-          hide_comments: all but latest
+          check_name: Test Results
           files: ${{ env.JUNIT_TEST_RESULTS_FILE }}
+          # we only add github checks to the PR/commit, but don't create PR comments; reason is that comments will not
+          # be replaced but always newly added due to (it looks for "github-actions" user instead of the github app user):
+          # https://github.com/EnricoMi/publish-unit-test-result-action/blob/ae7c14a87cf1a1200805b487debc65963bdb3f2d/python/publish/publisher.py#L493
+          comment_mode: off
 
       - name: Codecov - Upload Coverage Data
         id: codecov_upload_data
