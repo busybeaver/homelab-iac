@@ -13,8 +13,6 @@
   "private": true,
   "devDependencies": {
     "@arkweid/lefthook": "0.7.7",
-    "@commitlint/cli": "16.2.3",
-    "@commitlint/config-conventional": "16.2.1",
     "@node-rs/deno-lint": "1.13.0",
     "@pulumi/github": "4.11.0",
     "@pulumi/pulumi": "3.29.1",
@@ -26,7 +24,6 @@
     "@types/node": "16.11.27",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "dprint": "0.24.4",
     "git-format-staged": "3.0.0",
     "jest": "27.5.1",
     "jest-junit": "13.1.0",

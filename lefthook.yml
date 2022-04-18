@@ -1,8 +1,6 @@
-commit-msg:
-  parallel: true
-  commands:
-    commitlint:
-      run: npx --no-install commitlint --edit $1
+extends:
+  - .lefthook/lefthook-commit-message.yml
+
 pre-commit:
   parallel: true
   commands:
@@ -17,7 +15,9 @@ pre-commit:
 #          npx --no-install denolint --config denolint.json $i
 #        done
     format:
-      glob: "*.{ts,js,json,md}"
+      # since dprint currently has some issues with formatting Dockerfiles, we don't do it during pre-commit
+      # glob: "{Dockerfile,*.ts,*.tsx,*.js,*.jsx,*.cjs,*.mjs,*.json,*.md,*.toml}"
+      glob: "{*.ts,*.tsx,*.js,*.jsx,*.cjs,*.mjs,*.json,*.md,*.toml}"
       exclude: ".*-lock.json|.*\/state\/.*"
       run: npx --no-install git-format-staged --formatter 'dprint fmt --stdin "{}"' {staged_files}
     tests:
