@@ -172,7 +172,7 @@ jobs:
 
       - name: GitHub - Setup GPG Keys
         id: github_setup_gpg
-        uses: crazy-max/ghaction-import-gpg@b7c9a01276e14c606a92f6cbeb4dd439bea001b5 # tag=v4
+        uses: crazy-max/ghaction-import-gpg@4d58d49bfefed583addec96996588e8bc4b306b8 # tag=v4
         if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
