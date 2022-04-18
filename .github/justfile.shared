@@ -1,15 +1,19 @@
-# tool installation via brew for macos
-install:
-  brew install just lefthook dprint act httpie
+# install all required tooling for development (osx only)
+install *additional_tools:
+  brew install just lefthook dprint act httpie jq yq {{additional_tools}}
 
+# initializes the tooling for working with this repository
 initialize:
   lefthook install
 
+# formats files according to the used standards
 format:
   dprint fmt
 
+# checks if the files comply to the used standards
 check:
   dprint check
 
+# runs the CI workflows locally
 ci +args='push':
   act {{args}}
