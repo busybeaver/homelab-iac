@@ -1,0 +1,5 @@
+commit-msg:
+  parallel: true
+  scripts:
+    "semantic-commit-message":
+      runner: bash
