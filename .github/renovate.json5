@@ -19,6 +19,7 @@
   ],
   "labels": ["dependencies"],
   "rebaseWhen": "behind-base-branch",
+  "rollbackPrs": true,
   "packageRules": [
     {
       "description": "Dependency maintenance tasks",
