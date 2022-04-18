@@ -1,0 +1,15 @@
+# tool installation via brew for macos
+install:
+  brew install just lefthook dprint act httpie
+
+initialize:
+  lefthook install
+
+format:
+  dprint fmt
+
+check:
+  dprint check
+
+ci +args='push':
+  act {{args}}
