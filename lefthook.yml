@@ -4,23 +4,17 @@ extends:
 pre-commit:
   parallel: true
   commands:
-#    lint:
-#      glob: "*.{js,ts,jsx,tsx}"
-#      # denolint doesn't support providing multiple files via one command, so we cannot use {staged_files}
-#      run: |
-#        echo {staged_files}
-#        for i in {staged_files}
-#        do
-#          echo "i $i"
-#          npx --no-install denolint --config denolint.json $i
-#        done
+    lint:
+      glob: "*.{js,ts}"
+      exclude: ".*-lock.json|.*\/state\/.*"
+      run: just lint {staged_files}
     format:
       # since dprint currently has some issues with formatting Dockerfiles, we don't do it during pre-commit
-      # glob: "{Dockerfile,*.ts,*.tsx,*.js,*.jsx,*.cjs,*.mjs,*.json,*.md,*.toml}"
-      glob: "{*.ts,*.tsx,*.js,*.jsx,*.cjs,*.mjs,*.json,*.md,*.toml}"
+      # glob: "{Dockerfile,*.ts,*.js,*.cjs,*.mjs,*.json,*.md,*.toml}"
+      glob: "{*.ts,*.js,*.cjs,*.mjs,*.json,*.md,*.toml}"
       exclude: ".*-lock.json|.*\/state\/.*"
-      run: npx --no-install git-format-staged --formatter 'dprint fmt --stdin "{}"' {staged_files}
+      run: just format {staged_files} && git add {staged_files}
     tests:
       glob: "*.{ts,js}"
       exclude: ".*-lock.json|.*\/state\/.*"
-      run: jest --passWithNoTests --findRelatedTests {staged_files}
+      run: just test {staged_files}
