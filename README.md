@@ -2,35 +2,30 @@
 
 Infrastructure as Code for the personal HomeLab.
 
+_Note:_ This is a Pulumi-based reimplementation of a Terraform based setup (located in a private GitHub repository).
+
 ## Setup
 
-Make sure [Node.js](https://nodejs.org/en/) is installed. The [latest LTS version](https://nodejs.org/en/download/) is recommended. Tools like [fnm](https://github.com/Schniz/fnm) or [volta](https://github.com/volta-cli/volta) can help managing multipe Node.js version.
-
-On macOS run the following command to install [Pulumi](https://www.pulumi.com/) and [git-crypt](https://github.com/AGWA/git-crypt):
+On macOS run the following command to install just:
 
 ```shell
-brew install pulumi git-crypt
+brew install just
 ```
 
-For other operating systems, have a look at the [installation section](https://www.pulumi.com/docs/get-started/install/) in the Pulumi doc as well as the git-crypt [install documentation](https://github.com/AGWA/git-crypt/blob/master/INSTALL.md).
+For other operating systems, have a look at the installation section in the [just documentation](https://github.com/casey/just/tree/df8eabb3ef705e0807b863db2a0c99061f691bbe#packages=).
 
-Subsequently, setup git-crypt and Pulumi by running:
+Subsequently, set up the repository:
 
 ```shell
-# after cloning the repository, unlock the encrypted files with GPG
-git-crypt unlock
-# initialize pulumi
-pulumi login file://./state
-# to work on the production stack (containing the actual data)
-pulumi stack select production
-# to work on the CI stack
-pulumi stack select ci
+# 1) install the required tooling: the install step uses brew and therefore works only on macos;
+# on other operation systems check the needed tools in the justfile.shared and install these manually
+just install
+# 2) initialize the tooling
+just init
 ```
 
 ## Development
 
+For a list of available commands, just run `just` within the git repository.
+
 Use [act](https://github.com/nektos/act) to run the GitHub Actions CI flow locally.
-
-## Note
-
-This is a Pulumi-based reimplementation of a Terraform based setup (located in a private GitHub repository).
