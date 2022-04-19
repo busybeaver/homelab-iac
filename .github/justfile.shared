@@ -6,13 +6,13 @@ install *additional_tools:
 initialize:
   lefthook install
 
-# formats files according to the used standards
-format:
-  dprint fmt
+# formats files according to the used standards and rules
+format *files:
+  dprint fmt {{files}}
 
-# checks if the files comply to the used standards
-check:
-  dprint check
+# checks if the files comply to the used standards and rules
+check *files:
+  dprint check {{files}}
 
 # runs the CI workflows locally
 ci +args='push':
