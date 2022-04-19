@@ -1,0 +1,15 @@
+{
+  "lint": {
+    "files": {
+      "include": ["src/"],
+      "exclude": []
+    },
+    "rules": {
+      "tags": ["recommended"],
+      "exclude": [
+        "no-inferrable-types",
+        "no-explicit-any"
+      ]
+    }
+  }
+}
