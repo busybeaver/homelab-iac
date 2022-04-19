@@ -21,7 +21,7 @@ describe('repository', () => {
   });
 
   test('GitHubRepository', () => {
-    const gitHubRepository = new repository.GitHubRepository("testRepo", () => undefined);
+    const gitHubRepository = new repository.GitHubRepository('testRepo', () => undefined);
     expect(gitHubRepository).toBeInstanceOf(pulumi.ComponentResource);
   });
 
