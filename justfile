@@ -90,6 +90,7 @@ _run_pulumi +args:
 alias env_prod := stack_prod
 alias env_ci := stack_ci
 alias deploy := up
+alias apply := up
 alias list := config_list
 alias get := config_get
 alias set := config_set
