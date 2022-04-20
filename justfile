@@ -34,7 +34,7 @@ check *files:
   @just typecheck
   @just test {{files}}
 
-# runs the CI workflows locally; the optinal args parameter allows to add additional optional arguments
+# runs the CI workflows locally; the optional args parameter allows to add additional optional arguments
 ci *args:
   @just _run_shared ci {{args}}
 
@@ -115,11 +115,11 @@ stack_prod:
 stack_ci:
   @just _run_pulumi_stack ci
 
-# previews the potential changes between the current IaC configuration and the current state; the optinal args parameter allows to add additional optional arguments
+# previews the potential changes between the current IaC configuration and the current state; the optional args parameter allows to add additional optional arguments
 preview *args:
   @just _run_pulumi preview {{args}}
 
-# applies/deploys the changes between the current IaC configuration and the current state; the optinal args parameter allows to add additional optional arguments
+# applies/deploys the changes between the current IaC configuration and the current state; the optional args parameter allows to add additional optional arguments
 up *args:
   @just _run_pulumi up --refresh {{args}}
 
