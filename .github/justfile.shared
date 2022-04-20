@@ -1,6 +1,6 @@
 default_tools := "just lefthook dprint act httpie jq yq"
 
-# install all required tooling for development (osx only)
+# install all required tooling for development (osx only); the optional additional_tools parameter allows to specify additional tools that should be installed
 install *additional_tools:
   {{ if os() != "macos" { error("This command currently only works on macOS. On other systems, please install the following tools manually: " + default_tools + " " + additional_tools) } else { "" } }}
   brew install {{default_tools}} {{additional_tools}}
@@ -9,14 +9,14 @@ install *additional_tools:
 initialize:
   lefthook install
 
-# formats files according to the used standards and rules
+# formats files according to the used standards and rules; if the optional files parameter is provided, only the specified files are formatted; else all files are formatted
 format *files:
   dprint fmt {{files}}
 
-# checks if the files comply to the used standards and rules
+# checks if the files comply to the used standards and rules; if the optional files parameter is provided, only the specified files are checked; else all files are checked
 check *files:
   dprint check {{files}}
 
-# runs the CI workflows locally
+# runs the CI workflows locally; the optional args parameter allows to add additional optional arguments
 ci +args='push':
   act {{args}}
