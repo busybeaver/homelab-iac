@@ -1,4 +1,4 @@
-set shell := ["zsh", "-uc"]
+set shell := ["bash", "-uc"]
 
 # lists all available commands
 @default:
