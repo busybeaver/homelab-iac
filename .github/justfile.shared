@@ -1,6 +1,9 @@
+default_tools := "just lefthook dprint act httpie jq yq"
+
 # install all required tooling for development (osx only)
 install *additional_tools:
-  brew install just lefthook dprint act httpie jq yq {{additional_tools}}
+  {{ if os() != "macos" { error("This command currently only works on macOS. On other systems, please install the following tools manually: " + default_tools + " " + additional_tools) } else { "" } }}
+  brew install {{default_tools}} {{additional_tools}}
 
 # initializes the tooling for working with this repository
 initialize:
