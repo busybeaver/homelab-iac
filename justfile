@@ -23,18 +23,18 @@ initialize:
   @# initialize pulumi
   cd {{justfile_directory()}} && pulumi login file://./state
 
-# formats files according to the used standards and rules
+# formats files according to the used standards and rules; if the optional files parameter is provided, only the specified files are formatted; else all files are formatted
 format *files:
   @just _run_shared format {{files}}
 
-# checks if the files comply to the used standards and rules
+# checks if the files comply to the used standards and rules; if the optional files parameter is provided, only the specified files are checked; else all files are checked
 check *files:
   @just _run_shared check {{files}}
   @just lint {{files}}
   @just typecheck
   @just test {{files}}
 
-# runs the CI workflows locally
+# runs the CI workflows locally; the optinal args parameter allows to add additional optional arguments
 ci *args:
   @just _run_shared ci {{args}}
 
@@ -94,7 +94,7 @@ alias list := config_list
 alias get := config_get
 alias set := config_set
 
-# lint files according to the defined coding standards
+# lint files according to the defined coding standards; if the optional files parameter is provided, only the specified files are linted; else all files are linted
 lint *files:
   cd {{justfile_directory()}} && deno lint -c ./denolint.jsonc {{files}}
 
@@ -102,7 +102,7 @@ lint *files:
 typecheck:
   cd {{justfile_directory()}} && tsc --project ./tsconfig.json --noEmit
 
-# run unit tests
+# run unit tests; if the optional source_files paraemter is provided, only tests related to the specified source files are executed; else all tests are executed
 test *source_files:
   cd {{justfile_directory()}} && jest -c ./jest.config.js {{ if source_files =~ ".+" { "--passWithNoTests --findRelatedTests " + source_files } else { "" } }}
 
@@ -114,15 +114,23 @@ stack_prod:
 stack_ci:
   @just _run_pulumi_stack ci
 
-# previews the potential changes between the current IaC configuration and the current state
+# previews the potential changes between the current IaC configuration and the current state; the optinal args parameter allows to add additional optional arguments
 preview *args:
   @just _run_pulumi preview {{args}}
 
-# applies/deploys the changes between the current IaC configuration and the current state
+# applies/deploys the changes between the current IaC configuration and the current state; the optinal args parameter allows to add additional optional arguments
 up *args:
   @just _run_pulumi up --refresh {{args}}
 
-# list the configuration of the current stack; when the arguemnt 'show' or 'showSecrets' is added, stored secrets are shown in clear text
-config_list secrets="hide":
-  @just _run_pulumi config {{ if secrets =~ "^show" { "--show-secrets" } else { "" } }}
+# list the configuration of the current stack; when the '--show-secrets' arguemnt is added, stored secrets are shown in clear text
+config_list showSecrets="--hide-secrets":
+  @just _run_pulumi config {{ if showSecrets == "--show-secrets" { "--show-secrets" } else { "" } }}
 
+# get the configuration or secret value for the defined propertyName
+config_get propertyName:
+  @just _run_pulumi config get {{projectName}}:{{propertyName}}
+
+# sets (and potentially overrides) the value of the defined propertyName. If the '--secret' flag is added, the value is stored encrypted at rest; else the value is stored plaintext, unecrypted at rest
+config_set propertyName secret="--no-secret":
+  @echo {{ if secret == "--secret" { "Going to store the configuration property as encrypted secret..." } else { "Going to store the configuration property as plaintext, unecrypted value..." } }}
+  @just _run_pulumi config set {{projectName}}:{{propertyName}} {{ if secret == "--secret" { "--secret" } else { "" } }}
