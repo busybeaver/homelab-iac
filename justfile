@@ -107,6 +107,10 @@ typecheck:
 test *source_files:
   cd {{justfile_directory()}} && jest -c ./jest.config.js {{ if source_files =~ ".+" { "--passWithNoTests --findRelatedTests " + source_files } else { "" } }}
 
+# run unit tests during CI workflows; allows via the optional args parameter to customize the execution of jest
+test_ci *args:
+  cd {{justfile_directory()}} && jest -c ./jest.config.js --ci {{args}}
+
 # switch to the production environment (containing the actual data)
 stack_prod:
   @just _run_pulumi_stack production

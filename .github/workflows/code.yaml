@@ -88,13 +88,20 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
+      - name: Just - Setup
+        uses: extractions/setup-just@v1
+        with:
+          just-version: '^1.1.2'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: NPM - Install Dependencies
         id: npm_install
         run: npm ci
 
       - name: TypeScript - Type Check
         id: typescript_typecheck
-        run: npm run typecheck
+        run: just typecheck
 
   unit_tests:
     name: 'Jest - Unit Tests'
@@ -123,13 +130,20 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
+      - name: Just - Setup
+        uses: extractions/setup-just@v1
+        with:
+          just-version: '^1.1.2'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: NPM - Install Dependencies
         id: npm_install
         run: npm ci
 
       - name: Jest - Unit Tests
         id: jest_unit_tests
-        run: npm run test -- --ci --coverage --reporters=default --reporters=jest-junit
+        run: just test_ci --coverage --reporters=default --reporters=jest-junit
         env:
           JEST_JUNIT_OUTPUT_FILE: ${{ env.JUNIT_TEST_RESULTS_FILE }}
 
