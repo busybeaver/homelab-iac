@@ -13,7 +13,7 @@ _run_shared cmd *args:
 
 # install all required tooling for development (osx only)
 install:
-  @just _run_shared install fnm git-crypt pulumi deno
+  @just _run_shared install fnm git-crypt pulumi deno moreutils
 
 # initializes the tooling for working with this repository
 initialize:
@@ -84,7 +84,9 @@ _run_pulumi +args:
     echo "Unable to find the passphrase for stack ${CURRENT_STACK} in the keychain. Please run just env_* or just stack_* first."
     exit 2
   fi
-  echo "> ${CURRENT_STACK} stack > pulumi {{args}}"
+  if [[ "${VERBOSE-}" != "false" ]]; then
+    echo "> ${CURRENT_STACK} stack > pulumi {{args}}"
+  fi
   PULUMI_CONFIG_PASSPHRASE="${PULUMI_CONFIG_PASSPHRASE}" pulumi {{args}}
 
 alias env_prod := stack_prod
@@ -93,7 +95,10 @@ alias deploy := up
 alias apply := up
 alias list := config_list
 alias get := config_get
+alias get_custom := config_get_custom
 alias set := config_set
+alias set_custom := config_set_custom
+alias edit_json := config_edit_json
 
 # lint files according to the defined coding standards; if the optional files parameter is provided, only the specified files are linted; else all files are linted
 lint *files:
@@ -131,11 +136,22 @@ up *args:
 config_list showSecrets="--hide-secrets":
   @just _run_pulumi config {{ if showSecrets == "--show-secrets" { "--show-secrets" } else { "" } }}
 
+# get the configuration or secret value for the defined namespace and propertyName
+config_get_custom namespace propertyName:
+  @just _run_pulumi config get {{namespace}}:{{propertyName}}
+
 # get the configuration or secret value for the defined propertyName
 config_get propertyName:
-  @just _run_pulumi config get {{projectName}}:{{propertyName}}
+  @just config_get_custom {{projectName}} {{propertyName}}
+
+# sets (and potentially overrides) the value of the defined propertyName. If the '--secret' flag is added, the value is stored encrypted at rest; else the value is stored plaintext, unecrypted at rest
+config_set_custom namespace propertyName secret="--no-secret":
+  @echo {{ if secret == "--secret" { "Going to store the configuration property as encrypted secret..." } else { "Going to store the configuration property as plaintext, unecrypted value..." } }}
+  @just _run_pulumi config set {{namespace}}:{{propertyName}} {{ if secret == "--secret" { "--secret" } else { "" } }}
 
 # sets (and potentially overrides) the value of the defined propertyName. If the '--secret' flag is added, the value is stored encrypted at rest; else the value is stored plaintext, unecrypted at rest
 config_set propertyName secret="--no-secret":
-  @echo {{ if secret == "--secret" { "Going to store the configuration property as encrypted secret..." } else { "Going to store the configuration property as plaintext, unecrypted value..." } }}
-  @just _run_pulumi config set {{projectName}}:{{propertyName}} {{ if secret == "--secret" { "--secret" } else { "" } }}
+  @just config_set_custom {{projectName}} {{propertyName}} {{secret}}
+
+config_edit_json propertyName secret="--no-secret":
+  @VERBOSE=false just config_get {{propertyName}} | jq -M . | EDITOR=nano vipe | jq -M -c . | VERBOSE=false just config_set {{propertyName}} {{secret}}
