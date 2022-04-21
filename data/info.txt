@@ -1,3 +1,0 @@
-Data within this folder is encrypted with git-crypt. While it's preferred to use the secret encryption from Pulumi - for
-additional security, since this data is basically dual-encrypted (first with Pulimi and then git-crypt) - some data is
-too complex to be stored in strings (such a large JSON files). For this purpose, this folder can be used.
