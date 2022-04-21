@@ -30,6 +30,6 @@ jobs:
     uses: busybeaver/homelab-shared/.github/workflows/general.yaml@main
     with:
       lintTypescript: true
-      filterRegexExlude: '.*Pulumi\.production\.yaml|.*state/.*|.*\.git-crypt/.*'
+      filterRegexExlude: '.*Pulumi\.production\.yaml|.*data/.*|.*state/.*|.*\.git-crypt/.*'
     secrets:
       GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
