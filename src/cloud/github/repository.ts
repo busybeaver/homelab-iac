@@ -1,8 +1,5 @@
 import * as pulumi from '@pulumi/pulumi';
-
-export type ChildResourcesFn = (
-  parent: pulumi.Resource,
-) => pulumi.Inputs | Promise<pulumi.Inputs> | pulumi.Output<pulumi.Inputs> | undefined;
+import { ChildResourcesFn } from '../../util/types';
 
 export class GitHubRepository extends pulumi.ComponentResource {
   constructor(name: string, childResourcesFn: ChildResourcesFn, opts: pulumi.ComponentResourceOptions = {}) {

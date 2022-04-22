@@ -1,7 +1,8 @@
 import * as github from '@pulumi/github';
 import * as pulumi from '@pulumi/pulumi';
 import { requireSecretString } from '../../util/secrets';
-import { ChildResourcesFn, GitHubRepository } from './repository';
+import { ChildResourcesFn } from '../../util/types';
+import { GitHubRepository } from './repository';
 
 const childResourcesFn: ChildResourcesFn = parent => {
   const repository = new github.Repository('repository', {
@@ -203,4 +204,4 @@ const childResourcesFn: ChildResourcesFn = parent => {
   };
 };
 
-export const homelabIacRepository = new GitHubRepository('homelab-iac', childResourcesFn);
+export const getHomelabIacRepository = () => new GitHubRepository('homelab-iac', childResourcesFn);
