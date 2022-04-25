@@ -20,7 +20,7 @@
     "@swc/jest": "0.2.20",
     "@tsconfig/node16": "1.0.2",
     "@types/jest": "27.4.1",
-    "@types/node": "16.11.27",
+    "@types/node": "16.11.28",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "jest": "27.5.1",
