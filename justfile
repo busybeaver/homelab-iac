@@ -34,7 +34,7 @@ check *files:
   @just lint {{files}}
   @just typecheck
   @just test {{files}}
-  
+
 # assisted conventional commits with git
 commit *args:
   @just _run_shared commit {{args}}
