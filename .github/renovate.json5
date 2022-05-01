@@ -1,5 +1,6 @@
 // as soon as the following issue is resolved, we can use a shared parent-config from the homelab-shared repository
 // https://github.com/renovatebot/renovate/issues/7674
+// https://github.com/renovatebot/renovate/issues/15370
 // https://docs.renovatebot.com/config-presets/
 {
   "extends": [
