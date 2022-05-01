@@ -6,6 +6,7 @@ set shell := ["bash", "-uc"]
 
 alias init := initialize
 alias fmt := format
+alias cm := commit
 
 # internal helper command to easier run commands from the shared justfile
 _run_shared cmd *args:
@@ -33,6 +34,10 @@ check *files:
   @just lint {{files}}
   @just typecheck
   @just test {{files}}
+  
+# assisted conventional commits with git
+commit *args:
+  @just _run_shared commit {{args}}
 
 # runs the CI workflows locally; the optional args parameter allows to add additional optional arguments
 ci *args:
