@@ -1,4 +1,5 @@
 default_tools := "just lefthook dprint act httpie jq yq wget"
+brew_env_vars := "HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_INSECURE_REDIRECT=1 HOMEBREW_CASK_OPTS=--require-sha"
 
 # install all required tooling for development (osx only); the optional additional_tools parameter allows to specify additional tools that should be installed
 install *additional_tools:
@@ -10,7 +11,7 @@ install *additional_tools:
     exit -1
   fi
 
-  brew install {{default_tools}} {{additional_tools}}
+  {{brew_env_vars}} brew install {{default_tools}} {{additional_tools}}
 
   # alternatives:
   # - https://github.com/cocogitto/cocogitto
@@ -27,6 +28,20 @@ install *additional_tools:
 
   wget -cO - "https://github.com/liamg/comet/releases/download/v${VERSION-}/${FILENAME-}" > /usr/local/bin/comet
   chmod +x /usr/local/bin/comet
+
+# uninstall all required tooling for development (osx only); the optional additional_tools parameter allows to specify additional tools that should be uninstalled
+uninstall *additional_tools:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  IFS=$'\n\t'
+  if [[ "{{os()}}" != "macos" ]]; then
+    echo "This command currently only works on macOS. On other systems, please uninstall the following tools manually: {{default_tools}} {{additional_tools}}"
+    exit -1
+  fi
+
+  {{brew_env_vars}} brew uninstall {{default_tools}} {{additional_tools}}
+
+  rm -f /usr/local/bin/comet
 
 # initializes the tooling for working with this repository
 initialize:
