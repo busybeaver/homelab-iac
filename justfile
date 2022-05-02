@@ -1,5 +1,8 @@
 set shell := ["bash", "-uc"]
 
+additional_tools := "fnm git-crypt pulumi deno moreutils" # the moreutils package contains the 'vipe' command
+brew_env_vars := "HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_INSECURE_REDIRECT=1 HOMEBREW_CASK_OPTS=--require-sha"
+
 # lists all available commands
 @default:
   just --list
@@ -14,7 +17,11 @@ _run_shared cmd *args:
 
 # install all required tooling for development (osx only)
 install:
-  @just _run_shared install fnm git-crypt pulumi deno moreutils
+  @just _run_shared install {{additional_tools}}
+
+# uninstall all required tooling for development (osx only)
+uninstall:
+  @just _run_shared uninstall {{additional_tools}}
 
 # initializes the tooling for working with this repository
 initialize:
