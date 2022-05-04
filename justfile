@@ -99,6 +99,7 @@ alias get_custom := config_get_custom
 alias set := config_set
 alias set_custom := config_set_custom
 alias edit_json := config_edit_json
+alias p := pulumi
 
 # lint files according to the defined coding standards; if the optional files parameter is provided, only the specified files are linted; else all files are linted
 lint *files:
@@ -116,6 +117,10 @@ test *source_files:
 test_ci *args:
   cd {{justfile_directory()}} && jest -c ./jest.config.js --ci {{args}}
 
+# allows to run generic pulumi commands
+pulumi +args:
+  @just _run_pulumi {{args}}
+
 # switch to the production environment (containing the actual data)
 stack_prod:
   @just _run_pulumi_stack production
@@ -130,7 +135,7 @@ preview *args:
 
 # applies/deploys the changes between the current IaC configuration and the current state; the optional args parameter allows to add additional optional arguments
 up *args:
-  @just _run_pulumi up --refresh {{args}}
+  @just _run_pulumi up {{args}}
 
 # list the configuration of the current stack; when the '--show-secrets' arguemnt is added, stored secrets are shown in clear text
 config_list showSecrets="--hide-secrets":
