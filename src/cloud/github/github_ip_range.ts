@@ -13,7 +13,8 @@ class GitHubIpRanges extends pulumi.CustomResource {
       protect: true,
     }, true);
 
-    this.ipRanges = pulumi.output(props.ipRanges);
+    // the only reason we declare it as a secret is so the long list of IPs doesn't clutter the CLI output (else, it's not really a secret)
+    this.ipRanges = pulumi.secret(props.ipRanges);
   }
 
   static async get(name: string, opts?: pulumi.CustomResourceOptions): Promise<GitHubIpRanges> {
