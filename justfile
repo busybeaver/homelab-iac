@@ -1,11 +1,15 @@
 set shell := ["bash", "-uc"]
 
+additional_tools := "fnm git-crypt pulumi deno moreutils" # the moreutils package contains the 'vipe' command
+brew_env_vars := "HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_INSECURE_REDIRECT=1 HOMEBREW_CASK_OPTS=--require-sha"
+
 # lists all available commands
 @default:
   just --list
 
 alias init := initialize
 alias fmt := format
+alias cm := commit
 
 # internal helper command to easier run commands from the shared justfile
 _run_shared cmd *args:
@@ -13,7 +17,11 @@ _run_shared cmd *args:
 
 # install all required tooling for development (osx only)
 install:
-  @just _run_shared install fnm git-crypt pulumi deno moreutils
+  @just _run_shared install {{additional_tools}}
+
+# uninstall all required tooling for development (osx only)
+uninstall:
+  @just _run_shared uninstall {{additional_tools}}
 
 # initializes the tooling for working with this repository
 initialize:
@@ -33,6 +41,10 @@ check *files:
   @just lint {{files}}
   @just typecheck
   @just test {{files}}
+
+# assisted conventional commits with git
+commit *args:
+  @just _run_shared commit {{args}}
 
 # runs the CI workflows locally; the optional args parameter allows to add additional optional arguments
 ci *args:

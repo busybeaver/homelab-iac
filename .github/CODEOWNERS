@@ -4,4 +4,5 @@
 
 # --- Repository settings ---
 /.github/                   @busybeaver
+.gitattributes              @busybeaver
 # --- something else ---

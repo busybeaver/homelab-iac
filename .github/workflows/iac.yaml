@@ -42,7 +42,7 @@ jobs:
     steps:
       - name: Git - Checkout
         id: git_checkout
-        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
 
       - name: Node - Setup
         id: node_setup
@@ -107,7 +107,7 @@ jobs:
     steps:
       - name: Git - Checkout
         id: git_checkout
-        uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
         with:
           # https://github.com/marketplace/actions/git-auto-commit#checkout-the-correct-branch
           ref: ${{ github.head_ref }}
@@ -172,7 +172,7 @@ jobs:
 
       - name: GitHub - Setup GPG Keys
         id: github_setup_gpg
-        uses: crazy-max/ghaction-import-gpg@4d58d49bfefed583addec96996588e8bc4b306b8 # tag=v4
+        uses: crazy-max/ghaction-import-gpg@e00cb83a68c1158b29afc5217dd0582cada6d172 # tag=v4
         if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
