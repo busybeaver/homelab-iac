@@ -1,0 +1,2 @@
+jamf now does currently not offer an API :/
+see: https://docs.jamf.com/jamf-now/documentation/Jamf_Now_Service_Plans.html

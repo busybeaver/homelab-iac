@@ -124,11 +124,11 @@ const childResourcesFn: ChildResourcesFn = parent => {
     const folder = join('data', 'cloudflare');
     const key = join(folder, 'origin.key');
     const cert = join(folder, 'origin.cert');
-    new command.local.Command("export-origin-key", {
+    new command.local.Command('export-origin-key', {
       create: pulumi.interpolate`echo "${backendPrivateKey.privateKeyPem}" > ${key}`,
       delete: `rm ${key}`,
     }, { deleteBeforeReplace: true });
-    new command.local.Command("export-origin-cert", {
+    new command.local.Command('export-origin-cert', {
       create: pulumi.interpolate`echo "${originCaCertificate.certificate}" > ${cert}`,
       delete: `rm ${cert}`,
     }, { deleteBeforeReplace: true });

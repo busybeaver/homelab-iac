@@ -17,6 +17,7 @@
     "@pulumi/github": "4.11.0",
     "@pulumi/pulumi": "3.32.0",
     "@pulumi/random": "4.6.0",
+    "@pulumi/tailscale": "0.7.1",
     "@pulumi/tls": "4.2.2",
     "@swc/core": "1.2.177",
     "@swc/jest": "0.2.20",
