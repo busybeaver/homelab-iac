@@ -1,4 +1,4 @@
-default_tools := "just lefthook dprint act httpie jq yq wget"
+default_tools := "just lefthook dprint act wget dagger/tap/dagger"
 brew_env_vars := "HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_INSECURE_REDIRECT=1 HOMEBREW_CASK_OPTS=--require-sha"
 
 # install all required tooling for development (osx only); the optional additional_tools parameter allows to specify additional tools that should be installed
@@ -26,8 +26,10 @@ install *additional_tools:
     FILENAME="comet-darwin-arm64"
   fi
 
-  wget -cO - "https://github.com/liamg/comet/releases/download/v${VERSION-}/${FILENAME-}" > /usr/local/bin/comet
-  chmod +x /usr/local/bin/comet
+  wget -cO - "https://github.com/liamg/comet/releases/download/v${VERSION-}/${FILENAME-}" > /tmp/comet
+  chmod +x /tmp/comet
+  sudo mv /tmp/comet /usr/local/bin/comet
+  sudo chown root: /usr/local/bin/comet
 
 # uninstall all required tooling for development (osx only); the optional additional_tools parameter allows to specify additional tools that should be uninstalled
 uninstall *additional_tools:
@@ -41,7 +43,7 @@ uninstall *additional_tools:
 
   {{brew_env_vars}} brew uninstall {{default_tools}} {{additional_tools}}
 
-  rm -f /usr/local/bin/comet
+  sudo rm -f /usr/local/bin/comet
 
 # initializes the tooling for working with this repository
 initialize:
