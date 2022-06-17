@@ -28,6 +28,10 @@ initialize:
   @just _run_shared initialize
   @# after cloning the repository, unlock the encrypted files with GPG
   cd {{justfile_directory()}} && git-crypt unlock
+  @# install nodejs (if not already available)
+  cd {{justfile_directory()}} && fnm use
+  @# install all npm dependencies
+  cd {{justfile_directory()}} && npm install
   @# initialize pulumi
   cd {{justfile_directory()}} && pulumi login file://./state
 
