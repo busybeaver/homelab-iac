@@ -57,7 +57,7 @@ jobs:
 
       - name: GitHub - Generate App Token
         id: github_generate_app_token
-        uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # tag=v1.5.2
+        uses: tibdex/github-app-token@f717b5ecd4534d3c4df4ce9b5c1c2214f0f7cd06 # tag=v1.6.0
         with:
           app_id: ${{ secrets.PULUMI_APP_ID }}
           private_key: ${{ secrets.PULUMI_APP_PRIVATE_KEY }}
