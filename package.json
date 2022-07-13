@@ -19,7 +19,7 @@
     "@swc/core": "1.2.212",
     "@swc/jest": "0.2.21",
     "@tsconfig/node16": "1.0.3",
-    "@types/jest": "28.1.4",
+    "@types/jest": "28.1.5",
     "@types/node": "16.11.43",
     "jest": "28.1.2",
     "jest-junit": "14.0.0",
