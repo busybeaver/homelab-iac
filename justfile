@@ -148,6 +148,10 @@ preview *args:
 up *args:
   @just _run_pulumi up --refresh {{args}}
 
+# imports resources into the current stack; a usefull arg is '--parent name=urn:...'
+import *args:
+  @just _run_pulumi import {{args}}
+
 # list the configuration of the current stack; when the '--show-secrets' arguemnt is added, stored secrets are shown in clear text
 config_list showSecrets="--hide-secrets":
   @just _run_pulumi config {{ if showSecrets == "--show-secrets" { "--show-secrets" } else { "" } }}
