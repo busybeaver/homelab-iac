@@ -6,15 +6,15 @@ pre-commit:
   commands:
     lint:
       glob: "*.{js,ts}"
-      exclude: ".*-lock\\.json$|.*\\/state\\/.*"
+      exclude: ".*-lock\\.json$|state\\/.*"
       run: just lint {staged_files}
     format:
       # since dprint currently has some issues with formatting Dockerfiles, we don't do it during pre-commit
       # glob: "{Dockerfile,*.ts,*.js,*.cjs,*.mjs,*.json,*.md,*.toml}"
       glob: "{*.ts,*.js,*.cjs,*.mjs,*.json,*.md,*.toml}"
-      exclude: ".*-lock\\.json$|.*\\/state\\/.*"
+      exclude: ".*-lock\\.json$|state\\/.*"
       run: just format {staged_files} && git add {staged_files}
     tests:
       glob: "*.{ts,js}"
-      exclude: ".*-lock\\.json$|.*\\/state\\/.*"
+      exclude: ".*-lock\\.json$|state\\/.*"
       run: just test {staged_files}
