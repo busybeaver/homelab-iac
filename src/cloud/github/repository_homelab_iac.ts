@@ -27,9 +27,16 @@ const childResourcesFn: ChildResourcesFn = parent => {
     protect: true,
     aliases: [`urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/repository:Repository::homelab-iac`],
   });
+  const mainBranch = new github.Branch('default-branch', {
+    repository: repository.name,
+    branch: 'main',
+  }, {
+    parent,
+    protect: true,
+  });
   const defaultBranch = new github.BranchDefault('default-branch', {
     repository: repository.name,
-    branch: repository.branches[0]?.name ?? 'main',
+    branch: mainBranch.branch,
   }, {
     parent,
     protect: true,

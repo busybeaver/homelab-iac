@@ -28,6 +28,10 @@ initialize:
   @just _run_shared initialize
   @# after cloning the repository, unlock the encrypted files with GPG
   cd {{justfile_directory()}} && git-crypt unlock
+  @# install nodejs (if not already available)
+  cd {{justfile_directory()}} && fnm use
+  @# install all npm dependencies
+  cd {{justfile_directory()}} && npm install
   @# initialize pulumi
   cd {{justfile_directory()}} && pulumi login file://./state
 
@@ -148,6 +152,10 @@ preview *args:
 # applies/deploys the changes between the current IaC configuration and the current state; the optional args parameter allows to add additional optional arguments
 up *args:
   @just _run_pulumi up {{args}}
+
+# imports resources into the current stack; a usefull arg is '--parent name=urn:...'
+import *args:
+  @just _run_pulumi import {{args}}
 
 # list the configuration of the current stack; when the '--show-secrets' arguemnt is added, stored secrets are shown in clear text
 config_list showSecrets="--hide-secrets":

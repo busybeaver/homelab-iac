@@ -48,7 +48,7 @@ jobs:
       # Initializes the CodeQL tools for scanning.
       - name: CodeQL - Initialization
         id: codeql_initialization
-        uses: github/codeql-action/init@7502d6e991ca767d2db617bfd823a1ed925a0d59 # tag=v2.1.9
+        uses: github/codeql-action/init@e0e5ded33cabb451ae0a9768fc7b0410bad9ad44 # tag=v2.1.26
         with:
           languages: ${{ matrix.language }}
           # If you wish to specify custom queries, you can do so here or in a config file.
@@ -58,11 +58,11 @@ jobs:
 
       - name: CodeQL - Autobuild
         id: codeql_autobuild
-        uses: github/codeql-action/autobuild@7502d6e991ca767d2db617bfd823a1ed925a0d59 # tag=v2.1.9
+        uses: github/codeql-action/autobuild@e0e5ded33cabb451ae0a9768fc7b0410bad9ad44 # tag=v2.1.26
 
       - name: CodeQL - Analysis
         id: codeql_analysis
-        uses: github/codeql-action/analyze@7502d6e991ca767d2db617bfd823a1ed925a0d59 # tag=v2.1.9
+        uses: github/codeql-action/analyze@e0e5ded33cabb451ae0a9768fc7b0410bad9ad44 # tag=v2.1.26
 
   typecheck:
     name: 'TypeScript - Type Check'
@@ -83,13 +83,13 @@ jobs:
 
       - name: Node - Setup
         id: node_setup
-        uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854 # tag=v3
+        uses: actions/setup-node@969bd2663942d722d85b6a8626225850c2f7be4b # tag=v3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Just - Setup
-        uses: extractions/setup-just@aa5d15c144db4585980a44ebfdd2cf337c4f14cb # tag=v1
+        uses: extractions/setup-just@95b912dc5d3ed106a72907f2f9b91e76d60bdb76 # tag=v1
         with:
           just-version: '^1.1.2'
         env:
@@ -125,13 +125,13 @@ jobs:
 
       - name: Node - Setup
         id: node_setup
-        uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854 # tag=v3
+        uses: actions/setup-node@969bd2663942d722d85b6a8626225850c2f7be4b # tag=v3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Just - Setup
-        uses: extractions/setup-just@aa5d15c144db4585980a44ebfdd2cf337c4f14cb # tag=v1
+        uses: extractions/setup-just@95b912dc5d3ed106a72907f2f9b91e76d60bdb76 # tag=v1
         with:
           just-version: '^1.1.2'
         env:
@@ -149,7 +149,7 @@ jobs:
 
       - name: GitHub - Generate App Token
         id: github_generate_app_token
-        uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # tag=v1.5.2
+        uses: tibdex/github-app-token@f717b5ecd4534d3c4df4ce9b5c1c2214f0f7cd06 # tag=v1.6.0
         if: always()
         with:
           # https://github.com/EnricoMi/publish-unit-test-result-action/issues/161
@@ -158,7 +158,7 @@ jobs:
 
       - name: GitHub - Publish Unit Test Results
         id: github_publish_results
-        uses: EnricoMi/publish-unit-test-result-action@3bf80f8ff3396c9acdab73f00109f3cd06468544 # tag=v1.33
+        uses: EnricoMi/publish-unit-test-result-action@b9f6c61d965bcaa18acc02d6daf706373a448f02 # tag=v1.40
         if: always()
         with:
           github_token: ${{ steps.github_generate_app_token.outputs.token }}
@@ -171,7 +171,7 @@ jobs:
 
       - name: Codecov - Upload Coverage Data
         id: codecov_upload_data
-        uses: codecov/codecov-action@81cd2dc8148241f03f5839d295e000b8f761e378 # tag=v3
+        uses: codecov/codecov-action@d9f34f8cd5cb3b3eb79b3e4b5dae3a16df499a70 # tag=v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage/

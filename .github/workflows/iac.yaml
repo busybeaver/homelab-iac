@@ -46,7 +46,7 @@ jobs:
 
       - name: Node - Setup
         id: node_setup
-        uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854 # tag=v3
+        uses: actions/setup-node@969bd2663942d722d85b6a8626225850c2f7be4b # tag=v3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
@@ -57,14 +57,14 @@ jobs:
 
       - name: GitHub - Generate App Token
         id: github_generate_app_token
-        uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe # tag=v1.5.2
+        uses: tibdex/github-app-token@f717b5ecd4534d3c4df4ce9b5c1c2214f0f7cd06 # tag=v1.6.0
         with:
           app_id: ${{ secrets.PULUMI_APP_ID }}
           private_key: ${{ secrets.PULUMI_APP_PRIVATE_KEY }}
 
       - name: Pulumi - Preview Changes
         id: pulumi_preview_changes
-        uses: pulumi/actions@8a477588e1e16b6d6ea69fce287eea4af97cbbab # renovate: tag=v3
+        uses: pulumi/actions@d6d87bb51f908fa87543d416578ae9ee568f4834 # tag=v3
         with:
           command: preview
           refresh: true
@@ -117,7 +117,7 @@ jobs:
 
       - name: Node - Setup
         id: node_setup
-        uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854 # tag=v3
+        uses: actions/setup-node@969bd2663942d722d85b6a8626225850c2f7be4b # tag=v3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
@@ -130,7 +130,7 @@ jobs:
       # https://github.com/pulumi/actions/issues/158
       - name: Pulumi - Check for Changes
         id: pulumi_check_changes
-        uses: pulumi/actions@8a477588e1e16b6d6ea69fce287eea4af97cbbab # renovate: tag=v3
+        uses: pulumi/actions@d6d87bb51f908fa87543d416578ae9ee568f4834 # tag=v3
         continue-on-error: true
         with:
           command: preview
@@ -158,7 +158,7 @@ jobs:
 
       - name: Pulumi - Apply Changes
         id: pulumi_apply_changes
-        uses: pulumi/actions@8a477588e1e16b6d6ea69fce287eea4af97cbbab # renovate: tag=v3
+        uses: pulumi/actions@d6d87bb51f908fa87543d416578ae9ee568f4834 # tag=v3
         if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           command: up
@@ -172,7 +172,7 @@ jobs:
 
       - name: GitHub - Setup GPG Keys
         id: github_setup_gpg
-        uses: crazy-max/ghaction-import-gpg@e00cb83a68c1158b29afc5217dd0582cada6d172 # tag=v4
+        uses: crazy-max/ghaction-import-gpg@c8bb57c57e8df1be8c73ff3d59deab1dbc00e0d1 # tag=v5
         if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -182,7 +182,7 @@ jobs:
 
       - name: Git - Commit and Push State Changes
         id: git_commit_push
-        uses: stefanzweifel/git-auto-commit-action@49620cd3ed21ee620a48530e81dba0d139c9cb80 # tag=v4
+        uses: stefanzweifel/git-auto-commit-action@6c32682a4040e023c054b2fc60a7cf65cc77f7ad # tag=v4
         if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           commit_message: "chore: update state for the ${{ env.PULUMI_STACK }} stack [skip ci]"
