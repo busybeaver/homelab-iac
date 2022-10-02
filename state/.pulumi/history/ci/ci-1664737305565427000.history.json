@@ -1,0 +1,34 @@
+{
+    "kind": "resource-import",
+    "startTime": 1664737304,
+    "message": "Merge pull request #336 from busybeaver/renovate/pulumi-github-5.x",
+    "environment": {
+        "exec.kind": "cli",
+        "git.author": "busybeaver",
+        "git.author.email": "858259+busybeaver@users.noreply.github.com",
+        "git.committer": "GitHub",
+        "git.committer.email": "noreply@github.com",
+        "git.dirty": "false",
+        "git.head": "ed22feafde05c898ecedb43b675bf662ccc25907",
+        "git.headName": "refs/heads/main",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac"
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "succeeded",
+    "endTime": 1664737305,
+    "resourceChanges": {
+        "import": 1,
+        "same": 31
+    }
+}

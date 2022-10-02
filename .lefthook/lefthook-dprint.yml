@@ -5,5 +5,5 @@ pre-commit:
       # since dprint currently has some issues with formatting Dockerfiles, we don't do it during pre-commit
       # glob: "{Dockerfile,*.ts,*.tsx,*.js,*.jsx,*.cjs,*.mjs,*.json,*.md,*.toml}"
       glob: "{*.ts,*.tsx,*.js,*.jsx,*.cjs,*.mjs,*.json,*.md,*.toml}"
-      exclude: ".*-lock.json"
+      exclude: ".*-lock\\.json$"
       run: just format {staged_files} && git add {staged_files}
