@@ -28,7 +28,7 @@
     "jest-junit": "14.0.1",
     "regenerator-runtime": "0.13.9",
     "typescript": "4.8.4",
-    "zx": "7.1.0"
+    "zx": "7.1.1"
   },
   "engines": {
     "node": ">=16.13.0"
