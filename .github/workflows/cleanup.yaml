@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  cleanup:
-    name: 'Sync Repository Configuration'
+  cleanup_pulumi_state:
+    name: 'Cleanup Pulumi State'
     runs-on: ubuntu-latest
 
     defaults:
@@ -24,6 +24,12 @@ jobs:
       - name: Git - Checkout
         id: git_checkout
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3
+        with:
+          # https://github.com/marketplace/actions/git-auto-commit#checkout-the-correct-branch
+          ref: ${{ github.head_ref }}
+          # this is the token that the "git-auto-commit" action is using, so we use the one from the app
+          # https://github.com/marketplace/actions/git-auto-commit#commits-made-by-this-action-do-not-trigger-new-workflow-runs
+          token: ${{ secrets.GH_AUTOMATION_TOKEN }}
 
       - name: Node - Setup
         id: node_setup
@@ -39,13 +45,6 @@ jobs:
       - name: NPM - Cleanup Repository
         id: npm_run_cleanup
         run: npm run cleanup
-
-      - name: GitHub - Generate App Token
-        id: github_generate_app_token
-        uses: tibdex/github-app-token@f717b5ecd4534d3c4df4ce9b5c1c2214f0f7cd06 # tag=v1.6.0
-        with:
-          app_id: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
-          private_key: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
 
       - name: GitHub - Setup GPG Keys
         id: github_setup_gpg
