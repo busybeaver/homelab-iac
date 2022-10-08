@@ -42,7 +42,7 @@ jobs:
         id: npm_install
         run: npm ci
 
-      - name: NPM - Cleanup Repository
+      - name: NPM - Cleanup Pulumi State
         id: npm_run_cleanup
         run: npm run cleanup
 
