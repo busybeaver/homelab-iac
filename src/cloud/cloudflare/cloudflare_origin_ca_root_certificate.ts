@@ -13,6 +13,7 @@ class CloudflareOriginCaRootCertificate extends pulumi.CustomResource {
       protect: true,
     }, true);
 
+    // do not expose details about the root CA
     this.originCaRootCertificate = pulumi.secret(props.originCaRootCertificate);
   }
 

@@ -207,13 +207,13 @@ const childResourcesFn: ChildResourcesFn = parent => {
     description: 'Block known bots (such as crawlers); blocks requests from specific countries and Tor',
     expression:
       '(cf.client.bot) or (ip.geoip.country eq "RU") or (ip.geoip.country eq "T1") or (ip.geoip.country eq "CN")',
-  }, {parent});
+  }, { parent });
   new cloudflare.FirewallRule('block-incoming-requests', {
     zoneId: zone.id,
     description: blockIncomingRequestsFilter.description as pulumi.Output<string>,
     filterId: blockIncomingRequestsFilter.id,
     action: 'block',
-  }, {parent});
+  }, { parent });
 
   // TODO: add some more
   // https://www.pulumi.com/registry/packages/cloudflare/api-docs/firewallrule/
@@ -250,7 +250,12 @@ const childResourcesFn: ChildResourcesFn = parent => {
 
   if (isProduction()) {
     // auto-created and updated by the DDNS updater service
-    const homeRecord = cloudflare.Record.get('home', pulumi.interpolate`${zone.id}/60ffd80cc91d047c640117461e934b00`, {}, {parent});
+    const homeRecord = cloudflare.Record.get(
+      'home',
+      pulumi.interpolate`${zone.id}/60ffd80cc91d047c640117461e934b00`,
+      {},
+      { parent },
+    );
 
     new cloudflare.Record('mdm', {
       name: 'mdm',
@@ -258,7 +263,7 @@ const childResourcesFn: ChildResourcesFn = parent => {
       type: 'CNAME',
       value: pulumi.interpolate`${homeRecord.name}.${zone.zone}`,
       proxied: true,
-    }, {parent});
+    }, { parent });
   }
 
   const internalEntry: Omit<cloudflare.RecordArgs, 'name'> = {
@@ -270,8 +275,8 @@ const childResourcesFn: ChildResourcesFn = parent => {
     ttl: 1,
     proxied: false,
   };
-  new cloudflare.Record('services', { name: '*.services', ...internalEntry }, {parent});
-  new cloudflare.Record('devices', { name: '*.devices', ...internalEntry }, {parent});
+  new cloudflare.Record('services', { name: '*.services', ...internalEntry }, { parent });
+  new cloudflare.Record('devices', { name: '*.devices', ...internalEntry }, { parent });
 
   return {
     dnsSecStatus: zone_dnssec.status,

@@ -7,14 +7,17 @@ type CloudflareIpRangesInput = pulumi.Inputs & { ipRanges: IpRanges; };
 class CloudflareIpRanges extends pulumi.CustomResource {
   public readonly ipRanges: pulumi.Output<IpRanges>; // needs to be of type Output
 
-  constructor(name: string, props: CloudflareIpRangesInput, opts: pulumi.ComponentResourceOptions = {}) {
+  constructor(name: string, { ipRanges }: CloudflareIpRangesInput, opts: pulumi.ComponentResourceOptions = {}) {
     super('custom:cloudflare:ipRanges', name, {}, {
       ...opts,
       protect: true,
     }, true);
 
     // the only reason we declare it as a secret is so the long list of IPs doesn't clutter the CLI output (else, it's not really a secret)
-    this.ipRanges = pulumi.secret(props.ipRanges);
+    this.ipRanges = pulumi.output({
+      id: ipRanges.id,
+      ipv4CidrBlocks: pulumi.secret(ipRanges.ipv4CidrBlocks),
+    });
   }
 
   static async get(name: string, opts?: pulumi.CustomResourceOptions): Promise<CloudflareIpRanges> {

@@ -13,7 +13,7 @@ export const getGithub = async (): Promise<GitHubData> => {
   return {
     ipRanges: gitHubIpRanges.ipRanges,
     resources: [
-      await getHomelabIacRepository(),
+      getHomelabIacRepository(),
       gitHubIpRanges,
     ],
   };
