@@ -150,10 +150,10 @@ jobs:
           # 'failure' on the other side means that we have at least one element that is changed within the state
           if [ '${{ steps.pulumi_check_changes.outcome }}' = 'success' ]; then
             echo "No state changes found. Nothing further to do. Stopping workflow here."
-            echo "{state_changed}={false}" >> "$GITHUB_OUTPUT"
+            echo "state_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "State changes were detected. Going to apply the changes and persisting the updated state..."
-            echo "{state_changed}={true}" >> "$GITHUB_OUTPUT"
+            echo "state_changed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Pulumi - Apply Changes
