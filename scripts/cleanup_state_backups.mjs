@@ -40,7 +40,7 @@ const cleanupBackups = (environment) =>
     const files = await glob([join('*.json'), join('*.json.attrs')]);
     // keep the last backup (a backup consists of two files)
     const filesToDelete = files.sort().slice(0, -1 * keepLastBackups * 2).filter(filterOldBackups);
-    await $`rm ${filesToDelete}`;
+    if (filesToDelete.length > 0) await $`rm ${filesToDelete}`;
     echo(`Deleted ${filesToDelete.length} files in the ${environment} environment`);
   });
 
