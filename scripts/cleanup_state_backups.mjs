@@ -15,6 +15,7 @@ const environments = await glob('*', { cwd: backupsDir, onlyDirectories: true })
 const date = new Date();
 date.setDate(date.getDate() - daysBeforeDelete);
 echo(`Going to delete all backups older than: ${date.toISOString()}`);
+echo(`Going to keep the last ${keepLastBackups} backups`);
 const dateInMilliSec = date.getTime();
 
 /**
