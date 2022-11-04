@@ -23,7 +23,7 @@
     "@swc/jest": "0.2.23",
     "@tsconfig/node16": "1.0.3",
     "@types/jest": "29.2.1",
-    "@types/node": "18.11.8",
+    "@types/node": "18.11.9",
     "jest": "29.2.2",
     "jest-junit": "14.0.1",
     "regenerator-runtime": "0.13.10",
