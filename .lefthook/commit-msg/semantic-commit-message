@@ -19,7 +19,7 @@ fi
 # check semantic versioning scheme
 if ! echo "${commitTitle}" | grep -qE '^(?:feat|fix|build|chore|ci|docs|style|refactor|perf|test)(?:\((?:\w|\s|\-|_)+\))?(?:!)?:\s\w+'; then
 	# the first line is automatically prefixed by one space
-	echo " Commit hook: Your commit title did not follow semantic versioning: ${commitTitle}"
+	echo " Commit hook: Your commit title did not follow the conventional commits specification: ${commitTitle}"
 	echo "  Commit hook: Allowed prefixes are: feat, fix, build, chore, ci, docs, style, refactor, perf, test"
 	echo "  Commit hook: Please see https://www.conventionalcommits.org/en/v1.0.0/"
 	exit 1
