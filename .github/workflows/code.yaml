@@ -97,7 +97,8 @@ jobs:
 
       - name: NPM - Install Dependencies
         id: npm_install
-        run: npm ci --no-progress --prefer-offline
+        # the audit is run separately
+        run: npm ci --no-progress --prefer-offline --no-audit
 
       - name: TypeScript - Type Check
         id: typescript_typecheck
@@ -139,7 +140,8 @@ jobs:
 
       - name: NPM - Install Dependencies
         id: npm_install
-        run: npm ci --no-progress --prefer-offline
+        # the audit is run separately
+        run: npm ci --no-progress --prefer-offline --no-audit
 
       - name: Jest - Unit Tests
         id: jest_unit_tests
@@ -179,3 +181,32 @@ jobs:
           env_vars: RUNNER_OS,RUNNER_ARCH,GITHUB_EVENT_NAME
           fail_ci_if_error: true
           verbose: true
+
+  npm_audit:
+    name: 'NPM - Audit'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: '.'
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Git - Checkout
+        id: git_checkout
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+
+      - name: Node - Setup
+        id: node_setup
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # tag=v3.5.1
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: NPM - Audit
+        id: npm_audit
+        # this repository only has devDependencies (i.e. no runtime dependencies), so everything below moderate can be considered acceptable
+        run: npm audit --audit-level=moderate
