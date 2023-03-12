@@ -64,7 +64,7 @@ jobs:
 
       - name: Pulumi - Preview Changes
         id: pulumi_preview_changes
-        uses: pulumi/actions@0c6913cc1c85f1f6925a7d6672685a221771beb9 # v4.0.0
+        uses: pulumi/actions@5f248f4340a362431dc6577748667bc5321c3875 # v4.1.0
         with:
           command: preview
           refresh: true
@@ -130,7 +130,7 @@ jobs:
       # https://github.com/pulumi/actions/issues/158
       - name: Pulumi - Check for Changes
         id: pulumi_check_changes
-        uses: pulumi/actions@0c6913cc1c85f1f6925a7d6672685a221771beb9 # v4.0.0
+        uses: pulumi/actions@5f248f4340a362431dc6577748667bc5321c3875 # v4.1.0
         continue-on-error: true
         with:
           command: preview
@@ -158,7 +158,7 @@ jobs:
 
       - name: Pulumi - Apply Changes
         id: pulumi_apply_changes
-        uses: pulumi/actions@0c6913cc1c85f1f6925a7d6672685a221771beb9 # v4.0.0
+        uses: pulumi/actions@5f248f4340a362431dc6577748667bc5321c3875 # v4.1.0
         if: steps.pulumi_report_status.outputs.state_changed == 'true'
         with:
           command: up
