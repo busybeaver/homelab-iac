@@ -1,0 +1,41 @@
+{
+    "kind": "refresh",
+    "startTime": 1679883643,
+    "message": "chore(deps): lock file maintenance (#595)",
+    "environment": {
+        "ci.build.id": "4528013728",
+        "ci.build.number": "2110",
+        "ci.build.type": "push",
+        "ci.build.url": "https://github.com/busybeaver/homelab-iac/actions/runs/4528013728",
+        "ci.pr.headSHA": "5f795d357f6d3adc717a1de236f0d9c1dd4eb721",
+        "ci.system": "GitHub Actions",
+        "exec.kind": "auto.local",
+        "git.author": "renovate[bot]",
+        "git.author.email": "29139614+renovate[bot]@users.noreply.github.com",
+        "git.committer": "GitHub",
+        "git.committer.email": "noreply@github.com",
+        "git.dirty": "true",
+        "git.head": "5f795d357f6d3adc717a1de236f0d9c1dd4eb721",
+        "git.headName": "refs/heads/main",
+        "updatePlan": "false",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac"
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "failed",
+    "endTime": 1679883648,
+    "resourceChanges": {
+        "same": 30,
+        "update": 1
+    }
+}
