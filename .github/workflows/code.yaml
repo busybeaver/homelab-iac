@@ -75,6 +75,10 @@ jobs:
 
     permissions:
       contents: read
+      
+    env:
+      # renovate: datasource=github-releases depName=casey/just
+      JUST_VERSION: 1.11.0
 
     steps:
       - name: Git - Checkout
@@ -91,9 +95,8 @@ jobs:
       - name: Just - Setup
         uses: extractions/setup-just@69d82fb0233557aec017ef13706851d0694e0f1d # v1
         with:
-          just-version: '^1.11.0'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          just-version: ${{ env.JUST_VERSION }}
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
 
       - name: NPM - Install Dependencies
         id: npm_install
@@ -108,9 +111,6 @@ jobs:
     name: 'Jest - Unit Tests'
     runs-on: ubuntu-latest
 
-    env:
-      JUNIT_TEST_RESULTS_FILE: ./.test_results_junit.xml
-
     defaults:
       run:
         shell: bash
@@ -118,6 +118,11 @@ jobs:
 
     permissions:
       contents: read
+    
+    env:
+      # renovate: datasource=github-releases depName=casey/just
+      JUST_VERSION: 1.11.0
+      JUNIT_TEST_RESULTS_FILE: ./.test_results_junit.xml
 
     steps:
       - name: Git - Checkout
@@ -134,9 +139,8 @@ jobs:
       - name: Just - Setup
         uses: extractions/setup-just@69d82fb0233557aec017ef13706851d0694e0f1d # v1
         with:
-          just-version: '^1.11.0'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          just-version: ${{ env.JUST_VERSION }}
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
 
       - name: NPM - Install Dependencies
         id: npm_install
