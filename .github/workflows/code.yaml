@@ -75,7 +75,7 @@ jobs:
 
     permissions:
       contents: read
-      
+
     env:
       # renovate: datasource=github-releases depName=casey/just
       JUST_VERSION: 1.11.0
@@ -118,7 +118,7 @@ jobs:
 
     permissions:
       contents: read
-    
+
     env:
       # renovate: datasource=github-releases depName=casey/just
       JUST_VERSION: 1.11.0
