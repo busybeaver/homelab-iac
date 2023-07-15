@@ -15,6 +15,15 @@ const childResourcesFn: ChildResourcesFn = parent => {
   // account configuration
   // -------------------------------------------
 
+  const account = new cloudflare.Account('account', {
+    enforceTwofactor: true,
+    name: 'default-account',
+    type: 'standard',
+  }, {
+    parent,
+    protect: true,
+  });
+
   const zone = new cloudflare.Zone('zone', {
     plan: 'free',
     zone: requireSecretString('default_domain', true),
@@ -97,6 +106,28 @@ const childResourcesFn: ChildResourcesFn = parent => {
   // -------------------------------------------
 
   const zone_dnssec = new cloudflare.ZoneDnssec('zone-dnssec', { zoneId: zone.id }, { parent, protect: true });
+
+  // -------------------------------------------
+  // API tokens
+  // -------------------------------------------
+  const all = cloudflare.getApiTokenPermissionGroups({});
+  new cloudflare.ApiToken('github-actions_homelab-adblock', {
+    name: 'github-actions_homelab-adblock',
+    policies: [
+      {
+        effect: 'allow',
+        resources: pulumi.all([zone.id, account.id]).apply(([zoneId, accountId]) => {
+          return {
+            [`com.cloudflare.api.account.zone.${zoneId}`]: '*',
+            [`com.cloudflare.api.account.${accountId}`]: '*',
+          };
+        }),
+        permissionGroups: [
+          all.then(a => a.permissions['Pages Write']),
+        ],
+      },
+    ],
+  }, { parent, protect: true });
 
   // -------------------------------------------
   // Origin Certificates: SSL certificate for the origin/backend server (to encrypt the traffic between cloudflare and the backend);

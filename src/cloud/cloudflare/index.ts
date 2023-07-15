@@ -3,6 +3,7 @@ import { ComponentData } from '../../util/types';
 import { getCloudflareIpRanges, IpRanges } from './cloudflare_ip_range';
 import { getCloudflareOriginCaRootCertificate, OriginCaRootCertificate } from './cloudflare_origin_ca_root_certificate';
 import { getDefaultDomainSite } from './site_default_domain';
+export { IpRanges } from './cloudflare_ip_range';
 
 export interface CloudflareData extends ComponentData {
   ipRanges: pulumi.Output<IpRanges>;
