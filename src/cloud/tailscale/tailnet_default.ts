@@ -57,12 +57,12 @@ const childResourcesFn: ChildResourcesFn = parent => {
             dst: ['autogroup:self'],
             users: ['autogroup:nonroot'],
           },
-          // {
-          //   action: 'check',
-          //   src: ['autogroup:owner', 'autogroup:admin'],
-          //   dst: ['tag:device'],
-          //   users: ['autogroup:nonroot' /*, 'root'*/],
-          // },
+          {
+            action: 'check',
+            src: ['autogroup:owner', 'autogroup:admin'],
+            dst: ['tag:device'],
+            users: ['autogroup:nonroot' /*, 'root'*/],
+          },
         ],
 
         nodeAttrs: [
@@ -171,6 +171,8 @@ const childResourcesFn: ChildResourcesFn = parent => {
         }, { parent });
       });
     });
+
+  // TODO: https://www.pulumi.com/registry/packages/tailscale/api-docs/devicetags/
 
   return {
     // expose some information if needed
