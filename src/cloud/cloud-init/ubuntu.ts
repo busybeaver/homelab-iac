@@ -12,6 +12,22 @@ export const ubuntuConfig = pulumi.output(
 package_update: true
 package_upgrade: true
 
+# ssh configuration
+ssh_pwauth: false
+disable_root: true
+disable_root_opts: no-port-forwarding,no-agent-forwarding,no-X11-forwarding
+ssh:
+  emit_keys_to_console: false
+
+timezone: Europe/Berlin
+
+keyboard:
+  layout: de
+
+ntp:
+  enabled: true
+  ntp_client: chrony
+
 groups:
   - docker
 
@@ -28,6 +44,10 @@ packages:
   - unattended-upgrades
 
 runcmd:
+  # ssh configuration
+  - sed -i -e '/^Port/s/^.*$/Port 4444/' etc/ssh/sshd_config
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  # install docker and tailscale
   - mkdir -p /etc/apt/keyrings
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null

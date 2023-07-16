@@ -13,6 +13,7 @@
 
 # Encrypt sensitive state/input/environment data
 data/** filter=git-crypt diff=git-crypt
+src/**/production/** filter=git-crypt diff=git-crypt
 state/**/production/** filter=git-crypt diff=git-crypt
 state/**/*production* filter=git-crypt diff=git-crypt
 Pulumi.production.yaml filter=git-crypt diff=git-crypt

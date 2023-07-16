@@ -17,6 +17,7 @@ export = async () => {
     };
   const tailscale = await getTailscale();
   const cloudInit = await getCloudInit();
+  const oracleCloud = await getOracleCloud({ cloudflareIpRanges: cloudflare.ipRanges });
   const github = await getGithub({ cloudflareApiTokens: cloudflare.apiTokens });
 
   return {
@@ -24,5 +25,6 @@ export = async () => {
     github: github.resources,
     cloudflare: cloudflare.resources,
     tailscale: tailscale.resources,
+    oracleCloud: oracleCloud.resources,
   };
 };
