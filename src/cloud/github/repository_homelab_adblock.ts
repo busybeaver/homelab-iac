@@ -1,11 +1,12 @@
 import * as github from '@pulumi/github';
-import { requireSecretString } from '../../util/secrets';
-import { ChildResourcesFn } from '../../util/types';
+import { requireSecretString, type ChildResourcesFn, createName } from '../../util';
 import { GitHubRepository, type RepoData } from './repository';
 import type { CloudflareApiTokens } from '../cloudflare';
 
-const childResourcesFn = ({ cloudflareApiTokens }: { cloudflareApiTokens: CloudflareApiTokens; }): ChildResourcesFn<RepoData> => parent => {
-  const repository = new github.Repository('repository-adblock', {
+const childResourcesFn = ({ cloudflareApiTokens }: { cloudflareApiTokens: CloudflareApiTokens; }): ChildResourcesFn<RepoData> => (parent, postfix) => {
+  const name = createName(postfix);
+
+  const repository = new github.Repository(name('repository'), {
     allowAutoMerge: true,
     allowMergeCommit: true,
     allowRebaseMerge: false,
@@ -26,21 +27,21 @@ const childResourcesFn = ({ cloudflareApiTokens }: { cloudflareApiTokens: Cloudf
     parent,
     protect: true,
   });
-  const mainBranch = new github.Branch('default-branch-adblock', {
+  const mainBranch = new github.Branch(name('default-branch'), {
     repository: repository.name,
     branch: 'main',
   }, {
     parent,
     protect: true,
   });
-  const defaultBranch = new github.BranchDefault('default-branch-adblock', {
+  const defaultBranch = new github.BranchDefault(name('default-branch'), {
     repository: repository.name,
     branch: mainBranch.branch,
   }, {
     parent,
     protect: true,
   });
-  new github.ActionsSecret('gitguardian-api-key-adblock', {
+  new github.ActionsSecret(name('gitguardian-api-key'), {
     repository: repository.name,
     secretName: 'GITGUARDIAN_API_KEY',
     plaintextValue: requireSecretString('gitguardian_api_key'),
@@ -48,7 +49,7 @@ const childResourcesFn = ({ cloudflareApiTokens }: { cloudflareApiTokens: Cloudf
     parent,
   });
   new github.ActionsSecret(
-    'repository-assistant-app-id-adblock',
+    name('repository-assistant-app-id'),
     {
       repository: repository.name,
       secretName: 'REPOSITORY_ASSISTANT_APP_ID',
@@ -59,7 +60,7 @@ const childResourcesFn = ({ cloudflareApiTokens }: { cloudflareApiTokens: Cloudf
     },
   );
   new github.ActionsSecret(
-    'repository-assistant-private-key-adblock',
+    name('repository-assistant-private-key'),
     {
       repository: repository.name,
       secretName: 'REPOSITORY_ASSISTANT_PRIVATE_KEY',
@@ -70,7 +71,7 @@ const childResourcesFn = ({ cloudflareApiTokens }: { cloudflareApiTokens: Cloudf
     },
   );
   new github.ActionsSecret(
-    'cloudflare-api-token-adblock',
+    name('cloudflare-api-token'),
     {
       repository: repository.name,
       secretName: 'CLOUDFLARE_API_TOKEN',

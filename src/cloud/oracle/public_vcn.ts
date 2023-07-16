@@ -1,13 +1,15 @@
 import * as oci from '@pulumi/oci';
 import * as pulumi from '@pulumi/pulumi';
-import { ChildResourcesFn } from '../../util/types';
+import { type ChildResourcesFn, createName } from '../../util';
 import { IpRanges } from '../cloudflare';
 import { compartmentId, OracleCloudInfrastructure, tags } from './oci';
 
 const childResourcesFn =
   ({ cloudflareIpRanges }: { cloudflareIpRanges: pulumi.Output<IpRanges>; }): ChildResourcesFn<PublicVcnData> =>
-  parent => {
-    // const defaultInternetGateway = new oci.core.InternetGateway('default-internet-gateway', {
+  (parent, postfix) => {
+    const name = createName(postfix);
+
+    // const defaultInternetGateway = new oci.core.InternetGateway(name('default-internet-gateway'), {
     //   compartmentId,
     //   vcnId: servicesVcn.id,
     //   displayName: 'default-internet-gateway',
@@ -16,7 +18,7 @@ const childResourcesFn =
     // });
 
     // the free-tier doesn't allow NAT gateways
-    // const defaultNatGateway = new oci.core.NatGateway('default-nat-gateway', {
+    // const defaultNatGateway = new oci.core.NatGateway(name('default-nat-gateway'), {
     //   compartmentId,
     //   vcnId: servicesVcn.id,
     //   displayName: 'default-nat-gateway',
@@ -24,7 +26,7 @@ const childResourcesFn =
     //   routeTableId: /* TODO */,
     // });
 
-    const servicesVcn = new oci.core.Vcn('public-vcn', {
+    const servicesVcn = new oci.core.Vcn(name('public-vcn'), {
       compartmentId,
       cidrBlocks: ['10.0.0.0/16'],
       displayName: 'public-vcn',
@@ -33,7 +35,7 @@ const childResourcesFn =
       isIpv6enabled: false,
     }, { parent });
 
-    new oci.core.Subnet('public-subnet', {
+    new oci.core.Subnet(name('public-subnet'), {
       cidrBlock: '10.0.0.0/24',
       compartmentId,
       vcnId: servicesVcn.id,
@@ -58,7 +60,7 @@ const childResourcesFn =
         }));
       });
 
-    new oci.core.SecurityList('default-security-list', {
+    new oci.core.SecurityList(name('default-security-list'), {
       compartmentId,
       vcnId: servicesVcn.id,
       displayName: 'Default Security List for public-vcn',

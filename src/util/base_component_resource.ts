@@ -12,7 +12,7 @@ export abstract class BaseComponentResource<TData extends TDataType> extends pul
   ) {
     super(`custom:${type}`, name, {}, { ...opts, protect: true });
 
-    const data = childResourcesFn(this);
+    const data = childResourcesFn(this, name);
     this.registerOutputs(data);
     this.childData = data ? Object.freeze(data) : data;
   }
