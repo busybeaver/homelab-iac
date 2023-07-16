@@ -1,12 +1,25 @@
 import * as github from '@pulumi/github';
 import * as pulumi from '@pulumi/pulumi';
 import * as tailscale from '@pulumi/tailscale';
-import { ChildResourcesFn } from '../../util/types';
+import { type ChildResourcesFn, createName } from '../../util';
 import { TailscaleTailnet } from './tailnet';
 
-const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
+const githubOrgConfig = (() => {
+  const githubConfig = new pulumi.Config('github');
+  const defaultConfig = new pulumi.Config();
+
+  return {
+    adminUser: githubConfig.requireSecret('owner'),
+    organizationName: defaultConfig.requireSecret('tailscale_github_organization'),
+    token: githubConfig.requireSecret('token')
+  }
+})();
+
+const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = (parent, postfix) => {
+  const name = createName(postfix);
+
   // global configuration
-  const default_nameservers = new tailscale.DnsNameservers('default-nameservers', {
+  const default_nameservers = new tailscale.DnsNameservers(name('default-nameservers'), {
     // cloudflare public DNS
     // TODO: replace with NextDNS
     nameservers: [
@@ -16,7 +29,7 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
       '2606:4700:4700::1001',
     ],
   }, { parent });
-  new tailscale.DnsPreferences('dns-preferences', {
+  new tailscale.DnsPreferences(name('dns-preferences'), {
     magicDns: true,
   }, {
     parent,
@@ -25,7 +38,7 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
   });
 
   // https://tailscale.com/kb/1018/acls/
-  new tailscale.Acl('access-controls', {
+  new tailscale.Acl(name('access-controls'), {
     acl: JSON.stringify(
       {
         // Define the tags which can be applied to devices and by which users.
@@ -98,14 +111,12 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
   }, { parent });
 
   // users in Talescale are managed via GitHub organization
-  const githubAdminUser = (new pulumi.Config('github')).requireSecret('owner');
-  const githubOrganizationName = (new pulumi.Config()).requireSecret('tailscale_github_organization');
-  const githubOrganizationProvider = new github.Provider('organization-provider', {
-    owner: githubOrganizationName,
-    token: (new pulumi.Config('github')).requireSecret('token'),
+  const githubOrganizationProvider = new github.Provider(name('organization-provider'), {
+    owner: githubOrgConfig.organizationName,
+    token: githubOrgConfig.token,
   }, { parent });
-  new github.OrganizationSettings('tailscale-organization', {
-    name: githubOrganizationName,
+  new github.OrganizationSettings(name('tailscale-organization'), {
+    name: githubOrgConfig.organizationName,
     billingEmail: 'private@foo.bar',
     defaultRepositoryPermission: 'none',
     dependabotAlertsEnabledForNewRepositories: true,
@@ -128,7 +139,7 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
     parent,
     provider: githubOrganizationProvider,
   });
-  new github.ActionsOrganizationPermissions('tailscale-organization', {
+  new github.ActionsOrganizationPermissions(name('tailscale-organization'), {
     allowedActions: 'selected',
     enabledRepositories: 'all',
     allowedActionsConfig: {
@@ -139,8 +150,8 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
     parent,
     provider: githubOrganizationProvider,
   });
-  new github.Membership('organization-admin', {
-    username: githubAdminUser,
+  new github.Membership(name('organization-admin'), {
+    username: githubOrgConfig.adminUser,
     role: 'admin',
   }, {
     parent,
@@ -149,7 +160,7 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
   // add additional (member) users here
 
   // approve devices and ensure keys are expiring
-  pulumi.all([githubAdminUser]).apply(githubUsers => {
+  pulumi.all([githubOrgConfig.adminUser]).apply(githubUsers => {
     return githubUsers.map(githubUser => {
       return tailscale.getDevices({
         namePrefix: `${githubUser}-`,
@@ -161,11 +172,11 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
     .apply(devices => {
       devices.map(device => {
         const deviceName = device.name.split('.')[0];
-        new tailscale.DeviceAuthorization(`${deviceName}-authorization`, {
+        new tailscale.DeviceAuthorization(name(`${deviceName}-authorization`), {
           deviceId: device.id,
           authorized: true,
         }, { parent });
-        new tailscale.DeviceKey(`${deviceName}-device-key`, {
+        new tailscale.DeviceKey(name(`${deviceName}-device-key`), {
           deviceId: device.id,
           keyExpiryDisabled: false,
         }, { parent });

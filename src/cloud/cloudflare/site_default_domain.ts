@@ -3,18 +3,20 @@ import * as command from '@pulumi/command';
 import * as pulumi from '@pulumi/pulumi';
 import * as tls from '@pulumi/tls';
 import { join } from 'node:path';
-import { type ChildResourcesFn, isProduction, requireSecretString } from '../../util';
+import { type ChildResourcesFn, isProduction, requireSecretString, createName } from '../../util';
 import type { CloudflareApiTokens } from './index';
 import { CloudflareSite } from './site';
 
 const tlsKeyOptions: tls.PrivateKeyArgs = { algorithm: 'RSA', rsaBits: 8096 };
 
-const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
+const childResourcesFn: ChildResourcesFn<DefaultDomainData> = (parent, postfix) => {
+  const name = createName(postfix);
+
   // -------------------------------------------
   // account configuration
   // -------------------------------------------
 
-  const account = new cloudflare.Account('account', {
+  const account = new cloudflare.Account(name('account'), {
     enforceTwofactor: true,
     name: 'default-account',
     type: 'standard',
@@ -23,7 +25,7 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
     protect: true,
   });
 
-  const zone = new cloudflare.Zone('zone', {
+  const zone = new cloudflare.Zone(name('zone'), {
     plan: 'free',
     zone: requireSecretString('default_domain', true),
   }, {
@@ -31,7 +33,7 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
     protect: true,
   });
 
-  new cloudflare.ZoneSettingsOverride('zone-settings-override', {
+  new cloudflare.ZoneSettingsOverride(name('zone-settings-override'), {
     zoneId: zone.id,
     settings: {
       // gRPC: "off"
@@ -104,13 +106,13 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
   // dnssec
   // -------------------------------------------
 
-  const zone_dnssec = new cloudflare.ZoneDnssec('zone-dnssec', { zoneId: zone.id }, { parent, protect: true });
+  const zone_dnssec = new cloudflare.ZoneDnssec(name('zone-dnssec'), { zoneId: zone.id }, { parent, protect: true });
 
   // -------------------------------------------
   // API tokens
   // -------------------------------------------
   const all = cloudflare.getApiTokenPermissionGroups({});
-  const githubActionsHomelabAdblockApiToken = new cloudflare.ApiToken('github-actions_homelab-adblock', {
+  const githubActionsHomelabAdblockApiToken = new cloudflare.ApiToken(name('github-actions_homelab-adblock'), {
     name: 'github-actions_homelab-adblock',
     policies: [
       {
@@ -134,12 +136,12 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
   // https://developers.cloudflare.com/ssl/origin-configuration/origin-ca/
   // -------------------------------------------
 
-  const backendPrivateKey = new tls.PrivateKey('origin-private-key', tlsKeyOptions, { parent });
-  const originCertRequest = new tls.CertRequest('origin-cert-request', {
+  const backendPrivateKey = new tls.PrivateKey(name('origin-private-key'), tlsKeyOptions, { parent });
+  const originCertRequest = new tls.CertRequest(name('origin-cert-request'), {
     privateKeyPem: backendPrivateKey.privateKeyPem,
     subjects: [{ commonName: 'Backend', organization: 'Backend' }],
   }, { parent, protect: false /* defaults to true which prevents recreation */ });
-  const originCaCertificate = new cloudflare.OriginCaCertificate('origin-ca-certificate', {
+  const originCaCertificate = new cloudflare.OriginCaCertificate(name('origin-ca-certificate'), {
     csr: originCertRequest.certRequestPem,
     hostnames: [
       zone.zone,
@@ -154,11 +156,11 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
     const folder = join('data', 'cloudflare');
     const key = join(folder, 'origin.key');
     const cert = join(folder, 'origin.cert');
-    new command.local.Command('export-origin-key', {
+    new command.local.Command(name('export-origin-key'), {
       create: pulumi.interpolate`echo "${backendPrivateKey.privateKeyPem}" > ${key}`,
       delete: `rm ${key}`,
     }, { deleteBeforeReplace: true, parent });
-    new command.local.Command('export-origin-cert', {
+    new command.local.Command(name('export-origin-cert'), {
       create: pulumi.interpolate`echo "${originCaCertificate.certificate}" > ${cert}`,
       delete: `rm ${cert}`,
     }, { deleteBeforeReplace: true, parent });
@@ -169,8 +171,8 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
   // https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull
   // -------------------------------------------
 
-  const backendCaKey = new tls.PrivateKey('backend-authenticated-pulls-key', tlsKeyOptions, { parent });
-  const backendCaCert = new tls.SelfSignedCert('backend-authenticated-pulls-ca-cert', {
+  const backendCaKey = new tls.PrivateKey(name('backend-authenticated-pulls-key'), tlsKeyOptions, { parent });
+  const backendCaCert = new tls.SelfSignedCert(name('backend-authenticated-pulls-ca-cert'), {
     privateKeyPem: backendCaKey.privateKeyPem,
     isCaCertificate: true,
     subjects: [{ commonName: 'Backend CA', organization: 'Backend' }],
@@ -182,15 +184,15 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
       'crl_signing',
     ],
   }, { parent, protect: false /* defaults to true which prevents recreation */ });
-  const cloudflareKey = new tls.PrivateKey('cloudflare-authenticated-pulls-key', tlsKeyOptions, { parent });
-  const cloudflareCertRequest = new tls.CertRequest('cloudflare-authenticated-pulls-cert-request', {
+  const cloudflareKey = new tls.PrivateKey(name('cloudflare-authenticated-pulls-key'), tlsKeyOptions, { parent });
+  const cloudflareCertRequest = new tls.CertRequest(name('cloudflare-authenticated-pulls-cert-request'), {
     privateKeyPem: cloudflareKey.privateKeyPem,
     subjects: [{
       commonName: pulumi.interpolate`Cloudflare ${zone.zone}`,
       organization: 'Cloudflare',
     }],
   }, { parent, protect: false /* defaults to true which prevents recreation */ });
-  const cloudflareLocallySignedCert = new tls.LocallySignedCert('cloudflare-authenticated-pulls-cert', {
+  const cloudflareLocallySignedCert = new tls.LocallySignedCert(name('cloudflare-authenticated-pulls-cert'), {
     certRequestPem: cloudflareCertRequest.certRequestPem,
     caCertPem: backendCaCert.certPem,
     caPrivateKeyPem: backendCaKey.privateKeyPem,
@@ -205,7 +207,7 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
   }, { parent, protect: false /* defaults to true which prevents recreation */ });
   // TODO: fix me:
   // const authenticatedOriginPullsCertificate = new cloudflare.AuthenticatedOriginPullsCertificate(
-  //   'authenticated-origin-pulls-cert',
+  //   name('authenticated-origin-pulls-cert'),
   //   {
   //     zoneId: zone.id,
   //     certificate: cloudflareLocallySignedCert.certPem,
@@ -215,7 +217,7 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
   //   },
   //   { parent, protect: false /* defaults to true which prevents recreation */ },
   // );
-  // new cloudflare.AuthenticatedOriginPulls('authenticated-origin-pulls', {
+  // new cloudflare.AuthenticatedOriginPulls(name('authenticated-origin-pulls'), {
   //   zoneId: zone.id,
   //   authenticatedOriginPullsCertificate: authenticatedOriginPullsCertificate.id,
   //   enabled: true,
@@ -232,13 +234,13 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
   // firewall rules (up to 5 allowed)
   // -------------------------------------------
 
-  const blockIncomingRequestsFilter = new cloudflare.Filter('block-incoming-requests', {
+  const blockIncomingRequestsFilter = new cloudflare.Filter(name('block-incoming-requests'), {
     zoneId: zone.id,
     description: 'Block known bots (such as crawlers); blocks requests from specific countries and Tor',
     expression:
       '(cf.client.bot) or (ip.geoip.country eq "RU") or (ip.geoip.country eq "T1") or (ip.geoip.country eq "CN")',
   }, { parent });
-  new cloudflare.FirewallRule('block-incoming-requests', {
+  new cloudflare.FirewallRule(name('block-incoming-requests'), {
     zoneId: zone.id,
     description: blockIncomingRequestsFilter.description as pulumi.Output<string>,
     filterId: blockIncomingRequestsFilter.id,
@@ -281,13 +283,13 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
   if (isProduction()) {
     // auto-created and updated by the DDNS updater service
     const homeRecord = cloudflare.Record.get(
-      'home',
+      name('home'),
       pulumi.interpolate`${zone.id}/60ffd80cc91d047c640117461e934b00`,
       {},
       { parent },
     );
 
-    new cloudflare.Record('mdm', {
+    new cloudflare.Record(name('mdm'), {
       name: 'mdm',
       zoneId: zone.id,
       type: 'CNAME',
@@ -305,8 +307,8 @@ const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
     ttl: 1,
     proxied: false,
   };
-  new cloudflare.Record('services', { name: '*.services', ...internalEntry }, { parent });
-  new cloudflare.Record('devices', { name: '*.devices', ...internalEntry }, { parent });
+  new cloudflare.Record(name('services'), { name: '*.services', ...internalEntry }, { parent });
+  new cloudflare.Record(name('devices'), { name: '*.devices', ...internalEntry }, { parent });
 
   return {
     dnsSecStatus: zone_dnssec.status,

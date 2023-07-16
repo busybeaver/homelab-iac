@@ -1,11 +1,11 @@
 import * as github from '@pulumi/github';
-import * as pulumi from '@pulumi/pulumi';
-import { requireSecretString } from '../../util/secrets';
-import { ChildResourcesFn } from '../../util/types';
+import { requireSecretString, type ChildResourcesFn, createName } from '../../util';
 import { GitHubRepository, type RepoData } from './repository';
 
-const childResourcesFn: ChildResourcesFn<RepoData> = parent => {
-  const repository = new github.Repository('repository', {
+const childResourcesFn: ChildResourcesFn<RepoData> = (parent, postfix) => {
+  const name = createName(postfix);
+
+  const repository = new github.Repository(name('repository'), {
     allowAutoMerge: true,
     allowMergeCommit: true,
     allowRebaseMerge: false,
@@ -25,117 +25,86 @@ const childResourcesFn: ChildResourcesFn<RepoData> = parent => {
   }, {
     parent,
     protect: true,
-    aliases: [`urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/repository:Repository::homelab-iac`],
   });
-  const mainBranch = new github.Branch('default-branch', {
+  const mainBranch = new github.Branch(name('default-branch'), {
     repository: repository.name,
     branch: 'main',
   }, {
     parent,
     protect: true,
   });
-  const defaultBranch = new github.BranchDefault('default-branch', {
+  const defaultBranch = new github.BranchDefault(name('default-branch'), {
     repository: repository.name,
     branch: mainBranch.branch,
   }, {
     parent,
     protect: true,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/branchDefault:BranchDefault::homelab-iac`,
-    ],
   });
-  new github.RepositoryCollaborator('automation-user', {
+  new github.RepositoryCollaborator(name('automation-user'), {
     permission: 'admin',
     repository: repository.name,
     username: requireSecretString('github_automation_user', true),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/repositoryCollaborator:RepositoryCollaborator::homelab-iac-automation-user`,
-    ],
   });
-  new github.ActionsSecret('pulumi-passphrase', {
+  new github.ActionsSecret(name('pulumi-passphrase'), {
     repository: repository.name,
     secretName: 'PULUMI_CONFIG_PASSPHRASE',
     plaintextValue: requireSecretString('ci_stack_github_token'),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-pulumi-passphrase`,
-    ],
   });
-  new github.ActionsSecret('gitguardian-api-key', {
+  new github.ActionsSecret(name('gitguardian-api-key'), {
     repository: repository.name,
     secretName: 'GITGUARDIAN_API_KEY',
     plaintextValue: requireSecretString('gitguardian_api_key'),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gitguardian-api-key`,
-    ],
   });
-  new github.ActionsSecret('gpg-private-key', {
+  new github.ActionsSecret(name('gpg-private-key'), {
     repository: repository.name,
     secretName: 'GPG_PRIVATE_KEY',
     plaintextValue: requireSecretString('gpg_private_key'),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gpg-private-key`,
-    ],
   });
-  new github.ActionsSecret('gpg-passphrase', {
+  new github.ActionsSecret(name('gpg-passphrase'), {
     repository: repository.name,
     secretName: 'GPG_PASSPHRASE',
     plaintextValue: requireSecretString('gpg_passphrase'),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-gpg-passphrase`,
-    ],
   });
-  new github.ActionsSecret('pulumi-app-id', {
+  new github.ActionsSecret(name('pulumi-app-id'), {
     repository: repository.name,
     secretName: 'PULUMI_APP_ID',
     plaintextValue: requireSecretString('pulumi_app_id'),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-pulumi-app-id`,
-    ],
   });
-  new github.ActionsSecret('pulumi-app-private-key', {
+  new github.ActionsSecret(name('pulumi-app-private-key'), {
     repository: repository.name,
     secretName: 'PULUMI_APP_PRIVATE_KEY',
     plaintextValue: requireSecretString('pulumi_app_private_key'),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-pulumi-app-private-key`,
-    ],
   });
-  new github.ActionsSecret('codecov-token', {
+  new github.ActionsSecret(name('codecov-token'), {
     repository: repository.name,
     secretName: 'CODECOV_TOKEN',
     plaintextValue: requireSecretString('codecov_token'),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-codecov-token`,
-    ],
   });
-  new github.ActionsSecret('github-automation-token', {
+  new github.ActionsSecret(name('github-automation-token'), {
     repository: repository.name,
     secretName: 'GH_AUTOMATION_TOKEN',
     plaintextValue: requireSecretString('github_automation_token'),
   }, {
     parent,
-    aliases: [
-      `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-github-automation-token`,
-    ],
   });
   new github.ActionsSecret(
-    'unit-test-results-reporter-app-id',
+    name('unit-test-results-reporter-app-id'),
     {
       repository: repository.name,
       secretName: 'UNIT_TEST_RESULTS_REPORTER_APP_ID',
@@ -143,13 +112,10 @@ const childResourcesFn: ChildResourcesFn<RepoData> = parent => {
     },
     {
       parent,
-      aliases: [
-        `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-unit-test-results-reporter-app-id`,
-      ],
     },
   );
   new github.ActionsSecret(
-    'unit-test-results-reporter-private-key',
+    name('unit-test-results-reporter-private-key'),
     {
       repository: repository.name,
       secretName: 'UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY',
@@ -157,13 +123,10 @@ const childResourcesFn: ChildResourcesFn<RepoData> = parent => {
     },
     {
       parent,
-      aliases: [
-        `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-unit-test-results-reporter-private-key`,
-      ],
     },
   );
   new github.ActionsSecret(
-    'repository-assistant-app-id',
+    name('repository-assistant-app-id'),
     {
       repository: repository.name,
       secretName: 'REPOSITORY_ASSISTANT_APP_ID',
@@ -171,13 +134,10 @@ const childResourcesFn: ChildResourcesFn<RepoData> = parent => {
     },
     {
       parent,
-      aliases: [
-        `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-repository-assistant-app-id`,
-      ],
     },
   );
   new github.ActionsSecret(
-    'repository-assistant-private-key',
+    name('repository-assistant-private-key'),
     {
       repository: repository.name,
       secretName: 'REPOSITORY_ASSISTANT_PRIVATE_KEY',
@@ -185,13 +145,10 @@ const childResourcesFn: ChildResourcesFn<RepoData> = parent => {
     },
     {
       parent,
-      aliases: [
-        `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-repository-assistant-private-key`,
-      ],
     },
   );
   new github.ActionsSecret(
-    'git-user-mail',
+    name('git-user-mail'),
     {
       repository: repository.name,
       secretName: 'GIT_USER_MAIL',
@@ -199,9 +156,6 @@ const childResourcesFn: ChildResourcesFn<RepoData> = parent => {
     },
     {
       parent,
-      aliases: [
-        `urn:pulumi:${pulumi.getStack()}::homelab-iac::github:index/actionsSecret:ActionsSecret::homelab-iac-git-user-mail`,
-      ],
     },
   );
 
