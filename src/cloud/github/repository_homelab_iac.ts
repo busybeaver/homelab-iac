@@ -2,9 +2,9 @@ import * as github from '@pulumi/github';
 import * as pulumi from '@pulumi/pulumi';
 import { requireSecretString } from '../../util/secrets';
 import { ChildResourcesFn } from '../../util/types';
-import { GitHubRepository } from './repository';
+import { GitHubRepository, type RepoData } from './repository';
 
-const childResourcesFn: ChildResourcesFn = parent => {
+const childResourcesFn: ChildResourcesFn<RepoData> = parent => {
   const repository = new github.Repository('repository', {
     allowAutoMerge: true,
     allowMergeCommit: true,

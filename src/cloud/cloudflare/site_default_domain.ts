@@ -3,14 +3,13 @@ import * as command from '@pulumi/command';
 import * as pulumi from '@pulumi/pulumi';
 import * as tls from '@pulumi/tls';
 import { join } from 'node:path';
-import { requireSecretString } from '../../util/secrets';
-import { isProduction } from '../../util/stack';
-import { ChildResourcesFn } from '../../util/types';
+import { type ChildResourcesFn, isProduction, requireSecretString } from '../../util';
+import type { CloudflareApiTokens } from './index';
 import { CloudflareSite } from './site';
 
 const tlsKeyOptions: tls.PrivateKeyArgs = { algorithm: 'RSA', rsaBits: 8096 };
 
-const childResourcesFn: ChildResourcesFn = parent => {
+const childResourcesFn: ChildResourcesFn<DefaultDomainData> = parent => {
   // -------------------------------------------
   // account configuration
   // -------------------------------------------
@@ -111,7 +110,7 @@ const childResourcesFn: ChildResourcesFn = parent => {
   // API tokens
   // -------------------------------------------
   const all = cloudflare.getApiTokenPermissionGroups({});
-  new cloudflare.ApiToken('github-actions_homelab-adblock', {
+  const githubActionsHomelabAdblockApiToken = new cloudflare.ApiToken('github-actions_homelab-adblock', {
     name: 'github-actions_homelab-adblock',
     policies: [
       {
@@ -312,12 +311,16 @@ const childResourcesFn: ChildResourcesFn = parent => {
   return {
     dnsSecStatus: zone_dnssec.status,
     originCaCertificate: originCaCertificate.certificate,
+    apiTokens: pulumi.output({
+      githubActionsHomelabAdblock: githubActionsHomelabAdblockApiToken.value,
+    }),
   };
 };
 
-class DefaultDomainSite extends CloudflareSite {
-  public readonly dnsSecStatus!: pulumi.Output<string>;
-  public readonly originCaCertificate!: pulumi.Output<string>;
-}
+export type DefaultDomainData = {
+  dnsSecStatus: pulumi.Output<string>;
+  originCaCertificate: pulumi.Output<string>;
+  apiTokens: CloudflareApiTokens;
+};
 
-export const getDefaultDomainSite = () => new DefaultDomainSite('default-domain', childResourcesFn);
+export const getDefaultDomainSite = () => new CloudflareSite('default-domain', childResourcesFn);

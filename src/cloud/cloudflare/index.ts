@@ -5,20 +5,25 @@ import { getCloudflareOriginCaRootCertificate, OriginCaRootCertificate } from '.
 import { getDefaultDomainSite } from './site_default_domain';
 export { IpRanges } from './cloudflare_ip_range';
 
+export type CloudflareApiTokens = pulumi.Output<{ githubActionsHomelabAdblock: string; }>;
+
 export interface CloudflareData extends ComponentData {
   ipRanges: pulumi.Output<IpRanges>;
   originCaRootCertificate: pulumi.Output<OriginCaRootCertificate>;
+  apiTokens: CloudflareApiTokens;
 }
 
 export const getCloudflare = async (): Promise<CloudflareData> => {
   const cloudFlareIpRanges = await getCloudflareIpRanges();
   const cloudflareOriginCaRootCertificate = await getCloudflareOriginCaRootCertificate();
+  const defaultDomainSite = getDefaultDomainSite();
 
   return {
     ipRanges: cloudFlareIpRanges.ipRanges,
     originCaRootCertificate: cloudflareOriginCaRootCertificate.originCaRootCertificate,
+    apiTokens: defaultDomainSite.childData.apiTokens,
     resources: [
-      getDefaultDomainSite(),
+      defaultDomainSite,
       cloudFlareIpRanges,
       cloudflareOriginCaRootCertificate,
     ],

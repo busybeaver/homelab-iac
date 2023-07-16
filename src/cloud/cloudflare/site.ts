@@ -1,11 +1,9 @@
 import * as pulumi from '@pulumi/pulumi';
-import { ChildResourcesFn } from '../../util/types';
+import { BaseComponentResource, type ChildResourcesFn, type TDataType } from '../../util/';
 
 // a resource is usually a zone with all it's configuration
-export class CloudflareSite extends pulumi.ComponentResource {
-  constructor(name: string, childResourcesFn: ChildResourcesFn, opts: pulumi.ComponentResourceOptions = {}) {
-    super('custom:cloudflare:site', name, {}, { ...opts, protect: true });
-
-    this.registerOutputs(childResourcesFn(this));
+export class CloudflareSite<TData extends TDataType> extends BaseComponentResource<TData> {
+  constructor(name: string, childResourcesFn: ChildResourcesFn<TData>, opts: pulumi.ComponentResourceOptions = {}) {
+    super('cloudflare:site', name, childResourcesFn, opts);
   }
 }

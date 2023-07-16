@@ -1,10 +1,13 @@
 import * as pulumi from '@pulumi/pulumi';
-import { ChildResourcesFn } from '../../util/types';
+import { BaseComponentResource, type ChildResourcesFn, type TDataType } from '../../util/';
 
-export class GitHubRepository extends pulumi.ComponentResource {
-  constructor(name: string, childResourcesFn: ChildResourcesFn, opts: pulumi.ComponentResourceOptions = {}) {
-    super('custom:github:repository', name, {}, { ...opts, protect: true });
-
-    this.registerOutputs(childResourcesFn(this));
+export class GitHubRepository<TData extends TDataType> extends BaseComponentResource<TData> {
+  constructor(name: string, childResourcesFn: ChildResourcesFn<TData>, opts: pulumi.ComponentResourceOptions = {}) {
+    super('github:repository', name, childResourcesFn, opts);
   }
 }
+
+export type RepoData = {
+  repositoryName: pulumi.Output<string>;
+  defaultBranch: pulumi.Output<string>;
+};

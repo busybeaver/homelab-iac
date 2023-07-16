@@ -1,11 +1,9 @@
 import * as pulumi from '@pulumi/pulumi';
-import { ChildResourcesFn } from '../../util/types';
+import { BaseComponentResource, type ChildResourcesFn, type TDataType } from '../../util/';
 
 // a Tailnet is an instance/account on Tailscale (which hosts all configuration)
-export class TailscaleTailnet extends pulumi.ComponentResource {
-  constructor(name: string, childResourcesFn: ChildResourcesFn, opts: pulumi.ComponentResourceOptions = {}) {
-    super('custom:tailscale:tailnet', name, {}, { ...opts, protect: true });
-
-    this.registerOutputs(childResourcesFn(this));
+export class TailscaleTailnet<TData extends TDataType> extends BaseComponentResource<TData> {
+  constructor(name: string, childResourcesFn: ChildResourcesFn<TData>, opts: pulumi.ComponentResourceOptions = {}) {
+    super('tailscale:tailnet', name, childResourcesFn, opts);
   }
 }

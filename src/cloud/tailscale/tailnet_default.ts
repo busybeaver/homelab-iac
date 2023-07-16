@@ -4,7 +4,7 @@ import * as tailscale from '@pulumi/tailscale';
 import { ChildResourcesFn } from '../../util/types';
 import { TailscaleTailnet } from './tailnet';
 
-const childResourcesFn: ChildResourcesFn = parent => {
+const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = parent => {
   // global configuration
   const default_nameservers = new tailscale.DnsNameservers('default-nameservers', {
     // cloudflare public DNS
@@ -178,5 +178,7 @@ const childResourcesFn: ChildResourcesFn = parent => {
     // expose some information if needed
   };
 };
+
+export type DefaultTailnetData = {};
 
 export const getDefaultTailnet = () => new TailscaleTailnet('default', childResourcesFn);

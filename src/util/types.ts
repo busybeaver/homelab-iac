@@ -1,8 +1,10 @@
 import * as pulumi from '@pulumi/pulumi';
 
-export type ChildResourcesFn = (
+export type TDataType = pulumi.Inputs | pulumi.Output<pulumi.Inputs> | undefined;
+
+export type ChildResourcesFn<TData extends TDataType> = (
   parent: pulumi.Resource,
-) => pulumi.Inputs | Promise<pulumi.Inputs> | pulumi.Output<pulumi.Inputs> | undefined;
+) => TData;
 
 export type ComponentData = {
   resources: pulumi.Resource[];
