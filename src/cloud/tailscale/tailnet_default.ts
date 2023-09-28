@@ -1,7 +1,7 @@
 import * as github from '@pulumi/github';
 import * as pulumi from '@pulumi/pulumi';
 import * as tailscale from '@pulumi/tailscale';
-import { type ChildResourcesFn, createName } from '../../util';
+import type { ChildResourcesFn } from '../../util';
 import { TailscaleTailnet } from './tailnet';
 
 const githubOrgConfig = (() => {
@@ -11,15 +11,13 @@ const githubOrgConfig = (() => {
   return {
     adminUser: githubConfig.requireSecret('owner'),
     organizationName: defaultConfig.requireSecret('tailscale_github_organization'),
-    token: githubConfig.requireSecret('token')
-  }
+    token: githubConfig.requireSecret('token'),
+  };
 })();
 
-const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = (parent, postfix) => {
-  const name = createName(postfix);
-
+const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = (parent, { createName }) => {
   // global configuration
-  const default_nameservers = new tailscale.DnsNameservers(name('default-nameservers'), {
+  const default_nameservers = new tailscale.DnsNameservers(createName('default-nameservers'), {
     // cloudflare public DNS
     // TODO: replace with NextDNS
     nameservers: [
@@ -29,7 +27,7 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = (parent, postfix)
       '2606:4700:4700::1001',
     ],
   }, { parent });
-  new tailscale.DnsPreferences(name('dns-preferences'), {
+  new tailscale.DnsPreferences(createName('dns-preferences'), {
     magicDns: true,
   }, {
     parent,
@@ -38,7 +36,7 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = (parent, postfix)
   });
 
   // https://tailscale.com/kb/1018/acls/
-  new tailscale.Acl(name('access-controls'), {
+  new tailscale.Acl(createName('access-controls'), {
     acl: JSON.stringify(
       {
         // Define the tags which can be applied to devices and by which users.
@@ -111,11 +109,11 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = (parent, postfix)
   }, { parent });
 
   // users in Talescale are managed via GitHub organization
-  const githubOrganizationProvider = new github.Provider(name('organization-provider'), {
+  const githubOrganizationProvider = new github.Provider(createName('organization-provider'), {
     owner: githubOrgConfig.organizationName,
     token: githubOrgConfig.token,
   }, { parent });
-  new github.OrganizationSettings(name('tailscale-organization'), {
+  new github.OrganizationSettings(createName('tailscale-organization'), {
     name: githubOrgConfig.organizationName,
     billingEmail: 'private@foo.bar',
     defaultRepositoryPermission: 'none',
@@ -139,7 +137,7 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = (parent, postfix)
     parent,
     provider: githubOrganizationProvider,
   });
-  new github.ActionsOrganizationPermissions(name('tailscale-organization'), {
+  new github.ActionsOrganizationPermissions(createName('tailscale-organization'), {
     allowedActions: 'selected',
     enabledRepositories: 'all',
     allowedActionsConfig: {
@@ -150,7 +148,7 @@ const childResourcesFn: ChildResourcesFn<DefaultTailnetData> = (parent, postfix)
     parent,
     provider: githubOrganizationProvider,
   });
-  new github.Membership(name('organization-admin'), {
+  new github.Membership(createName('organization-admin'), {
     username: githubOrgConfig.adminUser,
     role: 'admin',
   }, {

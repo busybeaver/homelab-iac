@@ -1,11 +1,9 @@
 import * as github from '@pulumi/github';
-import { requireSecretString, type ChildResourcesFn, createName } from '../../util';
+import { type ChildResourcesFn, requireSecretString } from '../../util';
 import { GitHubRepository, type RepoData } from './repository';
 
-const childResourcesFn: ChildResourcesFn<RepoData> = (parent, postfix) => {
-  const name = createName(postfix);
-
-  const repository = new github.Repository(name('repository'), {
+const childResourcesFn: ChildResourcesFn<RepoData> = (parent, { createName }) => {
+  const repository = new github.Repository(createName('repository'), {
     allowAutoMerge: true,
     allowMergeCommit: true,
     allowRebaseMerge: false,
@@ -26,77 +24,77 @@ const childResourcesFn: ChildResourcesFn<RepoData> = (parent, postfix) => {
     parent,
     protect: true,
   });
-  const mainBranch = new github.Branch(name('default-branch'), {
+  const mainBranch = new github.Branch(createName('default-branch'), {
     repository: repository.name,
     branch: 'main',
   }, {
     parent,
     protect: true,
   });
-  const defaultBranch = new github.BranchDefault(name('default-branch'), {
+  const defaultBranch = new github.BranchDefault(createName('default-branch'), {
     repository: repository.name,
     branch: mainBranch.branch,
   }, {
     parent,
     protect: true,
   });
-  new github.RepositoryCollaborator(name('automation-user'), {
+  new github.RepositoryCollaborator(createName('automation-user'), {
     permission: 'admin',
     repository: repository.name,
     username: requireSecretString('github_automation_user', true),
   }, {
     parent,
   });
-  new github.ActionsSecret(name('pulumi-passphrase'), {
+  new github.ActionsSecret(createName('pulumi-passphrase'), {
     repository: repository.name,
     secretName: 'PULUMI_CONFIG_PASSPHRASE',
     plaintextValue: requireSecretString('ci_stack_github_token'),
   }, {
     parent,
   });
-  new github.ActionsSecret(name('gitguardian-api-key'), {
+  new github.ActionsSecret(createName('gitguardian-api-key'), {
     repository: repository.name,
     secretName: 'GITGUARDIAN_API_KEY',
     plaintextValue: requireSecretString('gitguardian_api_key'),
   }, {
     parent,
   });
-  new github.ActionsSecret(name('gpg-private-key'), {
+  new github.ActionsSecret(createName('gpg-private-key'), {
     repository: repository.name,
     secretName: 'GPG_PRIVATE_KEY',
     plaintextValue: requireSecretString('gpg_private_key'),
   }, {
     parent,
   });
-  new github.ActionsSecret(name('gpg-passphrase'), {
+  new github.ActionsSecret(createName('gpg-passphrase'), {
     repository: repository.name,
     secretName: 'GPG_PASSPHRASE',
     plaintextValue: requireSecretString('gpg_passphrase'),
   }, {
     parent,
   });
-  new github.ActionsSecret(name('pulumi-app-id'), {
+  new github.ActionsSecret(createName('pulumi-app-id'), {
     repository: repository.name,
     secretName: 'PULUMI_APP_ID',
     plaintextValue: requireSecretString('pulumi_app_id'),
   }, {
     parent,
   });
-  new github.ActionsSecret(name('pulumi-app-private-key'), {
+  new github.ActionsSecret(createName('pulumi-app-private-key'), {
     repository: repository.name,
     secretName: 'PULUMI_APP_PRIVATE_KEY',
     plaintextValue: requireSecretString('pulumi_app_private_key'),
   }, {
     parent,
   });
-  new github.ActionsSecret(name('codecov-token'), {
+  new github.ActionsSecret(createName('codecov-token'), {
     repository: repository.name,
     secretName: 'CODECOV_TOKEN',
     plaintextValue: requireSecretString('codecov_token'),
   }, {
     parent,
   });
-  new github.ActionsSecret(name('github-automation-token'), {
+  new github.ActionsSecret(createName('github-automation-token'), {
     repository: repository.name,
     secretName: 'GH_AUTOMATION_TOKEN',
     plaintextValue: requireSecretString('github_automation_token'),
@@ -104,7 +102,7 @@ const childResourcesFn: ChildResourcesFn<RepoData> = (parent, postfix) => {
     parent,
   });
   new github.ActionsSecret(
-    name('unit-test-results-reporter-app-id'),
+    createName('unit-test-results-reporter-app-id'),
     {
       repository: repository.name,
       secretName: 'UNIT_TEST_RESULTS_REPORTER_APP_ID',
@@ -115,7 +113,7 @@ const childResourcesFn: ChildResourcesFn<RepoData> = (parent, postfix) => {
     },
   );
   new github.ActionsSecret(
-    name('unit-test-results-reporter-private-key'),
+    createName('unit-test-results-reporter-private-key'),
     {
       repository: repository.name,
       secretName: 'UNIT_TEST_RESULTS_REPORTER_PRIVATE_KEY',
@@ -126,7 +124,7 @@ const childResourcesFn: ChildResourcesFn<RepoData> = (parent, postfix) => {
     },
   );
   new github.ActionsSecret(
-    name('repository-assistant-app-id'),
+    createName('repository-assistant-app-id'),
     {
       repository: repository.name,
       secretName: 'REPOSITORY_ASSISTANT_APP_ID',
@@ -137,7 +135,7 @@ const childResourcesFn: ChildResourcesFn<RepoData> = (parent, postfix) => {
     },
   );
   new github.ActionsSecret(
-    name('repository-assistant-private-key'),
+    createName('repository-assistant-private-key'),
     {
       repository: repository.name,
       secretName: 'REPOSITORY_ASSISTANT_PRIVATE_KEY',
@@ -148,7 +146,7 @@ const childResourcesFn: ChildResourcesFn<RepoData> = (parent, postfix) => {
     },
   );
   new github.ActionsSecret(
-    name('git-user-mail'),
+    createName('git-user-mail'),
     {
       repository: repository.name,
       secretName: 'GIT_USER_MAIL',
