@@ -19,7 +19,7 @@
     "@pulumi/github": "5.26.0",
     "@pulumi/pulumi": "3.105.0",
     "@pulumi/random": "4.15.1",
-    "@swc/core": "1.4.0",
+    "@swc/core": "1.4.1",
     "@swc/jest": "0.2.36",
     "@tsconfig/node16": "1.0.3",
     "@types/jest": "29.5.12",
