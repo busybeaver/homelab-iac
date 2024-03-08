@@ -1,0 +1,52 @@
+{
+    "kind": "refresh",
+    "startTime": 1709912213,
+    "message": "chore(deps): update dependency @swc/core to v1.4.4 (#1106)",
+    "environment": {
+        "ci.build.id": "8205559327",
+        "ci.build.number": "4788",
+        "ci.build.type": "push",
+        "ci.build.url": "https://github.com/busybeaver/homelab-iac/actions/runs/8205559327",
+        "ci.pr.headSHA": "77ae7724184d12b2222252efbb76bc3d269e46f5",
+        "ci.system": "GitHub Actions",
+        "exec.kind": "auto.local",
+        "git.author": "renovate[bot]",
+        "git.author.email": "29139614+renovate[bot]@users.noreply.github.com",
+        "git.committer": "GitHub",
+        "git.committer.email": "noreply@github.com",
+        "git.dirty": "true",
+        "git.head": "77ae7724184d12b2222252efbb76bc3d269e46f5",
+        "git.headName": "refs/heads/main",
+        "pulumi.arch": "amd64",
+        "pulumi.env.PULUMI_CONFIG_PASSPHRASE": "set",
+        "pulumi.env.PULUMI_DEBUG_COMMANDS": "true",
+        "pulumi.env.PULUMI_STACK": "set",
+        "pulumi.flag.exec-kind": "set",
+        "pulumi.flag.non-interactive": "true",
+        "pulumi.flag.skip-preview": "true",
+        "pulumi.flag.stack": "set",
+        "pulumi.flag.yes": "true",
+        "pulumi.os": "linux",
+        "pulumi.version": "v3.108.1",
+        "updatePlan": "false",
+        "vcs.kind": "github.com",
+        "vcs.owner": "busybeaver",
+        "vcs.repo": "homelab-iac",
+        "vcs.root": "."
+    },
+    "config": {
+        "github:owner": "busybeaver-ci",
+        "github:token": {
+            "secure": "v1:nNS6emDc/FSh5cRr:MZxv+x5cha8GtcbHjFhknAqnpWp6QyhnfNk6khqRQQH/4VAKldCIupDhfF+1OAlhcy7/S1axd58="
+        },
+        "homelab-iac:github_automation_user": {
+            "secure": "v1:g3myXWWg3Qn735ic:Pv88Y1cEbBtrsMBei/f9yv6+UjI4wAdWr9lrpS5hKA8Q44PMnw=="
+        }
+    },
+    "version": 0,
+    "result": "succeeded",
+    "endTime": 1709912213,
+    "resourceChanges": {
+        "same": 19
+    }
+}
