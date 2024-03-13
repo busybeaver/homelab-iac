@@ -78,7 +78,7 @@ jobs:
 
     env:
       # renovate: datasource=github-releases depName=casey/just
-      JUST_VERSION: 1.25.0
+      JUST_VERSION: 1.25.1
 
     steps:
       - name: Git - Checkout
@@ -121,7 +121,7 @@ jobs:
 
     env:
       # renovate: datasource=github-releases depName=casey/just
-      JUST_VERSION: 1.25.0
+      JUST_VERSION: 1.25.1
       JUNIT_TEST_RESULTS_FILE: ./.test_results_junit.xml
 
     steps:
