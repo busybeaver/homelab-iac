@@ -25,7 +25,7 @@ jobs:
       contents: read
       statuses: write
 
-    uses: busybeaver/homelab-shared/.github/workflows/general.yaml@0a6ccd5a16ea5ffac323c453e8c2a3492e5de104 # v1.1.3
+    uses: busybeaver/homelab-shared/.github/workflows/general.yaml@67cd29a0b4f464de2c123da667a38bdff1bec6ba # v1.1.4
     with:
       lintTypescript: true
       filterRegexExlude: '.*Pulumi\.production\.yaml|.*data/.*|.*state/.*|.*\.git-crypt/.*'
