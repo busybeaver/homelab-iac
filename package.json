@@ -15,7 +15,7 @@
     "cleanup": "zx scripts/cleanup_state_backups.mjs"
   },
   "devDependencies": {
-    "@pulumi/cloudflare": "5.40.1",
+    "@pulumi/cloudflare": "5.40.2",
     "@pulumi/github": "6.3.2",
     "@pulumi/pulumi": "3.136.1",
     "@pulumi/random": "4.16.6",
