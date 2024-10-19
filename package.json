@@ -18,7 +18,7 @@
     "@pulumi/cloudflare": "5.40.2",
     "@pulumi/github": "6.3.2",
     "@pulumi/pulumi": "3.136.1",
-    "@pulumi/random": "4.16.6",
+    "@pulumi/random": "4.16.7",
     "@swc/core": "1.7.36",
     "@swc/jest": "0.2.36",
     "@tsconfig/node16": "1.0.3",
