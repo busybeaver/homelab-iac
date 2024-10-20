@@ -17,7 +17,7 @@
   "devDependencies": {
     "@pulumi/cloudflare": "5.40.2",
     "@pulumi/github": "6.3.2",
-    "@pulumi/pulumi": "3.136.1",
+    "@pulumi/pulumi": "3.137.0",
     "@pulumi/random": "4.16.7",
     "@swc/core": "1.7.36",
     "@swc/jest": "0.2.36",
