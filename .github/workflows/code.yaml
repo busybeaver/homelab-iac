@@ -55,7 +55,7 @@ jobs:
       # Initializes the CodeQL tools for scanning.
       - name: CodeQL - Initialization
         id: codeql_initialization
-        uses: github/codeql-action/init@8a93837afdf1873301a68d777844b43e98cd4313 # v3.27.8
+        uses: github/codeql-action/init@df409f7d9260372bd5f19e5b04e83cb3c43714ae # v3.27.9
         with:
           languages: ${{ matrix.language }}
           # If you wish to specify custom queries, you can do so here or in a config file.
@@ -65,11 +65,11 @@ jobs:
 
       - name: CodeQL - Autobuild
         id: codeql_autobuild
-        uses: github/codeql-action/autobuild@8a93837afdf1873301a68d777844b43e98cd4313 # v3.27.8
+        uses: github/codeql-action/autobuild@df409f7d9260372bd5f19e5b04e83cb3c43714ae # v3.27.9
 
       - name: CodeQL - Analysis
         id: codeql_analysis
-        uses: github/codeql-action/analyze@8a93837afdf1873301a68d777844b43e98cd4313 # v3.27.8
+        uses: github/codeql-action/analyze@df409f7d9260372bd5f19e5b04e83cb3c43714ae # v3.27.9
 
   typecheck:
     name: 'TypeScript - Type Check'
