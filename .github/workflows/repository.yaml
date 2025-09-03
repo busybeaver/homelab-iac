@@ -23,7 +23,7 @@ on:
 
 jobs:
   repository:
-    uses: busybeaver/homelab-shared/.github/workflows/repository.yaml@e0c452f20f3adedf67ffe28e476fd780ef279a64 # v1.1.62
+    uses: busybeaver/homelab-shared/.github/workflows/repository.yaml@3ec2fb463ada1d00d64ca142445255fc3095107f # v1.1.63
     secrets:
       REPOSITORY_ASSISTANT_APP_ID: ${{ secrets.REPOSITORY_ASSISTANT_APP_ID }}
       REPOSITORY_ASSISTANT_PRIVATE_KEY: ${{ secrets.REPOSITORY_ASSISTANT_PRIVATE_KEY }}
